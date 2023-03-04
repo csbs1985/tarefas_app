@@ -1,0 +1,8 @@
+<svg id="bell" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <rect id="back" width="24" height="24" fill="none"/>
+    <g id="icon" transform="translate(-41.998 1)">
+      <path id="Caminho_4" data-name="Caminho 4" d="M15,7.6C15,4.507,12.853,2,10.2,2S5.4,4.507,5.4,7.6C5.4,14.134,3,16,3,16H17.4S15,14.134,15,7.6" transform="translate(43.998 1)" fill="none" stroke="#bcbcbc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="Caminho_5" data-name="Caminho 5" d="M11.654,21a.8.8,0,0,1-1.384,0" transform="translate(43.238 -2.399)" fill="none" stroke="#bcbcbc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </svg>
+  

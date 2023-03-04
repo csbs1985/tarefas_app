@@ -1,0 +1,8 @@
+<svg id="create" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <rect id="circle" width="48" height="48" rx="24" fill="#54c893"/>
+    <g id="plus" transform="translate(12 12)">
+      <line id="Linha_2" data-name="Linha 2" y2="14" transform="translate(12 5)" fill="none" stroke="#1b1c1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line id="Linha_3" data-name="Linha 3" x2="14" transform="translate(5 12)" fill="none" stroke="#1b1c1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </svg>
+  

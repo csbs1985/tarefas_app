@@ -1,0 +1,11 @@
+<svg id="concluidas" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <rect id="back" width="20" height="20" fill="none"/>
+    <g id="icon" transform="translate(2 2)">
+      <g id="checkout" fill="none" stroke="#1b1c1b" stroke-width="1.5">
+        <rect width="16" height="16" rx="8" stroke="none"/>
+        <rect x="0.75" y="0.75" width="14.5" height="14.5" rx="7.25" fill="none"/>
+      </g>
+      <path id="Caminho_2" data-name="Caminho 2" d="M17,11l2,2,4-4" transform="translate(-11.688 -2.667)" fill="none" stroke="#1b1c1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </g>
+  </svg>
+  
