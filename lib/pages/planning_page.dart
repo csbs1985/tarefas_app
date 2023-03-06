@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:tarefas_app/components/header_component.dart';
+import 'package:tarefas_app/enuns/page_enum.dart';
 
 class PlanningPage extends StatefulWidget {
   const PlanningPage({super.key});
@@ -10,8 +12,13 @@ class PlanningPage extends StatefulWidget {
 class _PlanningPageState extends State<PlanningPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('planning'),
+    return SingleChildScrollView(
+      child: Column(
+        children: const [
+          HeaderComponent(page: PageEnum.planning),
+          Text('planning'),
+        ],
+      ),
     );
   }
 }

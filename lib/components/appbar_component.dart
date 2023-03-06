@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tarefas_app/enuns/page_enum.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
 class AppBarComponent extends StatefulWidget with PreferredSizeWidget {
@@ -42,13 +43,13 @@ class _AppBarComponentState extends State<AppBarComponent> {
         toolbarHeight: 4,
         actions: [
           _sizedBoxWidth,
-          _buildMenuButton(0),
+          _buildMenuButton(PageEnum.planning.value),
           _sizedBoxWidth,
-          _buildMenuButton(1),
+          _buildMenuButton(PageEnum.calendar.value),
           _sizedBoxWidth,
-          _buildMenuButton(2),
+          _buildMenuButton(PageEnum.all.value),
           _sizedBoxWidth,
-          _buildMenuButton(3),
+          _buildMenuButton(PageEnum.concluded.value),
           _sizedBoxWidth
         ],
       ),
@@ -63,7 +64,7 @@ class _AppBarComponentState extends State<AppBarComponent> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 400),
           height: 8,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.only(top: 16),
           decoration: BoxDecoration(
             color: isSelected ? UiColor.menuItem : UiColor.menuItemSelected,
             borderRadius: BorderRadius.circular(50),
