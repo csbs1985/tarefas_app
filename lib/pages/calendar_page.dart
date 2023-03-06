@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tarefas_app/components/header_component.dart';
+import 'package:tarefas_app/widget/header_widget.dart';
 import 'package:tarefas_app/enuns/page_enum.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class _CalendarPageState extends State<CalendarPage> {
     return SingleChildScrollView(
       child: Column(
         children: const [
-          HeaderComponent(page: PageEnum.calendar),
+          HeaderWidget(page: PageEnum.calendar),
           Text('planning'),
         ],
       ),

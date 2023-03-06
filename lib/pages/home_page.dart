@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tarefas_app/components/appbar_component.dart';
+import 'package:tarefas_app/widget/appbar_widget.dart';
 import 'package:tarefas_app/enuns/page_enum.dart';
 import 'package:tarefas_app/pages/all_page.dart';
 import 'package:tarefas_app/pages/calendar_page.dart';

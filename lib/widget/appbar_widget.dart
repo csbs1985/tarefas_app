@@ -19,11 +19,11 @@ class AppBarComponent extends StatefulWidget with PreferredSizeWidget {
   State<AppBarComponent> createState() => _AppBarComponentState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(32);
+  Size get preferredSize => const Size.fromHeight(40);
 }
 
 class _AppBarComponentState extends State<AppBarComponent> {
-  static const _sizedBoxWidth = SizedBox(width: 8);
+  static const _sizedBoxWidth = SizedBox(width: 4);
 
   selectMenuItem(int page) {
     widget._callback!(page);
@@ -37,9 +37,8 @@ class _AppBarComponentState extends State<AppBarComponent> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 18),
       child: AppBar(
-        backgroundColor: UiColor.back,
         toolbarHeight: 4,
         actions: [
           _sizedBoxWidth,
@@ -63,8 +62,6 @@ class _AppBarComponentState extends State<AppBarComponent> {
       child: GestureDetector(
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 400),
-          height: 8,
-          padding: const EdgeInsets.only(top: 16),
           decoration: BoxDecoration(
             color: isSelected ? UiColor.menuItem : UiColor.menuItemSelected,
             borderRadius: BorderRadius.circular(50),

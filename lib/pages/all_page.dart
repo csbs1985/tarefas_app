@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tarefas_app/components/header_component.dart';
+import 'package:tarefas_app/widget/header_widget.dart';
 import 'package:tarefas_app/enuns/page_enum.dart';
 
 class AllPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class _AllPageState extends State<AllPage> {
     return SingleChildScrollView(
       child: Column(
         children: const [
-          HeaderComponent(page: PageEnum.all),
+          HeaderWidget(page: PageEnum.all),
           Text('planning'),
         ],
       ),

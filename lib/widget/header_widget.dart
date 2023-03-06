@@ -5,18 +5,18 @@ import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class HeaderComponent extends StatefulWidget {
-  const HeaderComponent({
+class HeaderWidget extends StatefulWidget {
+  const HeaderWidget({
     required PageEnum page,
   }) : _page = page;
 
   final PageEnum _page;
 
   @override
-  State<HeaderComponent> createState() => _HeaderComponentState();
+  State<HeaderWidget> createState() => _HeaderWidgetState();
 }
 
-class _HeaderComponentState extends State<HeaderComponent> {
+class _HeaderWidgetState extends State<HeaderWidget> {
   final Map<PageEnum, Map<String, dynamic>> _pageMap = {
     PageEnum.planning: {
       'text': 'Planejamento',

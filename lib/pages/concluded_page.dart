@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tarefas_app/components/header_component.dart';
+import 'package:tarefas_app/widget/header_widget.dart';
 import 'package:tarefas_app/enuns/page_enum.dart';
 
 class ConcludedPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class _ConcludedPageState extends State<ConcludedPage> {
     return SingleChildScrollView(
       child: Column(
         children: const [
-          HeaderComponent(page: PageEnum.concluded),
+          HeaderWidget(page: PageEnum.concluded),
           Text('planning'),
         ],
       ),
