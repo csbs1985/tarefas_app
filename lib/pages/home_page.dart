@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarComponent(
+      appBar: AppBarWidget(
         menuItem: currentPage,
         callback: (value) => setCurrentPage(value),
         pageController: pageController,

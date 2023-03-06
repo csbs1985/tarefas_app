@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tarefas_app/enuns/page_enum.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
-class AppBarComponent extends StatefulWidget with PreferredSizeWidget {
-  const AppBarComponent({
+class AppBarWidget extends StatefulWidget with PreferredSizeWidget {
+  const AppBarWidget({
     required Function? callback,
     required int menuItem,
     required PageController pageController,
@@ -16,13 +16,13 @@ class AppBarComponent extends StatefulWidget with PreferredSizeWidget {
   final PageController _pageController;
 
   @override
-  State<AppBarComponent> createState() => _AppBarComponentState();
+  State<AppBarWidget> createState() => _AppBarWidgetState();
 
   @override
   Size get preferredSize => const Size.fromHeight(40);
 }
 
-class _AppBarComponentState extends State<AppBarComponent> {
+class _AppBarWidgetState extends State<AppBarWidget> {
   static const _sizedBoxWidth = SizedBox(width: 4);
 
   selectMenuItem(int page) {
