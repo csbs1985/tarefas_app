@@ -10,6 +10,6 @@ class ConcludedPage extends StatefulWidget {
 class _ConcludedPageState extends State<ConcludedPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Text('concluded');
   }
 }
