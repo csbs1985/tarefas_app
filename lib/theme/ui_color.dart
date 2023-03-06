@@ -10,4 +10,6 @@ class UiColor {
   static const Color task = Color(0xFFc89550);
   static const Color text_1 = Color(0xFFfefefe);
   static const Color text_2 = Color(0xFFbcbcbc);
+  static const Color menuItem = Color(0xFFfefefe);
+  static const Color menuItemSelected = Color(0x40fefefe);
 }

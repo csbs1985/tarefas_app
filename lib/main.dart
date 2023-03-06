@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: UiTheme.theme1,
       home: const HomePage(),
+      theme: UiTheme.theme1,
     );
   }
 }
