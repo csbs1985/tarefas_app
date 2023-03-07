@@ -3,6 +3,8 @@ import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
+ValueNotifier<int> currentPageInt = ValueNotifier<int>(0);
+
 class PageClass {
   final Map<PageEnum, Map<String, dynamic>> pageMap = {
     PageEnum.planning: {

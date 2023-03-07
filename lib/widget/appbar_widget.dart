@@ -23,7 +23,8 @@ class AppBarWidget extends StatefulWidget with PreferredSizeWidget {
 }
 
 class _AppBarWidgetState extends State<AppBarWidget> {
-  static const _sizedBoxWidth = SizedBox(width: 4);
+  static const _sizedGap = SizedBox(width: 4);
+  static const _sizedMargin = SizedBox(width: 16);
 
   void selectMenuItem(PageEnum page) {
     widget._callback!(page);
@@ -41,15 +42,15 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       child: AppBar(
         toolbarHeight: 4,
         actions: [
-          _sizedBoxWidth,
+          _sizedMargin,
           _buildMenuButton(PageEnum.planning),
-          _sizedBoxWidth,
+          _sizedGap,
           _buildMenuButton(PageEnum.calendar),
-          _sizedBoxWidth,
+          _sizedGap,
           _buildMenuButton(PageEnum.all),
-          _sizedBoxWidth,
+          _sizedGap,
           _buildMenuButton(PageEnum.concluded),
-          _sizedBoxWidth
+          _sizedMargin,
         ],
       ),
     );

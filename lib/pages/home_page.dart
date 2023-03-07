@@ -19,28 +19,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final PageClass _pageClass = PageClass();
-
-  int currentPage = PageEnum.planning.value;
-
   PageController pageController = PageController();
 
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: currentPage);
+    pageController = PageController(initialPage: currentPageInt.value);
   }
 
   setCurrentPage(int page) {
-    setState(() => currentPage = page);
+    setState(() => currentPageInt.value = page);
   }
 
   @override
   Widget build(BuildContext context) {
-    var _color = _pageClass.getColorInt(currentPage);
+    var _color = _pageClass.getColorInt(currentPageInt.value);
 
     return Scaffold(
       appBar: AppBarWidget(
-        menuItem: currentPage,
+        menuItem: currentPageInt.value,
         callback: (value) => setCurrentPage(value.value),
         pageController: pageController,
       ),
