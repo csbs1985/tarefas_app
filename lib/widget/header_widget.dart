@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tarefas_app/enuns/page_enum.dart';
+import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
