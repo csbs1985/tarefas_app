@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/page_class.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/pages/all_page.dart';
 import 'package:tarefas_app/pages/calendar_page.dart';
 import 'package:tarefas_app/pages/concluded_page.dart';
 import 'package:tarefas_app/pages/planning_page.dart';
+import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/appbar_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,27 +20,25 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final PageClass _pageClass = PageClass();
 
-  PageEnum currentPage = PageEnum.planning;
+  int currentPage = PageEnum.planning.value;
 
   PageController pageController = PageController();
 
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: currentPage.value);
+    pageController = PageController(initialPage: currentPage);
   }
 
-  getCurrentPage(int page) {
-    // var test = PageEnum.values(page);
-    // setCurrentPage(page);
-  }
-
-  setCurrentPage(PageEnum page) {
+  setCurrentPage(int page) {
     setState(() => currentPage = page);
   }
 
   @override
   Widget build(BuildContext context) {
+    var _color = _pageClass.getColorInt(currentPage);
+    print(_color);
+
     return Scaffold(
       appBar: AppBarWidget(
         menuItem: currentPage,
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: PageView(
         controller: pageController,
-        onPageChanged: getCurrentPage,
+        onPageChanged: setCurrentPage,
         children: const [
           PlanningPage(),
           CalendarPage(),
@@ -56,13 +56,11 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: _pageClass.getColor(currentPage),
-        onPressed: () {
-          print(
-            'Botão flutuante pressionado!',
-          ); //TODO: criar rota pagina tarefa
-        },
-        child: SvgPicture.asset(UiSvg.create),
+        backgroundColor: _color,
+        onPressed: () => context.go(RouteEnum.TASK.value),
+        child: SvgPicture.asset(
+          UiSvg.create,
+        ),
       ),
     );
   }

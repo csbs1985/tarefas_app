@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -45,12 +45,20 @@ class PageClass {
     return pageMap[page]!['text'];
   }
 
+  TextStyle getStyle(PageEnum page) {
+    return pageMap[page]!['style'];
+  }
+
   Color getColor(PageEnum page) {
     return pageMap[page]!['color'];
   }
 
-  TextStyle getStyle(PageEnum page) {
-    return pageMap[page]!['style'];
+  Color getColorInt(int page) {
+    if (page == 0) return UiColor.planning;
+    if (page == 1) return UiColor.calendar;
+    if (page == 2) return UiColor.all;
+    if (page == 3) return UiColor.concluded;
+    return UiColor.task;
   }
 }
 

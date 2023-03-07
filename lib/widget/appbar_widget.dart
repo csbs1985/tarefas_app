@@ -5,14 +5,14 @@ import 'package:tarefas_app/theme/ui_color.dart';
 class AppBarWidget extends StatefulWidget with PreferredSizeWidget {
   const AppBarWidget({
     required Function? callback,
-    required PageEnum menuItem,
+    required int menuItem,
     required PageController pageController,
   })  : _callback = callback,
         _menuItem = menuItem,
         _pageController = pageController;
 
   final Function? _callback;
-  final PageEnum _menuItem;
+  final int _menuItem;
   final PageController _pageController;
 
   @override
