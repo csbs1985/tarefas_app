@@ -1,8 +1,1 @@
-<svg id="voltar" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-    <rect id="back" width="20" height="20" fill="none"/>
-    <g id="icon" transform="translate(2 2)">
-      <line id="Linha_4" data-name="Linha 4" x1="16" transform="translate(0 8)" fill="none" stroke="#1b1c1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-      <path id="Caminho_15" data-name="Caminho 15" d="M13,21,5,13l8-8" transform="translate(-5 -5)" fill="none" stroke="#1b1c1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-    </g>
-  </svg>
-  
+<svg xmlns="http://www.w3.org/2000/svg" width="21.5" height="22.121"><g fill="none"><path d="M.75 1.061h20v20h-20z"/><g stroke="#c89550" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path data-name="Linha 4" d="M20.75 11.061h-20"/><path data-name="Caminho 15" d="m10.75 21.061-10-10 10-10"/></g></g></svg>

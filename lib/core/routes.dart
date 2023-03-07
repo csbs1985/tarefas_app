@@ -1,22 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tarefas_app/pages/home_page.dart';
 import 'package:tarefas_app/pages/task_page.dart';
 
 final routes = GoRouter(
-  initialLocation: RouteEnum.PLANNING.value,
-  // refreshListenable: _authService,
-  debugLogDiagnostics: true,
-  // redirect: (BuildContext context, GoRouterState state) async {
-  //   if (_authService.isLoading)
-  //     return PageEnum.LOADING.value;
-  //   else if (_authService.user == null)
-  //     return PageEnum.LOGIN.value;
-  //   else {
-  //     await _userService.initUser(context);
-  //     return PageEnum.HOME.value;
-  //   }
-  // },
+  initialLocation: RouteEnum.HOME.value,
   routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomePage(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const HomePage(),
+      ),
+    ),
+    GoRoute(
+      path: RouteEnum.HOME.value,
+      builder: (context, state) => const HomePage(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const HomePage(),
+      ),
+    ),
     GoRoute(
       path: RouteEnum.TASK.value,
       builder: (context, state) => const TaskPage(),
@@ -41,7 +48,7 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
         SlideTransition(
       position: animation.drive(
         Tween<Offset>(
-          begin: const Offset(1, 0),
+          begin: const Offset(1, 0.0),
           end: Offset.zero,
         ),
       ),
@@ -55,6 +62,7 @@ enum RouteEnum {
   CALENDAR('/calendar'),
   CONCLUDED('/concluded'),
   PLANNING('/planning'),
+  HOME('/home'),
   TASK('/task');
 
   final String value;

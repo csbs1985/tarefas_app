@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tarefas_app/pages/home_Page.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_theme.dart';
 
@@ -28,9 +28,11 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
+    return MaterialApp.router(
+      routerDelegate: routes.routerDelegate,
+      routeInformationParser: routes.routeInformationParser,
+      routeInformationProvider: routes.routeInformationProvider,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
       theme: UiTheme.theme1,
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/pages/all_page.dart';
@@ -8,7 +9,6 @@ import 'package:tarefas_app/pages/concluded_page.dart';
 import 'package:tarefas_app/pages/planning_page.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/appbar_widget.dart';
-import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var _color = _pageClass.getColorInt(currentPage);
-    print(_color);
 
     return Scaffold(
       appBar: AppBarWidget(
@@ -57,7 +56,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: _color,
-        onPressed: () => context.go(RouteEnum.TASK.value),
+        onPressed: () => GoRouter.of(context).push(RouteEnum.TASK.value),
         child: SvgPicture.asset(
           UiSvg.create,
         ),
