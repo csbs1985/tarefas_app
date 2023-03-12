@@ -85,7 +85,7 @@ class _AmountInputState extends State<AmountInput> {
             ),
             IconButton(
               icon: SvgPicture.asset(
-                UiSvg.close,
+                UiSvg.clean,
                 height: 16,
               ),
               onPressed: () => widget._controller.clear(),

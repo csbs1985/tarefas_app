@@ -48,7 +48,7 @@ class _TextInputState extends State<TextInput> {
             ),
             IconButton(
               icon: SvgPicture.asset(
-                UiSvg.close,
+                UiSvg.clean,
                 height: 16,
               ),
               onPressed: () => widget._controller.clear(),

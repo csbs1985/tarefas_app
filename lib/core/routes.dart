@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/pages/home_page.dart';
-import 'package:tarefas_app/pages/task_page.dart';
 
 final routes = GoRouter(
   initialLocation: RouteEnum.HOME.value,
@@ -22,15 +21,6 @@ final routes = GoRouter(
         context: context,
         state: state,
         child: const HomePage(),
-      ),
-    ),
-    GoRoute(
-      path: RouteEnum.TASK.value,
-      builder: (context, state) => const TaskPage(),
-      pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context,
-        state: state,
-        child: const TaskPage(),
       ),
     ),
   ],
@@ -62,8 +52,7 @@ enum RouteEnum {
   CALENDAR('/calendar'),
   CONCLUDED('/concluded'),
   PLANNING('/planning'),
-  HOME('/home'),
-  TASK('/task');
+  HOME('/home');
 
   final String value;
   const RouteEnum(this.value);

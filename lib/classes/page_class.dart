@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
 ValueNotifier<int> currentPageInt = ValueNotifier<int>(0);
@@ -9,31 +8,26 @@ class PageClass {
   final Map<PageEnum, Map<String, dynamic>> pageMap = {
     PageEnum.planning: {
       'text': 'Planejamento',
-      'icon': UiSvg.planning,
       'color': UiColor.planning,
       'style': UiText.titlePlanning,
     },
     PageEnum.calendar: {
       'text': 'Calendário',
-      'icon': UiSvg.calendar,
       'color': UiColor.calendar,
       'style': UiText.titleCalendar,
     },
     PageEnum.all: {
       'text': 'Todos',
-      'icon': UiSvg.all,
       'color': UiColor.all,
       'style': UiText.titleAll,
     },
     PageEnum.concluded: {
       'text': 'Concluidas',
-      'icon': UiSvg.concluded,
       'color': UiColor.concluded,
       'style': UiText.titleConcluded,
     },
     PageEnum.task: {
       'text': 'Tarefa',
-      'icon': UiSvg.back,
       'color': UiColor.task,
       'style': UiText.titleTask,
     },
