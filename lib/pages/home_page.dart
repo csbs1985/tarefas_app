@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: _color,
+        elevation: 0,
         onPressed: () => GoRouter.of(context).push(RouteEnum.TASK.value),
         child: SvgPicture.asset(
           UiSvg.create,

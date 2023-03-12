@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 
 class HeaderWidget extends StatefulWidget {
@@ -27,24 +26,10 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            child: SvgPicture.asset(
-              _pageClass.getIcon(widget._page),
-              height: 32,
-            ),
-            onTap: () => backPage(widget._page),
-          ),
-          SizedBox(height: 24),
-          Text(
-            _pageClass.getText(widget._page),
-            style: _pageClass.getStyle(widget._page),
-          ),
-        ],
+      padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+      child: Text(
+        _pageClass.getText(widget._page),
+        style: _pageClass.getStyle(widget._page),
       ),
     );
   }
