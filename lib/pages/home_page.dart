@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     showCupertinoModalBottomSheet(
       expand: true,
       context: context,
-      barrierColor: UiColor.element,
+      barrierColor: UiColor.task,
       duration: const Duration(milliseconds: 300),
       builder: (context) => const TaskModal(),
     );

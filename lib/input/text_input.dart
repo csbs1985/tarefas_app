@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
@@ -26,36 +27,50 @@ class TextInput extends StatefulWidget {
 class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            widget._label,
-            style: UiText.headline2,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            width: 1,
+            color: UiColor.element,
           ),
         ),
-        Row(
-          children: [
-            Expanded(
-              child: TextFormField(
-                controller: widget._controller,
-                style: UiText.headline1,
-                keyboardType: widget._keyboard,
-                decoration: InputDecoration(hintText: widget._label),
-              ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: Text(
+                    widget._label,
+                    style: UiText.headline2,
+                  ),
+                ),
+                TextFormField(
+                  controller: widget._controller,
+                  style: UiText.headline1,
+                  keyboardType: widget._keyboard,
+                  decoration: InputDecoration(hintText: widget._label),
+                ),
+              ],
             ),
-            IconButton(
-              icon: SvgPicture.asset(
-                UiSvg.clean,
-                height: 16,
-              ),
-              onPressed: () => widget._controller.clear(),
+          ),
+          IconButton(
+            splashColor: Colors.transparent,
+            icon: SvgPicture.asset(
+              UiSvg.clean,
+              height: 20,
+              color: UiColor.icon,
             ),
-          ],
-        ),
-      ],
+            onPressed: () => widget._controller.clear(),
+          )
+        ],
+      ),
     );
   }
 }

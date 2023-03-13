@@ -5,7 +5,7 @@ import 'package:tarefas_app/theme/ui_text.dart';
 class UiTextField {
   static final InputDecorationTheme textField = InputDecorationTheme(
     hintStyle: UiText.headline3,
-    contentPadding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+    contentPadding: EdgeInsets.zero,
     border: OutlineInputBorder(
       borderSide: BorderSide(color: UiColor.back),
     ),

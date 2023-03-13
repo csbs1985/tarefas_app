@@ -68,8 +68,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             height: 2,
             child: Container(
               decoration: BoxDecoration(
-                color:
-                    isSelected ? UiColor.menuItem : UiColor.menuItemUnselected,
+                color: isSelected ? UiColor.menuItem : UiColor.element,
                 borderRadius: BorderRadius.circular(50),
               ),
             ),

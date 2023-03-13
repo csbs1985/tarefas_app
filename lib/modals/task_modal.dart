@@ -38,25 +38,18 @@ class _TaskModalState extends State<TaskModal> {
       key: scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        toolbarHeight: 64,
         title: Text(
           'Tarefa',
           style: UiText.titleTask,
         ),
-        actions: [
-          IconButton(
-            icon: SvgPicture.asset(
-              UiSvg.close,
-              height: 24,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: Form(
           key: _formKey,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Column(
               children: [
                 TextInput(
@@ -72,7 +65,7 @@ class _TaskModalState extends State<TaskModal> {
                 ),
                 AmountInput(
                   controller: _amountController,
-                  label: 'Valor',
+                  label: 'Valor R\$',
                   callback: (value) => print(value),
                 ),
               ],
