@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
-import 'package:tarefas_app/classes/frequencia_model.dart';
+import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/notificao_class.dart';
-import 'package:tarefas_app/classes/tipo-movimentacao.dart';
-import 'package:tarefas_app/classes/tipo-tarefa.class.dart';
+import 'package:tarefas_app/classes/tipo-movimentacao_class.dart';
+import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
+
+ValueNotifier<TaskModel?> currentTask = ValueNotifier<TaskModel?>(null);
 
 class TaskModel {
   late String id;
+  late String idUsuario;
   late String nome;
   late TarefaModel tipoTarefa;
   late String dia;
@@ -13,7 +17,7 @@ class TaskModel {
   late FrequenciaModel? frequencia;
   late String? valor;
   late TipoMovimentacaoModel? tipoMovimentacao;
-  late String? FormaPagamento;
+  late String? formaPagamento;
   late String? anotacao;
   late List<String>? telefone;
   late EnderecoModel? endereco;
@@ -22,6 +26,7 @@ class TaskModel {
 
   TaskModel(
     this.id,
+    this.idUsuario,
     this.nome,
     this.tipoTarefa,
     this.dia,
@@ -29,7 +34,7 @@ class TaskModel {
     this.frequencia,
     this.valor,
     this.tipoMovimentacao,
-    this.FormaPagamento,
+    this.formaPagamento,
     this.anotacao,
     this.telefone,
     this.endereco,

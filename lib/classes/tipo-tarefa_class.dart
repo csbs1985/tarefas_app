@@ -1,37 +1,27 @@
 class TarefaModel {
-  late String text;
-  late int value;
+  final String text;
+  final int value;
 
-  TarefaModel(
-    this.text,
-    this.value,
-  );
+  TarefaModel({
+    required this.text,
+    required this.value,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'text': text,
+      'value': value,
+    };
+  }
 }
 
-class TipoTarefaClass {
-  var tipoTarefa = [
-    {
-      'text': 'Aniversário',
-      'value': 0,
-    },
-    {
-      'text': 'Evento',
-      'value': 1,
-    },
-    {
-      'text': 'Financeiro',
-      'value': 2,
-    },
-    {
-      'text': 'Lembrete',
-      'value': 3,
-    },
-    {
-      'text': 'Ligar',
-      'value': 4,
-    },
-  ];
-}
+final List<TarefaModel> ListaTipoTarefa = [
+  TarefaModel(text: TipoTarefaEnum.aniversario.value, value: 0),
+  TarefaModel(text: TipoTarefaEnum.evento.value, value: 1),
+  TarefaModel(text: TipoTarefaEnum.financeiro.value, value: 2),
+  TarefaModel(text: TipoTarefaEnum.lembrete.value, value: 3),
+  TarefaModel(text: TipoTarefaEnum.ligar.value, value: 4),
+];
 
 enum TipoTarefaEnum {
   aniversario('aniversário'),
