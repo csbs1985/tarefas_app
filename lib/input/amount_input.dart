@@ -33,7 +33,7 @@ class _AmountInputState extends State<AmountInput> {
         border: Border(
           top: BorderSide(
             width: 1,
-            color: UiColor.element,
+            color: UiColor.border,
           ),
         ),
       ),

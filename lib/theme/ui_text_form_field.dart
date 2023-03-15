@@ -7,13 +7,13 @@ class UiTextField {
     hintStyle: UiText.headline3,
     contentPadding: EdgeInsets.zero,
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: UiColor.back),
+      borderSide: BorderSide(color: UiColor.input),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: UiColor.back),
+      borderSide: BorderSide(color: UiColor.input),
     ),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: UiColor.back),
+      borderSide: BorderSide(color: UiColor.input),
     ),
   );
 }

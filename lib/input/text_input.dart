@@ -32,7 +32,7 @@ class _TextInputState extends State<TextInput> {
         border: Border(
           top: BorderSide(
             width: 1,
-            color: UiColor.element,
+            color: UiColor.border,
           ),
         ),
       ),

@@ -67,4 +67,16 @@ class UiText {
     fontWeight: FontWeight.normal,
     color: UiColor.text_1,
   );
+
+  static const TextStyle button = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    color: UiColor.task,
+  );
+
+  static const TextStyle buttonSelected = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: UiColor.back,
+  );
 }
