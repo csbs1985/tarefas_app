@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       expand: false,
       context: context,
       barrierColor: UiColor.overlay,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 400),
       builder: (context) => const TaskModal(),
     );
   }
