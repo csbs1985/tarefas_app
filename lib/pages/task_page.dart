@@ -160,6 +160,13 @@ class _TaskPageState extends State<TaskPage> {
                       },
                     ),
                     SelectInput(
+                      controller: _diaController,
+                      tipo: TipoSelectEnum.dia,
+                      callback: (value) => {
+                        setState(() => _diaController.text = value),
+                      },
+                    ),
+                    SelectInput(
                       controller: _tipoMovimentacaoController,
                       tipo: TipoSelectEnum.tipoMovimentacao,
                       callback: (value) => {
@@ -180,12 +187,6 @@ class _TaskPageState extends State<TaskPage> {
                       callback: (value) => {
                         setState(() => _anexoController.text = value),
                       },
-                    ),
-                    TextInput(
-                      controller: _diaController,
-                      label: 'Dia',
-                      keyboard: TextInputType.number,
-                      callback: (value) => print(value),
                     ),
                     AmountInput(
                       controller: _valorController,

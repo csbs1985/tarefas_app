@@ -1,6 +1,7 @@
 enum TipoSelectEnum {
   tipoTarefa('tipoTarefa'),
   frequencia('frequencia'),
+  dia('dia'),
   tipoMovimentacao('tipoMovimentacao'),
   formaMovimentacao('formaMovimentacao'),
   TipoAnexo('TipoAnexo');

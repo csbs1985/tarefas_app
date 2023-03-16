@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/classes/carregamento_class.dart';
+import 'package:tarefas_app/classes/dias_class.dart';
 import 'package:tarefas_app/classes/forma-pagamento_class.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/tipo-movimentacao_class.dart';
@@ -53,6 +54,11 @@ class _SelectInput2State extends State<SelectInput> {
         _label = FREQUENCIA;
         _labelSelect = FREQUENCIA_SELECT;
         _body = ListaFrequencia;
+        break;
+      case TipoSelectEnum.dia:
+        _label = DIA;
+        _labelSelect = DIA_SELECT;
+        _body = ListaDia;
         break;
       case TipoSelectEnum.tipoMovimentacao:
         _label = TIPO_MOVIMENTACAO;

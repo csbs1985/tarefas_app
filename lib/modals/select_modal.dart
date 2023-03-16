@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tarefas_app/theme/ui_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_padding.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
 class SelectModal extends StatefulWidget {
@@ -45,17 +44,20 @@ class _SelectInputState extends State<SelectModal> {
       child: SingleChildScrollView(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget._label,
-                  style: UiText.headline2,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 24),
+                  child: Text(
+                    widget._label,
+                    style: UiText.headline2,
+                  ),
                 ),
-                SizedBox(height: UiPadding.large),
                 Wrap(
                   spacing: 8,
+                  runSpacing: 8,
                   children: [
                     for (var item in widget._body)
                       TextButton(
