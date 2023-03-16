@@ -4,6 +4,7 @@ import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/amount_input.dart';
+import 'package:tarefas_app/input/calendar_input%20.dart';
 import 'package:tarefas_app/input/text_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -159,13 +160,13 @@ class _TaskPageState extends State<TaskPage> {
                         setState(() => _frequenciaController.text = value),
                       },
                     ),
-                    SelectInput(
-                      controller: _diaController,
-                      tipo: TipoSelectEnum.dia,
-                      callback: (value) => {
-                        setState(() => _diaController.text = value),
-                      },
-                    ),
+                    // SelectInput(
+                    //   controller: _diaController,
+                    //   tipo: TipoSelectEnum.dia,
+                    //   callback: (value) => {
+                    //     setState(() => _diaController.text = value),
+                    //   },
+                    // ),
                     SelectInput(
                       controller: _tipoMovimentacaoController,
                       tipo: TipoSelectEnum.tipoMovimentacao,
@@ -179,6 +180,12 @@ class _TaskPageState extends State<TaskPage> {
                       tipo: TipoSelectEnum.formaMovimentacao,
                       callback: (value) => {
                         setState(() => _formaPagamentoController.text = value),
+                      },
+                    ),
+                    CalendarInput(
+                      controller: _diaController,
+                      callback: (value) => {
+                        setState(() => _diaController.text = value),
                       },
                     ),
                     SelectInput(

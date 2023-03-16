@@ -50,10 +50,7 @@ class _SelectInputState extends State<SelectModal> {
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 24),
-                  child: Text(
-                    widget._label,
-                    style: UiText.headline2,
-                  ),
+                  child: Text(widget._label, style: UiText.headline2),
                 ),
                 Wrap(
                   spacing: 8,
@@ -73,7 +70,7 @@ class _SelectInputState extends State<SelectModal> {
                             : UiButton.button,
                       ),
                   ],
-                )
+                ),
               ],
             ),
           ),
