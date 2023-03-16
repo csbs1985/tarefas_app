@@ -23,6 +23,7 @@ class TaskModel {
   late EnderecoModel? endereco;
   late String? horario;
   late String? link;
+  late String? anexo;
 
   TaskModel(
     this.id,
@@ -40,5 +41,6 @@ class TaskModel {
     this.endereco,
     this.horario,
     this.link,
+    this.anexo,
   );
 }

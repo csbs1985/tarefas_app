@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/classes/page_class.dart';
-import 'package:tarefas_app/modals/task_modal.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/pages/all_page.dart';
 import 'package:tarefas_app/pages/calendar_page.dart';
 import 'package:tarefas_app/pages/concluded_page.dart';
 import 'package:tarefas_app/pages/planning_page.dart';
-import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/appbar_widget.dart';
 
@@ -28,18 +27,8 @@ class _HomePageState extends State<HomePage> {
     pageController = PageController(initialPage: currentPageInt.value);
   }
 
-  setCurrentPage(int page) {
+  void setCurrentPage(int page) {
     setState(() => currentPageInt.value = page);
-  }
-
-  _openTaskModal() {
-    showCupertinoModalBottomSheet(
-      expand: false,
-      context: context,
-      barrierColor: UiColor.overlay,
-      duration: const Duration(milliseconds: 400),
-      builder: (context) => const TaskModal(),
-    );
   }
 
   @override
@@ -65,10 +54,8 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: _color,
         elevation: 0,
-        onPressed: () => _openTaskModal(),
-        child: SvgPicture.asset(
-          UiSvg.create,
-        ),
+        onPressed: () => context.push(RouteEnum.TASK.value),
+        child: SvgPicture.asset(UiSvg.create),
       ),
     );
   }

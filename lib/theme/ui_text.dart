@@ -39,7 +39,7 @@ class UiText {
   );
 
   static const TextStyle headline2 = TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.normal,
     color: UiColor.task,
   );
@@ -51,9 +51,9 @@ class UiText {
   );
 
   static const TextStyle headline4 = TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.normal,
-    color: UiColor.text_1,
+    color: UiColor.element,
   );
 
   static const TextStyle headline5 = TextStyle(
