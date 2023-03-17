@@ -213,7 +213,7 @@ class _TaskPageState extends State<TaskPage> {
                     NotesInput(
                       controller: _notificacaoController,
                       callback: (value) => print(value),
-                    )
+                    ),
                   ],
                 ),
               );

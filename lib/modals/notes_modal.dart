@@ -24,10 +24,23 @@ class NotesModal extends StatefulWidget {
 class _NotesModalState extends State<NotesModal> {
   FocusNode focusNode = FocusNode();
 
+  String _text = '';
+
   @override
   void initState() {
     super.initState();
     focusNode.requestFocus();
+  }
+
+  void _getText(String text) {
+    setState(() {
+      _text = text;
+    });
+  }
+
+  void _setText() {
+    widget._callback(_text);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -57,7 +70,7 @@ class _NotesModalState extends State<NotesModal> {
                 minLines: 20,
                 maxLines: null,
                 enabled: true,
-                onChanged: (value) => widget._callback(value),
+                onChanged: (value) => _getText(value),
                 controller: widget._controller,
                 style: UiText.headline1,
                 keyboardType: TextInputType.multiline,
@@ -70,7 +83,7 @@ class _NotesModalState extends State<NotesModal> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: UiColor.task,
         elevation: 0,
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => _setText(),
         child: SvgPicture.asset(UiSvg.create),
       ),
     );

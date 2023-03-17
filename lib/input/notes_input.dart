@@ -78,6 +78,8 @@ class _NotesInputState extends State<NotesInput> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 12, 0, 16),
                       child: Text(
+                        maxLines: 5,
+                        overflow: TextOverflow.ellipsis,
                         widget._controller.text.isNotEmpty
                             ? widget._controller.text
                             : ANOTACAO_DIGITE,
