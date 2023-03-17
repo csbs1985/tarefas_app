@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -6,6 +6,7 @@ import 'package:tarefas_app/theme/ui_text.dart';
 
 class TextInput extends StatefulWidget {
   const TextInput({
+    super.key,
     required Function callback,
     required String label,
     required TextEditingController controller,
@@ -28,7 +29,7 @@ class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
             width: 1,
@@ -45,7 +46,7 @@ class _TextInputState extends State<TextInput> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 16),
                   child: Text(
                     widget._label,
                     style: UiText.headline2,

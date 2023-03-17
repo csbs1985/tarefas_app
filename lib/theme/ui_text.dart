@@ -63,9 +63,9 @@ class UiText {
   );
 
   static const TextStyle headline6 = TextStyle(
-    fontSize: 28,
+    fontSize: 36,
     fontWeight: FontWeight.normal,
-    color: UiColor.text_1,
+    color: UiColor.task,
   );
 
   static const TextStyle button = TextStyle(

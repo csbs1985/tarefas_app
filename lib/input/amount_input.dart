@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -8,6 +8,7 @@ import 'package:tarefas_app/theme/ui_text.dart';
 
 class AmountInput extends StatefulWidget {
   const AmountInput({
+    super.key,
     required Function callback,
     required String label,
     required TextEditingController controller,
@@ -29,7 +30,7 @@ class _AmountInputState extends State<AmountInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
             width: 1,
@@ -46,7 +47,7 @@ class _AmountInputState extends State<AmountInput> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 16),
                   child: Text(
                     widget._label,
                     style: UiText.headline2,
@@ -55,7 +56,8 @@ class _AmountInputState extends State<AmountInput> {
                 TextFormField(
                   controller: widget._controller,
                   style: UiText.headline1,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
                   decoration: InputDecoration(
                     hintText: widget._label,
                   ),

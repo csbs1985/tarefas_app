@@ -3,7 +3,7 @@ import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/widget/header_widget.dart';
 
 class AllPage extends StatefulWidget {
-  const AllPage({super.key});
+  const AllPage({Key? key}) : super(key: key);
 
   @override
   State<AllPage> createState() => _AllPageState();

@@ -3,7 +3,7 @@ import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/widget/header_widget.dart';
 
 class CalendarPage extends StatefulWidget {
-  const CalendarPage({super.key});
+  const CalendarPage({Key? key}) : super(key: key);
 
   @override
   State<CalendarPage> createState() => _CalendarPageState();

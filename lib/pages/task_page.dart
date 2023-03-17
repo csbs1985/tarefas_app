@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/amount_input.dart';
 import 'package:tarefas_app/input/calendar_input%20.dart';
+import 'package:tarefas_app/input/notes_input.dart';
+import 'package:tarefas_app/input/notification_input%20.dart';
 import 'package:tarefas_app/input/text_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -13,7 +15,7 @@ import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:uuid/uuid.dart';
 
 class TaskPage extends StatefulWidget {
-  const TaskPage({super.key});
+  const TaskPage({Key? key}) : super(key: key);
 
   @override
   State<TaskPage> createState() => _TaskPageState();
@@ -26,20 +28,22 @@ class _TaskPageState extends State<TaskPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _nomeController = TextEditingController();
-  TextEditingController _tipoTarefaController = TextEditingController();
-  TextEditingController _diaController = TextEditingController();
-  TextEditingController _notificacaoController = TextEditingController();
-  TextEditingController _frequenciaController = TextEditingController();
-  TextEditingController _valorController = TextEditingController();
-  TextEditingController _tipoMovimentacaoController = TextEditingController();
-  TextEditingController _formaPagamentoController = TextEditingController();
-  TextEditingController _anotacaoController = TextEditingController();
-  TextEditingController _telefoneController = TextEditingController();
-  TextEditingController _enderecoController = TextEditingController();
-  TextEditingController _horarioController = TextEditingController();
-  TextEditingController _linkController = TextEditingController();
-  TextEditingController _anexoController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _tipoTarefaController = TextEditingController();
+  final TextEditingController _diaController = TextEditingController();
+  final TextEditingController _notificacaoController = TextEditingController();
+  final TextEditingController _frequenciaController = TextEditingController();
+  final TextEditingController _valorController = TextEditingController();
+  final TextEditingController _tipoMovimentacaoController =
+      TextEditingController();
+  final TextEditingController _formaPagamentoController =
+      TextEditingController();
+  final TextEditingController _anotacaoController = TextEditingController();
+  final TextEditingController _telefoneController = TextEditingController();
+  final TextEditingController _enderecoController = TextEditingController();
+  final TextEditingController _horarioController = TextEditingController();
+  final TextEditingController _linkController = TextEditingController();
+  final TextEditingController _anexoController = TextEditingController();
 
   late Map<String, dynamic>? _task;
 
@@ -127,7 +131,7 @@ class _TaskPageState extends State<TaskPage> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         titleSpacing: 0,
-        title: Text(
+        title: const Text(
           TAREFA,
           style: UiText.titleTask,
         ),
@@ -160,13 +164,13 @@ class _TaskPageState extends State<TaskPage> {
                         setState(() => _frequenciaController.text = value),
                       },
                     ),
-                    // SelectInput(
-                    //   controller: _diaController,
-                    //   tipo: TipoSelectEnum.dia,
-                    //   callback: (value) => {
-                    //     setState(() => _diaController.text = value),
-                    //   },
-                    // ),
+                    SelectInput(
+                      controller: _diaController,
+                      tipo: TipoSelectEnum.dia,
+                      callback: (value) => {
+                        setState(() => _diaController.text = value),
+                      },
+                    ),
                     SelectInput(
                       controller: _tipoMovimentacaoController,
                       tipo: TipoSelectEnum.tipoMovimentacao,
@@ -188,6 +192,12 @@ class _TaskPageState extends State<TaskPage> {
                         setState(() => _diaController.text = value),
                       },
                     ),
+                    NotificationInput(
+                      controller: _notificacaoController,
+                      callback: (value) => {
+                        setState(() => _notificacaoController.text = value),
+                      },
+                    ),
                     SelectInput(
                       controller: _anexoController,
                       tipo: TipoSelectEnum.TipoAnexo,
@@ -200,6 +210,10 @@ class _TaskPageState extends State<TaskPage> {
                       label: 'Valor R\$',
                       callback: (value) => print(value),
                     ),
+                    NotesInput(
+                      controller: _notificacaoController,
+                      callback: (value) => print(value),
+                    )
                   ],
                 ),
               );

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:tarefas_app/classes/page_class.dart';
 
 class HeaderWidget extends StatefulWidget {

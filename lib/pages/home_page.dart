@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/classes/page_class.dart';
@@ -11,7 +11,7 @@ import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/appbar_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var _color = _pageClass.getColorInt(currentPageInt.value);
+    var color = _pageClass.getColorInt(currentPageInt.value);
 
     return Scaffold(
       appBar: AppBarWidget(
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: _color,
+        backgroundColor: color,
         elevation: 0,
         onPressed: () => context.push(RouteEnum.TASK.value),
         child: SvgPicture.asset(UiSvg.create),

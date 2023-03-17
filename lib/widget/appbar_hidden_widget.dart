@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 
 class AppBarHiddenWidget extends StatefulWidget with PreferredSizeWidget {
-  const AppBarHiddenWidget({super.key});
+  const AppBarHiddenWidget({Key? key}) : super(key: key);
 
   @override
   State<AppBarHiddenWidget> createState() => _AppBarHiddenWidgetState();

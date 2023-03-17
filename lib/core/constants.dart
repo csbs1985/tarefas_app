@@ -1,23 +1,30 @@
-final String ANEXO = "Anexo";
-final String ANEXO_SELECT = "Selecione modo de carregamento";
+const String ANEXO = "Anexo";
+const String ANEXO_SELECIONE = "Selecione modo de carregamento";
 
-final String DIA = "Dia da tarefa";
-final String DIA_SELECT = "Selecione o dia";
+const String ANOTACAO = "Anotação";
+const String ANOTACAO_DIGITE = "Adicionar anotação";
 
-final String FORMA_MOVIMENTACAO = "Forma de movimentação";
-final String FORMA_MOVIMENTACAO_SELECT =
+const String DIA = "Data da tarefa";
+const String DIA_SELECIONE = "Selecione a data";
+
+const String FORMA_MOVIMENTACAO = "Forma de movimentação";
+const String FORMA_MOVIMENTACAO_SELECIONE =
     "Selecione forma de movimentação financeira";
 
-final String FREQUENCIA = "Frequência";
-final String FREQUENCIA_SELECT = "Selecione a frequência da tarefas";
+const String FREQUENCIA = "Frequência";
+const String FREQUENCIA_SELECIONE = "Selecione a frequência da tarefas";
 
-final String SELECIONE = "Selecione uma opção";
+const String HORA_SELECIONE = "Selecionar o horário";
 
-final String TAREFA = "Tarefa";
+const String NOTIFICACAO = "Notificação";
 
-final String TIPO_MOVIMENTACAO = "Movimentação da tarefa";
-final String TIPO_MOVIMENTACAO_SELECT =
+const String SELECIONE = "Selecione uma opção";
+
+const String TAREFA = "Tarefa";
+
+const String TIPO_MOVIMENTACAO = "Movimentação da tarefa";
+const String TIPO_MOVIMENTACAO_SELECIONE =
     "Selecione o tipo de movimentação da tarefa";
 
-final String TIPO_TAREFA = "Tipo de tarefa";
-final String TIPO_TAREFA_SELECT = "Selecione o tipo de tarefa";
+const String TIPO_TAREFA = "Tipo de tarefa";
+const String TIPO_TAREFA_SELECIONE = "Selecione o tipo de tarefa";

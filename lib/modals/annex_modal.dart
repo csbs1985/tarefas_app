@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class AnnexModal extends StatefulWidget {
-  const AnnexModal({super.key});
+  const AnnexModal({Key? key}) : super(key: key);
 
   @override
   State<AnnexModal> createState() => _AnnexModalState();

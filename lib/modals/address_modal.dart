@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class AddressModal extends StatefulWidget {
-  const AddressModal({super.key});
+  const AddressModal({Key? key}) : super(key: key);
 
   @override
   State<AddressModal> createState() => _AddressModalState();

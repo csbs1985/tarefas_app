@@ -3,7 +3,7 @@ import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/widget/header_widget.dart';
 
 class PlanningPage extends StatefulWidget {
-  const PlanningPage({super.key});
+  const PlanningPage({Key? key}) : super(key: key);
 
   @override
   State<PlanningPage> createState() => _PlanningPageState();

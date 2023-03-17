@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -31,22 +31,20 @@ class _SelectInputState extends State<CalendarModal> {
     return Material(
       color: UiColor.back,
       child: SingleChildScrollView(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 0, 8),
-                  child: Text(DIA_SELECT, style: UiText.headline2),
-                ),
-                CalendarWidget(
-                  controller: widget._controller,
-                  callback: (value) => _setControllerModal(value),
-                ),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 16, 0, 8),
+                child: Text(DIA_SELECIONE, style: UiText.headline2),
+              ),
+              CalendarWidget(
+                controller: widget._controller,
+                callback: (value) => _setControllerModal(value),
+              ),
+            ],
           ),
         ),
       ),
