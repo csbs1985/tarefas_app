@@ -1,4 +1,6 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -10,22 +12,50 @@ class TextInput extends StatefulWidget {
     required Function callback,
     required String label,
     required TextEditingController controller,
+    int? maxLength,
     TextInputType keyboard = TextInputType.text,
+    bool cep = false,
   })  : _callback = callback,
         _label = label,
         _controller = controller,
-        _keyboard = keyboard;
+        _keyboard = keyboard,
+        _maxLength = maxLength,
+        _cep = cep;
 
   final Function _callback;
   final String _label;
   final TextEditingController _controller;
   final TextInputType _keyboard;
+  final int? _maxLength;
+
+  final bool _cep;
 
   @override
   State<TextInput> createState() => _TextInputState();
 }
 
 class _TextInputState extends State<TextInput> {
+  late var _input;
+
+  List<TextInputFormatter> _getInputFormatter() {
+    if (widget._cep) {
+      return [
+        FilteringTextInputFormatter.digitsOnly,
+        LengthLimitingTextInputFormatter(10),
+        CepInputFormatter(),
+      ];
+    } else {
+      return [];
+    }
+  }
+
+  void onChanged(value) {
+    setState(() {
+      widget._callback(value);
+      _input = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,11 +82,14 @@ class _TextInputState extends State<TextInput> {
                     style: UiText.headline2,
                   ),
                 ),
-                TextFormField(
+                TextField(
                   controller: widget._controller,
                   style: UiText.headline1,
                   keyboardType: widget._keyboard,
+                  maxLength: widget._maxLength,
+                  onChanged: (value) => onChanged(value),
                   decoration: InputDecoration(hintText: widget._label),
+                  inputFormatters: _getInputFormatter(),
                 ),
               ],
             ),

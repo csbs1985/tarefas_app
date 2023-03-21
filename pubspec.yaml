@@ -19,6 +19,9 @@ dependencies:
   table_calendar: ^3.0.8
   flutter_calendar_carousel: ^2.4.1
   flutter_circular_slider: ^2.5.0
+  search_cep: ^4.0.1
+  brasil_fields: ^1.9.1
+  widget_loading: ^0.3.2
 
 dev_dependencies:
   flutter_test:

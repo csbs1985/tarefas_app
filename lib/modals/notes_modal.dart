@@ -53,12 +53,12 @@ class _NotesModalState extends State<NotesModal> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+              padding: EdgeInsets.fromLTRB(0, 8, 0, 16),
               child: Text(
                 ANOTACAO,
                 style: UiText.headline2,
@@ -84,7 +84,7 @@ class _NotesModalState extends State<NotesModal> {
         backgroundColor: UiColor.task,
         elevation: 0,
         onPressed: () => _setText(),
-        child: SvgPicture.asset(UiSvg.create),
+        child: SvgPicture.asset(UiSvg.confirm),
       ),
     );
   }

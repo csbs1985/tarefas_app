@@ -25,8 +25,11 @@ linter:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     constant_identifier_names: false
+    curly_braces_in_flow_control_structures: false
     import_of_legacy_library_into_null_safe: false
     lowercase_with_underscores: false
+    non_constant_identifier_names: false
+    unnecessary_import: false
     unrelated_type_equality_checks: false
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

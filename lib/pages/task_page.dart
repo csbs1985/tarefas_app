@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/input/endereco_input.dart';
 import 'package:tarefas_app/input/amount_input.dart';
 import 'package:tarefas_app/input/calendar_input%20.dart';
 import 'package:tarefas_app/input/notes_input.dart';
@@ -50,7 +51,6 @@ class _TaskPageState extends State<TaskPage> {
   @override
   void initState() {
     super.initState();
-
     if (currentTask.value != null) popularController;
   }
 
@@ -72,6 +72,12 @@ class _TaskPageState extends State<TaskPage> {
     _anexoController.text = currentTask.value!.anexo!;
   }
 
+  void addressFormat(String valeu) {
+    setState(() {
+      _enderecoController.text = valeu;
+    });
+  }
+
   void confirmTask() {
     _task = {
       'id': uuid.v4(),
@@ -91,8 +97,6 @@ class _TaskPageState extends State<TaskPage> {
       'link': _valorController.text,
       'anexo': _anexoController.text,
     };
-
-    print(_task);
 
     // currentTask.value = _task as TaskModel?;
     Navigator.pop(context);
@@ -145,6 +149,10 @@ class _TaskPageState extends State<TaskPage> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    EnderecoInput(
+                      controller: _enderecoController,
+                      callback: (value) => addressFormat(value),
+                    ),
                     TextInput(
                       controller: _nomeController,
                       label: TAREFA,

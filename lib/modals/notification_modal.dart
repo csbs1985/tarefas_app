@@ -7,6 +7,7 @@ import 'package:tarefas_app/widget/hour_widget.dart';
 
 class NotificationModal extends StatefulWidget {
   const NotificationModal({
+    super.key,
     required controller,
     required Function callback,
   })  : _controller = controller,
@@ -49,7 +50,7 @@ class _SelectInputState extends State<NotificationModal> {
         backgroundColor: UiColor.task,
         elevation: 0,
         onPressed: () => Navigator.of(context).pop(),
-        child: SvgPicture.asset(UiSvg.create),
+        child: SvgPicture.asset(UiSvg.confirm),
       ),
     );
   }
