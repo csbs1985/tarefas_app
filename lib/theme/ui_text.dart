@@ -57,9 +57,9 @@ class UiText {
   );
 
   static const TextStyle headline5 = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.normal,
-    color: UiColor.text_1,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: UiColor.text_3,
   );
 
   static const TextStyle headline6 = TextStyle(

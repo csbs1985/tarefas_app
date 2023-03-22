@@ -57,16 +57,48 @@ class EnderecoModel {
       };
 }
 
-// final EnderecoModel EnderecoPagamento = EnderecoModel(
-//   cep: EnderecoEnum.cep.value,
-//   logradouro: EnderecoEnum.logradouro.value,
-//   numero: EnderecoEnum.numero.value,
-//   complemento: EnderecoEnum.complemento.value,
-//   bairro: EnderecoEnum.bairro.value,
-//   cidade: EnderecoEnum.cidade.value,
-//   estado: EnderecoEnum.estado.value,
-//   pais: EnderecoEnum.pais.value,
-// );
+class EnderecoClass {
+  String enderecoStringToJson(String endereco) {
+    Map<String, dynamic> jsonMap = jsonDecode(endereco);
+
+    String cep = jsonMap['cep'];
+    String logradouro = jsonMap['logradouro'];
+    String numero = jsonMap['numero'];
+    String complemento = jsonMap['complemento'];
+    String bairro = jsonMap['bairro'];
+    String localidade = jsonMap['localidade'];
+    String uf = jsonMap['uf'];
+
+    return montarEndereco(
+      logradouro,
+      numero,
+      complemento,
+      cep,
+      bairro,
+      localidade,
+      uf,
+    );
+  }
+
+  String montarEndereco(
+    String logradouro,
+    String numero,
+    String complemento,
+    String cep,
+    String bairro,
+    String localidade,
+    String uf,
+  ) {
+    String numeroComplemento = "";
+
+    if (numero.isNotEmpty) numeroComplemento = ", $numero";
+
+    if (complemento.isNotEmpty)
+      numeroComplemento = "$numeroComplemento, $complemento";
+
+    return "$logradouro$numeroComplemento - $bairro - $localidade - $uf - $cep";
+  }
+}
 
 class ViaCepService {
   static Future<EnderecoModel> fetchCep({required cep}) async {
@@ -85,8 +117,8 @@ enum EnderecoEnum {
   numero('número'),
   complemento('complemento'),
   bairro('bairro'),
-  cidade('cidade'),
-  estado('estado'),
+  localidade('localidade'),
+  uf('uf'),
   pais('pais');
 
   final String value;

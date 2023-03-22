@@ -32,8 +32,9 @@ class _NotesModalState extends State<NotesModal> {
     focusNode.requestFocus();
   }
 
-  void _getText(String text) {
+  void onChanged(String text) {
     setState(() {
+      widget._callback(text);
       _text = text;
     });
   }
@@ -70,7 +71,7 @@ class _NotesModalState extends State<NotesModal> {
                 minLines: 20,
                 maxLines: null,
                 enabled: true,
-                onChanged: (value) => _getText(value),
+                onChanged: (value) => onChanged(value),
                 controller: widget._controller,
                 style: UiText.headline1,
                 keyboardType: TextInputType.multiline,

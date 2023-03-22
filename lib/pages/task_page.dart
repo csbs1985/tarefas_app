@@ -72,12 +72,6 @@ class _TaskPageState extends State<TaskPage> {
     _anexoController.text = currentTask.value!.anexo!;
   }
 
-  void addressFormat(String valeu) {
-    setState(() {
-      _enderecoController.text = valeu;
-    });
-  }
-
   void confirmTask() {
     _task = {
       'id': uuid.v4(),
@@ -151,7 +145,7 @@ class _TaskPageState extends State<TaskPage> {
                   children: [
                     EnderecoInput(
                       controller: _enderecoController,
-                      callback: (value) => addressFormat(value),
+                      callback: (value) => _enderecoController.text = value,
                     ),
                     TextInput(
                       controller: _nomeController,

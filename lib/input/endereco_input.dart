@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/modals/endereco_modal.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -25,6 +24,8 @@ class EnderecoInput extends StatefulWidget {
 }
 
 class _AddressInputState extends State<EnderecoInput> {
+  final EnderecoClass _enderecoClass = EnderecoClass();
+
   void _openModal() {
     showCupertinoModalBottomSheet(
       expand: false,
@@ -45,11 +46,8 @@ class _AddressInputState extends State<EnderecoInput> {
     });
   }
 
-  String _formatAddress(String address) {
-    Map<String, dynamic> jsonMap = json.decode(address);
-
-    var formated = jsonMap['logradouro'] + ', ' + jsonMap['numero'];
-    return formated;
+  String addressFormat() {
+    return _enderecoClass.enderecoStringToJson(widget._controller.text);
   }
 
   @override
@@ -86,7 +84,7 @@ class _AddressInputState extends State<EnderecoInput> {
                       padding: const EdgeInsets.fromLTRB(0, 12, 0, 16),
                       child: Text(
                         widget._controller.text.isNotEmpty
-                            ? _formatAddress(widget._controller.text)
+                            ? addressFormat()
                             : SELECIONE,
                         style: widget._controller.text.isNotEmpty
                             ? UiText.headline1

@@ -7,6 +7,7 @@ import 'package:tarefas_app/input/text_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
+import 'package:tarefas_app/widget/toast_widget.dart';
 
 class EnderecoModal extends StatefulWidget {
   const EnderecoModal({
@@ -24,6 +25,8 @@ class EnderecoModal extends StatefulWidget {
 }
 
 class _AddressModalState extends State<EnderecoModal> {
+  final ToastWidget _toast = ToastWidget();
+
   final TextEditingController _cepController = TextEditingController();
   final TextEditingController _logradouroController = TextEditingController();
   final TextEditingController _numeroController = TextEditingController();
@@ -34,19 +37,45 @@ class _AddressModalState extends State<EnderecoModal> {
 
   late Map<String, dynamic>? _address;
 
+  @override
+  void initState() {
+    super.initState();
+
+    initEndereco();
+  }
+
+  void initEndereco() {
+    if (widget._controller.text != '') {
+      Map<String, dynamic> jsonMap = jsonDecode(widget._controller.text);
+
+      _cepController.text = jsonMap['cep'];
+      _logradouroController.text = jsonMap['logradouro'];
+      _numeroController.text = jsonMap['numero'];
+      _complementoController.text = jsonMap['complemento'];
+      _bairroController.text = jsonMap['bairro'];
+      _cidadeController.text = jsonMap['localidade'];
+      _estadoController.text = jsonMap['uf'];
+    }
+  }
+
   void getCep(String cep) async {
     if (cep.length == 10) {
-      var cepLimpo2 = cep.replaceAll(".", "").replaceAll("-", "");
-      final resultCep = await ViaCepService.fetchCep(cep: cepLimpo2);
+      try {
+        var cepLimpo2 = cep.replaceAll(".", "").replaceAll("-", "");
+        final resultCep = await ViaCepService.fetchCep(cep: cepLimpo2);
 
-      _cepController.text = resultCep.cep;
-      _logradouroController.text = resultCep.logradouro;
-      _complementoController.text = resultCep.complemento!;
-      _bairroController.text = resultCep.bairro;
-      _cidadeController.text = resultCep.localidade;
-      _estadoController.text = resultCep.uf;
-
-      widget._callback(_address.toString());
+        if (resultCep.cep != null) {
+          _cepController.text = resultCep.cep;
+          _logradouroController.text = resultCep.logradouro;
+          _complementoController.text = resultCep.complemento!;
+          _bairroController.text = resultCep.bairro;
+          _cidadeController.text = resultCep.localidade;
+          _estadoController.text = resultCep.uf;
+        } else
+          _toast.toast(context, ToastEnum.ERRO.value, 'CEP não encontrado');
+      } on Exception catch (error) {
+        debugPrint('ERRO-BUSCAR-CEP: $error');
+      }
     }
   }
 
@@ -57,8 +86,8 @@ class _AddressModalState extends State<EnderecoModal> {
       'numero': _numeroController.text,
       'complemento': _complementoController.text,
       'bairro': _bairroController.text,
-      'cidade': _cidadeController.text,
-      'estado': _estadoController.text,
+      'localidade': _cidadeController.text,
+      'uf': _estadoController.text,
     };
 
     final jsonString = jsonEncode(_address);
