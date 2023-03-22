@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter/services.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
+import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class AmountInput extends StatefulWidget {
-  const AmountInput({
+class ValorInput extends StatefulWidget {
+  const ValorInput({
     super.key,
     required Function callback,
-    required String label,
-    required TextEditingController controller,
+    required MoneyMaskedTextController controller,
   })  : _callback = callback,
-        _label = label,
         _controller = controller;
 
   final Function _callback;
-  final String _label;
-  final TextEditingController _controller;
+  final MoneyMaskedTextController _controller;
 
   @override
-  State<AmountInput> createState() => _AmountInputState();
+  State<ValorInput> createState() => _ValorInputState();
 }
 
-class _AmountInputState extends State<AmountInput> {
-  final NumberFormat _numberFormat = NumberFormat("#,##0.00", "pt_BR");
+class _ValorInputState extends State<ValorInput> {
+  void getValor() async {
+    widget._callback(widget._controller);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,32 +45,20 @@ class _AmountInputState extends State<AmountInput> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                const Padding(
+                  padding: EdgeInsets.only(top: 16),
                   child: Text(
-                    widget._label,
+                    VALOR,
                     style: UiText.headline2,
                   ),
                 ),
-                TextFormField(
+                TextField(
                   controller: widget._controller,
                   style: UiText.headline1,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  decoration: InputDecoration(
-                    hintText: widget._label,
-                  ),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(
-                      RegExp(r'^\d+\.?\d{0,2}'),
-                    ),
-                    TextInputFormatter.withFunction((oldValue, newValue) {
-                      final num parsed = _numberFormat.parse(newValue.text);
-                      return parsed != null
-                          ? TextEditingValue(text: _numberFormat.format(parsed))
-                          : newValue;
-                    }),
-                  ],
+                  onSubmitted: (value) => getValor(),
+                  keyboardType: TextInputType.number,
+                  decoration:
+                      const InputDecoration(hintText: VALOR_SIMBOLO_REAL),
                 ),
               ],
             ),

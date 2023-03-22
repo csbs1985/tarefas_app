@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
-import 'package:tarefas_app/input/amount_input.dart';
+import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/input/calendar_input%20.dart';
 import 'package:tarefas_app/input/notes_input.dart';
 import 'package:tarefas_app/input/notification_input%20.dart';
@@ -34,7 +35,8 @@ class _TaskPageState extends State<TaskPage> {
   final TextEditingController _diaController = TextEditingController();
   final TextEditingController _notificacaoController = TextEditingController();
   final TextEditingController _frequenciaController = TextEditingController();
-  final TextEditingController _valorController = TextEditingController();
+  final MoneyMaskedTextController _valorController =
+      MoneyMaskedTextController();
   final TextEditingController _tipoMovimentacaoController =
       TextEditingController();
   final TextEditingController _formaPagamentoController =
@@ -207,9 +209,8 @@ class _TaskPageState extends State<TaskPage> {
                         setState(() => _anexoController.text = value),
                       },
                     ),
-                    AmountInput(
+                    ValorInput(
                       controller: _valorController,
-                      label: 'Valor R\$',
                       callback: (value) => _valorController.text = value,
                     ),
                     NotesInput(
