@@ -2,13 +2,13 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/modals/notes_modal.dart';
+import 'package:tarefas_app/modals/anotacao_modal.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class NotesInput extends StatefulWidget {
-  const NotesInput({
+class AnotacaoInput extends StatefulWidget {
+  const AnotacaoInput({
     Key? key,
     required Function callback,
     required TextEditingController controller,
@@ -20,17 +20,17 @@ class NotesInput extends StatefulWidget {
   final TextEditingController _controller;
 
   @override
-  State<NotesInput> createState() => _NotesInputState();
+  State<AnotacaoInput> createState() => _AnotacaoInputState();
 }
 
-class _NotesInputState extends State<NotesInput> {
+class _AnotacaoInputState extends State<AnotacaoInput> {
   void _openModal() {
     showCupertinoModalBottomSheet(
       expand: false,
       context: context,
       barrierColor: UiColor.overlay,
       duration: const Duration(milliseconds: 300),
-      builder: (context) => NotesModal(
+      builder: (context) => AnotacaoModal(
         controller: widget._controller,
         callback: (value) => _setControllerModal(value),
       ),

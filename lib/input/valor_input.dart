@@ -70,7 +70,7 @@ class _ValorInputState extends State<ValorInput> {
               height: 20,
               color: UiColor.icon,
             ),
-            onPressed: () => widget._controller.clear(),
+            onPressed: () => widget._controller.text = '',
           )
         ],
       ),

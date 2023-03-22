@@ -5,8 +5,8 @@ import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class NotesModal extends StatefulWidget {
-  const NotesModal({
+class AnotacaoModal extends StatefulWidget {
+  const AnotacaoModal({
     Key? key,
     required Function callback,
     required TextEditingController controller,
@@ -18,10 +18,10 @@ class NotesModal extends StatefulWidget {
   final TextEditingController _controller;
 
   @override
-  State<NotesModal> createState() => _NotesModalState();
+  State<AnotacaoModal> createState() => _AnotacaoModalState();
 }
 
-class _NotesModalState extends State<NotesModal> {
+class _AnotacaoModalState extends State<AnotacaoModal> {
   FocusNode focusNode = FocusNode();
 
   String _text = '';
@@ -30,6 +30,7 @@ class _NotesModalState extends State<NotesModal> {
   void initState() {
     super.initState();
     focusNode.requestFocus();
+    setState(() => _text = widget._controller.text);
   }
 
   void onChanged(String text) {

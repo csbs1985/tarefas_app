@@ -7,7 +7,7 @@ import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
 import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/input/calendar_input%20.dart';
-import 'package:tarefas_app/input/notes_input.dart';
+import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/notification_input%20.dart';
 import 'package:tarefas_app/input/text_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
@@ -213,9 +213,9 @@ class _TaskPageState extends State<TaskPage> {
                       controller: _valorController,
                       callback: (value) => _valorController.text = value,
                     ),
-                    NotesInput(
-                      controller: _notificacaoController,
-                      callback: (value) => _notificacaoController.text = value,
+                    AnotacaoInput(
+                      controller: _anotacaoController,
+                      callback: (value) => _anotacaoController.text = value,
                     ),
                   ],
                 ),
