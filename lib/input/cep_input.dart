@@ -1,39 +1,30 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class TextInput extends StatefulWidget {
-  const TextInput({
+class CepInput extends StatefulWidget {
+  const CepInput({
     super.key,
     required Function callback,
-    required String label,
     required TextEditingController controller,
-    int? maxLength,
-    TextInputType keyboard = TextInputType.text,
   })  : _callback = callback,
-        _label = label,
-        _controller = controller,
-        _keyboard = keyboard,
-        _maxLength = maxLength;
+        _controller = controller;
 
   final Function _callback;
-  final String _label;
   final TextEditingController _controller;
-  final TextInputType _keyboard;
-  final int? _maxLength;
 
   @override
-  State<TextInput> createState() => _TextInputState();
+  State<CepInput> createState() => _TextInputState();
 }
 
-class _TextInputState extends State<TextInput> {
-  String _input = '';
-
-  List<TextInputFormatter> _getInputFormatter() {
-    return [];
+class _TextInputState extends State<CepInput> {
+  void getCep(String cep) async {
+    if (cep.length == 10) widget._callback(cep);
   }
 
   @override
@@ -55,21 +46,24 @@ class _TextInputState extends State<TextInput> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                const Padding(
+                  padding: EdgeInsets.only(top: 16),
                   child: Text(
-                    widget._label,
+                    CEP,
                     style: UiText.headline2,
                   ),
                 ),
                 TextField(
                   controller: widget._controller,
                   style: UiText.headline1,
-                  keyboardType: widget._keyboard,
-                  maxLength: widget._maxLength,
-                  onChanged: (value) => _input = value,
-                  decoration: InputDecoration(hintText: widget._label),
-                  inputFormatters: _getInputFormatter(),
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => getCep(value),
+                  decoration: const InputDecoration(hintText: CEP),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(10),
+                    CepInputFormatter(),
+                  ],
                 ),
               ],
             ),

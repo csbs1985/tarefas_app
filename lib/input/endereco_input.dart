@@ -47,7 +47,8 @@ class _AddressInputState extends State<EnderecoInput> {
   }
 
   String addressFormat() {
-    return _enderecoClass.enderecoStringToJson(widget._controller.text);
+    var test = _enderecoClass.montarEnderecoString(widget._controller.text);
+    return test;
   }
 
   @override

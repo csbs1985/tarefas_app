@@ -58,8 +58,8 @@ class EnderecoModel {
 }
 
 class EnderecoClass {
-  String enderecoStringToJson(String endereco) {
-    Map<String, dynamic> jsonMap = jsonDecode(endereco);
+  String montarEnderecoString(String enderecoCompleto) {
+    Map<String, dynamic> jsonMap = jsonDecode(enderecoCompleto);
 
     String cep = jsonMap['cep'];
     String logradouro = jsonMap['logradouro'];
@@ -69,34 +69,14 @@ class EnderecoClass {
     String localidade = jsonMap['localidade'];
     String uf = jsonMap['uf'];
 
-    return montarEndereco(
-      logradouro,
-      numero,
-      complemento,
-      cep,
-      bairro,
-      localidade,
-      uf,
-    );
-  }
-
-  String montarEndereco(
-    String logradouro,
-    String numero,
-    String complemento,
-    String cep,
-    String bairro,
-    String localidade,
-    String uf,
-  ) {
-    String numeroComplemento = "";
-
-    if (numero.isNotEmpty) numeroComplemento = ", $numero";
-
-    if (complemento.isNotEmpty)
-      numeroComplemento = "$numeroComplemento, $complemento";
-
-    return "$logradouro$numeroComplemento - $bairro - $localidade - $uf - $cep";
+    StringBuffer endereco = StringBuffer(logradouro.trim());
+    if (numero.isNotEmpty) endereco.write(', $numero');
+    if (complemento.isNotEmpty) endereco.write(', $complemento');
+    if (cep.isNotEmpty) endereco.write(' - CEP: $cep');
+    if (bairro.isNotEmpty) endereco.write(' - $bairro');
+    if (localidade.isNotEmpty) endereco.write(' - $localidade');
+    if (uf.isNotEmpty) endereco.write('- $uf');
+    return endereco.toString();
   }
 }
 

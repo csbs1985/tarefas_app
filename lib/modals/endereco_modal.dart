@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/input/cep_input.dart';
 import 'package:tarefas_app/input/text_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -58,7 +59,7 @@ class _AddressModalState extends State<EnderecoModal> {
     }
   }
 
-  void getCep(String cep) async {
+  void popularEndereco(String cep) async {
     if (cep.length == 10) {
       try {
         var cepLimpo2 = cep.replaceAll(".", "").replaceAll("-", "");
@@ -77,6 +78,8 @@ class _AddressModalState extends State<EnderecoModal> {
         debugPrint('ERRO-BUSCAR-CEP: $error');
       }
     }
+
+    _cepController.text = cep;
   }
 
   void _setText() {
@@ -116,26 +119,23 @@ class _AddressModalState extends State<EnderecoModal> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.fromLTRB(0, 8, 0, 16),
-              child: Text(
-                ENDERECO_DIGITE,
-                style: UiText.headline2,
-              ),
-            ),
+                padding: EdgeInsets.fromLTRB(0, 8, 0, 16),
+                child: Text(
+                  ENDERECO_DIGITE,
+                  style: UiText.headline2,
+                )),
             Flexible(
               child: ListView(
                 children: [
-                  TextInput(
+                  CepInput(
                     controller: _cepController,
-                    label: CEP,
-                    keyboard: TextInputType.number,
-                    cep: true,
-                    callback: (value) => getCep(value),
+                    callback: (value) => popularEndereco(value),
                   ),
                   TextInput(
                     controller: _logradouroController,
                     label: LAGRADOURO,
-                    callback: (value) => _logradouroController.text = value,
+                    callback: (value) =>
+                        setState(() => _logradouroController.text = value),
                   ),
                   TextInput(
                     controller: _numeroController,
