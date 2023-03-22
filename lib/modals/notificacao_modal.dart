@@ -5,8 +5,8 @@ import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/calendar_widget.dart';
 import 'package:tarefas_app/widget/hour_widget.dart';
 
-class NotificationModal extends StatefulWidget {
-  const NotificationModal({
+class NotificacaoModal extends StatefulWidget {
+  const NotificacaoModal({
     super.key,
     required controller,
     required Function callback,
@@ -17,10 +17,10 @@ class NotificationModal extends StatefulWidget {
   final Function _callback;
 
   @override
-  State<NotificationModal> createState() => _SelectInputState();
+  State<NotificacaoModal> createState() => _SelectInputState();
 }
 
-class _SelectInputState extends State<NotificationModal> {
+class _SelectInputState extends State<NotificacaoModal> {
   void _setControllerModal(String value) {
     setState(() {
       widget._controller.text = value;

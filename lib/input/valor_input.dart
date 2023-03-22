@@ -22,10 +22,6 @@ class ValorInput extends StatefulWidget {
 }
 
 class _ValorInputState extends State<ValorInput> {
-  void getValor() async {
-    widget._callback(widget._controller);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,7 +51,7 @@ class _ValorInputState extends State<ValorInput> {
                 TextField(
                   controller: widget._controller,
                   style: UiText.headline1,
-                  onSubmitted: (value) => getValor(),
+                  onSubmitted: (value) => widget._callback(widget._controller),
                   keyboardType: TextInputType.number,
                   decoration:
                       const InputDecoration(hintText: VALOR_SIMBOLO_REAL),
@@ -70,7 +66,7 @@ class _ValorInputState extends State<ValorInput> {
               height: 20,
               color: UiColor.icon,
             ),
-            onPressed: () => widget._controller.text = '',
+            onPressed: () => widget._controller.text = "0,00",
           )
         ],
       ),

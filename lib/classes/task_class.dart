@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
-import 'package:tarefas_app/classes/notificao_class.dart';
+import 'package:tarefas_app/classes/notificacao_class.dart';
 import 'package:tarefas_app/classes/tipo-movimentacao_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 

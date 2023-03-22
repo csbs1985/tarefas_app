@@ -8,7 +8,7 @@ import 'package:tarefas_app/input/endereco_input.dart';
 import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/input/calendar_input%20.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
-import 'package:tarefas_app/input/notification_input%20.dart';
+import 'package:tarefas_app/input/notificacao_input%20.dart';
 import 'package:tarefas_app/input/text_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -196,7 +196,7 @@ class _TaskPageState extends State<TaskPage> {
                         setState(() => _diaController.text = value),
                       },
                     ),
-                    NotificationInput(
+                    NotificacaoInput(
                       controller: _notificacaoController,
                       callback: (value) => {
                         setState(() => _notificacaoController.text = value),

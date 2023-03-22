@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/modals/notification_modal.dart';
+import 'package:tarefas_app/modals/notificacao_modal.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class NotificationInput extends StatefulWidget {
-  const NotificationInput({
+class NotificacaoInput extends StatefulWidget {
+  const NotificacaoInput({
     super.key,
     required Function callback,
     required TextEditingController controller,
@@ -20,10 +20,10 @@ class NotificationInput extends StatefulWidget {
   final TextEditingController _controller;
 
   @override
-  State<NotificationInput> createState() => _NotificationInputState();
+  State<NotificacaoInput> createState() => _NotificacaoInputState();
 }
 
-class _NotificationInputState extends State<NotificationInput> {
+class _NotificacaoInputState extends State<NotificacaoInput> {
   _formatDate(String date) {
     DateTime dataHora = DateFormat('dd/MM/yyyy').parse(date);
     String dataHoraFormatada = DateFormat('dd/MM/yyyy').format(dataHora);
@@ -36,7 +36,7 @@ class _NotificationInputState extends State<NotificationInput> {
       context: context,
       barrierColor: UiColor.overlay,
       duration: const Duration(milliseconds: 300),
-      builder: (context) => NotificationModal(
+      builder: (context) => NotificacaoModal(
         controller: widget._controller,
         callback: (value) => _setControllerModal(value),
       ),
