@@ -34,7 +34,6 @@ class _NotesModalState extends State<NotesModal> {
 
   void onChanged(String text) {
     setState(() {
-      widget._callback(text);
       _text = text;
     });
   }

@@ -49,9 +49,8 @@ class _TextInputState extends State<TextInput> {
     }
   }
 
-  void onChanged(value) {
+  void onChanged(String value) {
     setState(() {
-      widget._callback(value);
       _input = value;
     });
   }

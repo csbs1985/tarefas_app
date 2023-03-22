@@ -150,7 +150,7 @@ class _TaskPageState extends State<TaskPage> {
                     TextInput(
                       controller: _nomeController,
                       label: TAREFA,
-                      callback: (value) => print(value),
+                      callback: (value) => _nomeController.text = value,
                     ),
                     SelectInput(
                       controller: _tipoTarefaController,
@@ -210,11 +210,11 @@ class _TaskPageState extends State<TaskPage> {
                     AmountInput(
                       controller: _valorController,
                       label: 'Valor R\$',
-                      callback: (value) => print(value),
+                      callback: (value) => _valorController.text = value,
                     ),
                     NotesInput(
                       controller: _notificacaoController,
-                      callback: (value) => print(value),
+                      callback: (value) => _notificacaoController.text = value,
                     ),
                   ],
                 ),
