@@ -35,8 +35,10 @@ class _TaskPageState extends State<TaskPage> {
   final TextEditingController _diaController = TextEditingController();
   final TextEditingController _notificacaoController = TextEditingController();
   final TextEditingController _frequenciaController = TextEditingController();
-  final MoneyMaskedTextController _valorController =
-      MoneyMaskedTextController();
+  final MoneyMaskedTextController _valorController = MoneyMaskedTextController(
+    decimalSeparator: ',',
+    thousandSeparator: '.',
+  );
   final TextEditingController _tipoMovimentacaoController =
       TextEditingController();
   final TextEditingController _formaPagamentoController =

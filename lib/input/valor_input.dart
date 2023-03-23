@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/classes/valor_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -22,6 +23,11 @@ class ValorInput extends StatefulWidget {
 }
 
 class _ValorInputState extends State<ValorInput> {
+  void _clear() {
+    currentValor.value = VALOR_INICIAL;
+    widget._controller.text = currentValor.value!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,14 +54,20 @@ class _ValorInputState extends State<ValorInput> {
                     style: UiText.headline2,
                   ),
                 ),
-                TextField(
-                  controller: widget._controller,
-                  style: UiText.headline1,
-                  onSubmitted: (value) => widget._callback(widget._controller),
-                  keyboardType: TextInputType.number,
-                  decoration:
-                      const InputDecoration(hintText: VALOR_SIMBOLO_REAL),
-                ),
+                ValueListenableBuilder(
+                    valueListenable: currentValor,
+                    builder: (BuildContext context, valor, _) {
+                      return TextField(
+                        controller: widget._controller,
+                        style: currentValor.value == VALOR_INICIAL
+                            ? UiText.headline3
+                            : UiText.headline1,
+                        onChanged: (value) => currentValor.value = value,
+                        onSubmitted: (value) =>
+                            widget._callback(widget._controller),
+                        keyboardType: TextInputType.number,
+                      );
+                    }),
               ],
             ),
           ),
@@ -66,7 +78,7 @@ class _ValorInputState extends State<ValorInput> {
               height: 20,
               color: UiColor.icon,
             ),
-            onPressed: () => widget._controller.text = "0,00",
+            onPressed: () => _clear(),
           )
         ],
       ),

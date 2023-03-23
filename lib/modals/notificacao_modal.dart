@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
+import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/calendar_widget.dart';
-import 'package:tarefas_app/widget/hour_widget.dart';
+
+import '../widget/hour_widget.dart';
 
 class NotificacaoModal extends StatefulWidget {
   const NotificacaoModal({
@@ -21,11 +24,21 @@ class NotificacaoModal extends StatefulWidget {
 }
 
 class _SelectInputState extends State<NotificacaoModal> {
-  void _setControllerModal(String value) {
-    setState(() {
-      widget._controller.text = value;
-      widget._callback(value);
-    });
+  late String _date;
+  late String _hour;
+
+  void _setDate(String value) {
+    _date = value;
+  }
+
+  void _setHour(String value) {
+    _hour = value;
+  }
+
+  void _confirm() {
+    if (_date != "" && _hour != "") widget._callback('_date - _hour');
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -37,11 +50,21 @@ class _SelectInputState extends State<NotificacaoModal> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 8, 0, 16),
+                child: Text(
+                  NOTIFICACAO,
+                  style: UiText.headline2,
+                ),
+              ),
               CalendarWidget(
                 controller: widget._controller,
-                callback: (value) => _setControllerModal(value),
+                callback: (value) => _setDate(value),
               ),
-              const HourWidget()
+              HourWidget(
+                controller: widget._controller,
+                callback: (value) => _setHour(value),
+              )
             ],
           ),
         ),
@@ -49,7 +72,7 @@ class _SelectInputState extends State<NotificacaoModal> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: UiColor.task,
         elevation: 0,
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => _confirm(),
         child: SvgPicture.asset(UiSvg.confirm),
       ),
     );

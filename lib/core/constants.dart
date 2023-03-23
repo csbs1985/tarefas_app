@@ -48,5 +48,5 @@ const String TIPO_MOVIMENTACAO_SELECIONE =
 const String TIPO_TAREFA = "Tipo de tarefa";
 const String TIPO_TAREFA_SELECIONE = "Selecione o tipo de tarefa";
 
-const String VALOR = "Valor";
-const String VALOR_SIMBOLO_REAL = "Valor R\$";
+const String VALOR = "Valor R\$";
+const String VALOR_INICIAL = "0,00";

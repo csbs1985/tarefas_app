@@ -49,7 +49,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.fromLTRB(16, 16, 0, 8),
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
           child: Text(DIA_SELECIONE, style: UiText.headline2),
         ),
         CalendarCarousel(
