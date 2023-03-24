@@ -23,4 +23,15 @@ class UiButton {
       ),
     ),
   );
+
+  static ButtonStyle buttonSecondary = ButtonStyle(
+    backgroundColor:
+        const MaterialStatePropertyAll<Color>(UiColor.buttonSecondary),
+    minimumSize: MaterialStateProperty.all<Size>(const Size(48, 48)),
+    shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(UiBorder.rounded),
+      ),
+    ),
+  );
 }

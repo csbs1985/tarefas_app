@@ -6,6 +6,7 @@ class UiColor {
   static const Color border = Color(0xFF3F3F3F);
   static const Color button = Color(0xFF3F3F3F);
   static const Color buttonSelected = Color(0xFFc89550);
+  static const Color buttonSecondary = Color(0xFF3F3F3F);
   static const Color calendar = Color(0xFFfcd447);
   static const Color concluded = Color(0xFFd75a31);
   static const Color element = Color(0xFF3F3F3F);

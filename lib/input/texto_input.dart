@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class TextInput extends StatefulWidget {
-  const TextInput({
+class TextoInput extends StatefulWidget {
+  const TextoInput({
     super.key,
     required Function callback,
     required String label,
@@ -26,15 +25,11 @@ class TextInput extends StatefulWidget {
   final int? _maxLength;
 
   @override
-  State<TextInput> createState() => _TextInputState();
+  State<TextoInput> createState() => _TextoInputState();
 }
 
-class _TextInputState extends State<TextInput> {
+class _TextoInputState extends State<TextoInput> {
   String _input = '';
-
-  List<TextInputFormatter> _getInputFormatter() {
-    return [];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +64,6 @@ class _TextInputState extends State<TextInput> {
                   maxLength: widget._maxLength,
                   onChanged: (value) => _input = value,
                   decoration: InputDecoration(hintText: widget._label),
-                  inputFormatters: _getInputFormatter(),
                 ),
               ],
             ),

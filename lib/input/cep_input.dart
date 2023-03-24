@@ -19,10 +19,10 @@ class CepInput extends StatefulWidget {
   final TextEditingController _controller;
 
   @override
-  State<CepInput> createState() => _TextInputState();
+  State<CepInput> createState() => _TextoInputState();
 }
 
-class _TextInputState extends State<CepInput> {
+class _TextoInputState extends State<CepInput> {
   void getCep(String cep) async {
     if (cep.length == 10) widget._callback(cep);
   }

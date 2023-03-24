@@ -78,6 +78,23 @@ class EnderecoClass {
     if (uf.isNotEmpty) endereco.write('- $uf');
     return endereco.toString();
   }
+
+  String montarEnderecoMaps(String enderecoCompleto) {
+    Map<String, dynamic> jsonMap = jsonDecode(enderecoCompleto);
+
+    String logradouro = jsonMap['logradouro'];
+    String numero = jsonMap['numero'];
+    String bairro = jsonMap['bairro'];
+    String localidade = jsonMap['localidade'];
+    String uf = jsonMap['uf'];
+
+    StringBuffer endereco = StringBuffer(numero.trim());
+    if (numero.isNotEmpty) endereco.write(', $logradouro');
+    if (bairro.isNotEmpty) endereco.write(' - $bairro');
+    if (localidade.isNotEmpty) endereco.write(' - $localidade');
+    if (uf.isNotEmpty) endereco.write(', $uf');
+    return endereco.toString();
+  }
 }
 
 class ViaCepService {

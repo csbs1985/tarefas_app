@@ -1,3 +1,5 @@
+const String ABRIR = "Abriar mapa";
+
 const String ANEXO = "Anexo";
 const String ANEXO_SELECIONE = "Selecione modo de carregamento";
 
@@ -12,11 +14,15 @@ const String CIDADE = "Cidade";
 
 const String COMPLEMENTO = "Complemento";
 
+const String COPIAR = "Copiar";
+const String COPIAR_SUCESSO = "Copiado para a área de transferência";
+
 const String DIA = "Data";
 const String DIA_SELECIONE = "Selecione a data";
 
 const String ENDERECO = "Endereço";
 const String ENDERECO_DIGITE = "Adicionar endereço";
+const String ENDERECO_VAZIO = "Preencha o endereço primeiro";
 
 const String ESTADO = "Estado";
 
@@ -32,6 +38,8 @@ const String HORARIO = "Horário";
 const String LAGRADOURO = "Lagradouro";
 
 const String LINK = "Link";
+
+const String MAPA_ERRO = "Não foi possivél abrir o mapa";
 
 const String NOTIFICACAO = "Notificação";
 

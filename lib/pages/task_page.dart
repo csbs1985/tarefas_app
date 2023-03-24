@@ -5,12 +5,13 @@ import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/input/endereco_input.dart';
-import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
+import 'package:tarefas_app/input/calendar_input.dart';
+import 'package:tarefas_app/input/endereco_input.dart';
 import 'package:tarefas_app/input/notificacao_input%20.dart';
-import 'package:tarefas_app/input/text_input.dart';
+import 'package:tarefas_app/input/texto_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
+import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -203,7 +204,7 @@ class _TaskPageState extends State<TaskPage> {
                       callback: (value) =>
                           setState(() => _tipoTarefaController.text = value),
                     ),
-                    TextInput(
+                    TextoInput(
                       controller: _nomeController,
                       label: TAREFA,
                       callback: (value) => _nomeController.text = value,
@@ -216,9 +217,8 @@ class _TaskPageState extends State<TaskPage> {
                             setState(() => _frequenciaController.text = value),
                       ),
                     if (candData())
-                      SelectInput(
+                      CalendarInput(
                         controller: _diaController,
-                        tipo: TipoSelectEnum.dia,
                         callback: (value) =>
                             setState(() => _diaController.text = value),
                       ),
@@ -253,19 +253,19 @@ class _TaskPageState extends State<TaskPage> {
                         callback: (value) => _enderecoController.text = value,
                       ),
                     if (onlyEvento())
-                      TextInput(
+                      TextoInput(
                         controller: _horarioController,
                         label: HORARIO,
                         callback: (value) => _horarioController.text = value,
                       ),
                     if (onlyEvento())
-                      TextInput(
+                      TextoInput(
                         controller: _linkController,
                         label: LINK,
                         callback: (value) => _linkController.text = value,
                       ),
                     if (onlyLigar())
-                      TextInput(
+                      TextoInput(
                         controller: _telefoneController,
                         label: TELEFONE,
                         keyboard: TextInputType.phone,
