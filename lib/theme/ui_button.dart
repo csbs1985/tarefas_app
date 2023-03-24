@@ -28,6 +28,8 @@ class UiButton {
     backgroundColor:
         const MaterialStatePropertyAll<Color>(UiColor.buttonSecondary),
     minimumSize: MaterialStateProperty.all<Size>(const Size(48, 48)),
+    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+        const EdgeInsets.symmetric(vertical: 0, horizontal: 16)),
     shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(UiBorder.rounded),

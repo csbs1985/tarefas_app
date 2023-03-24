@@ -1,4 +1,4 @@
-const String ABRIR = "Abriar mapa";
+const String ABRIR = "Abrir mapa";
 
 const String ANEXO = "Anexo";
 const String ANEXO_SELECIONE = "Selecione modo de carregamento";
@@ -14,7 +14,7 @@ const String CIDADE = "Cidade";
 
 const String COMPLEMENTO = "Complemento";
 
-const String COPIAR = "Copiar";
+const String COPIAR = "Copiar endereço";
 const String COPIAR_SUCESSO = "Copiado para a área de transferência";
 
 const String DIA = "Data";

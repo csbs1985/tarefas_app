@@ -164,7 +164,7 @@ class _AddressModalState extends State<EnderecoModal> {
                   ENDERECO_DIGITE,
                   style: UiText.headline2,
                 )),
-            SingleChildScrollView(
+            Flexible(
               child: ListView(
                 children: [
                   CepInput(
@@ -204,26 +204,26 @@ class _AddressModalState extends State<EnderecoModal> {
                     callback: (value) => _estadoController.text = value,
                   ),
                   const SizedBox(height: 16),
-                  Container(
-                    color: Colors.red,
-                    width: 100,
-                    child: TextButton(
-                      onPressed: () => _copyToClipboard(),
-                      style: UiButton.buttonSecondary,
-                      child: const Text(
-                        COPIAR,
-                        style: UiText.button,
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () => _copyToClipboard(),
+                        style: UiButton.buttonSecondary,
+                        child: const Text(
+                          COPIAR,
+                          style: UiText.buttonSecondary,
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () => _callMaps(),
-                    style: UiButton.buttonSelected,
-                    child: const Text(
-                      ABRIR,
-                      style: UiText.buttonSelected,
-                    ),
+                      const SizedBox(width: 16),
+                      TextButton(
+                        onPressed: () => _callMaps(),
+                        style: UiButton.buttonSecondary,
+                        child: const Text(
+                          ABRIR,
+                          style: UiText.buttonSecondary,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 100),
                 ],
