@@ -35,10 +35,8 @@ class _TaskPageState extends State<TaskPage> {
   final TextEditingController _diaController = TextEditingController();
   final TextEditingController _notificacaoController = TextEditingController();
   final TextEditingController _frequenciaController = TextEditingController();
-  final MoneyMaskedTextController _valorController = MoneyMaskedTextController(
-    decimalSeparator: ',',
-    thousandSeparator: '.',
-  );
+  final MoneyMaskedTextController _valorController =
+      MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
   final TextEditingController _tipoMovimentacaoController =
       TextEditingController();
   final TextEditingController _formaPagamentoController =
@@ -106,10 +104,28 @@ class _TaskPageState extends State<TaskPage> {
         : false;
   }
 
-  bool canInputEndereco() {
+  bool onlyEvento() {
     return _tipoTarefaController.text == TipoTarefaEnum.evento.value
         ? true
         : false;
+  }
+
+  bool onlyLigar() {
+    return _tipoTarefaController.text == TipoTarefaEnum.ligar.value
+        ? true
+        : false;
+  }
+
+  bool lessAniversario() {
+    return _tipoTarefaController.text == TipoTarefaEnum.aniversario.value
+        ? false
+        : true;
+  }
+
+  bool candInputData() {
+    if (_tipoTarefaController.text == TipoTarefaEnum.ligar.value) return true;
+    if (_tipoTarefaController.text == TipoTarefaEnum.evento.value) return true;
+    return false;
   }
 
   @override
@@ -167,64 +183,71 @@ class _TaskPageState extends State<TaskPage> {
                     SelectInput(
                       controller: _tipoTarefaController,
                       tipo: TipoSelectEnum.tipoTarefa,
-                      callback: (value) => {
-                        setState(() => _tipoTarefaController.text = value),
-                      },
+                      callback: (value) =>
+                          setState(() => _tipoTarefaController.text = value),
                     ),
-                    if (canInputEndereco())
-                      EnderecoInput(
-                        controller: _enderecoController,
-                        callback: (value) => _enderecoController.text = value,
+                    if (lessAniversario())
+                      SelectInput(
+                        controller: _frequenciaController,
+                        tipo: TipoSelectEnum.frequencia,
+                        callback: (value) =>
+                            setState(() => _frequenciaController.text = value),
                       ),
-                    SelectInput(
-                      controller: _frequenciaController,
-                      tipo: TipoSelectEnum.frequencia,
-                      callback: (value) => {
-                        setState(() => _frequenciaController.text = value),
-                      },
-                    ),
-                    SelectInput(
-                      controller: _diaController,
-                      tipo: TipoSelectEnum.dia,
-                      callback: (value) => {
-                        setState(() => _diaController.text = value),
-                      },
-                    ),
+                    if (candInputData())
+                      SelectInput(
+                        controller: _diaController,
+                        tipo: TipoSelectEnum.dia,
+                        callback: (value) =>
+                            setState(() => _diaController.text = value),
+                      ),
                     NotificacaoInput(
                       controller: _notificacaoController,
-                      callback: (value) => {
-                        setState(() => _notificacaoController.text = value),
-                      },
+                      callback: (value) =>
+                          setState(() => _notificacaoController.text = value),
                     ),
                     if (onlyFinanceiro())
                       SelectInput(
                         controller: _tipoMovimentacaoController,
                         tipo: TipoSelectEnum.tipoMovimentacao,
-                        callback: (value) => {
-                          setState(
-                              () => _tipoMovimentacaoController.text = value),
-                        },
+                        callback: (value) => setState(
+                            () => _tipoMovimentacaoController.text = value),
                       ),
                     if (onlyFinanceiro())
                       SelectInput(
                         controller: _formaPagamentoController,
                         tipo: TipoSelectEnum.formaMovimentacao,
-                        callback: (value) => {
-                          setState(
-                              () => _formaPagamentoController.text = value),
-                        },
+                        callback: (value) => setState(
+                            () => _formaPagamentoController.text = value),
                       ),
                     if (onlyFinanceiro())
                       ValorInput(
                         controller: _valorController,
                         callback: (value) => _valorController.text = value,
                       ),
-                    // CalendarInput(
-                    //   controller: _notificacaoController,
-                    //   callback: (value) => {
-                    //     setState(() => _notificacaoController.text = value),
-                    //   },
-                    // ),
+                    if (onlyEvento())
+                      EnderecoInput(
+                        controller: _enderecoController,
+                        callback: (value) => _enderecoController.text = value,
+                      ),
+                    if (onlyEvento())
+                      TextInput(
+                        controller: _horarioController,
+                        label: HORARIO,
+                        callback: (value) => _horarioController.text = value,
+                      ),
+                    if (onlyEvento())
+                      TextInput(
+                        controller: _linkController,
+                        label: LINK,
+                        callback: (value) => _linkController.text = value,
+                      ),
+                    if (onlyLigar())
+                      TextInput(
+                        controller: _telefoneController,
+                        label: TELEFONE,
+                        keyboard: TextInputType.phone,
+                        callback: (value) => _telefoneController.text = value,
+                      ),
                     AnotacaoInput(
                       controller: _anotacaoController,
                       callback: (value) => _anotacaoController.text = value,
@@ -232,9 +255,8 @@ class _TaskPageState extends State<TaskPage> {
                     SelectInput(
                       controller: _anexoController,
                       tipo: TipoSelectEnum.TipoAnexo,
-                      callback: (value) => {
-                        setState(() => _anexoController.text = value),
-                      },
+                      callback: (value) =>
+                          setState(() => _anexoController.text = value),
                     ),
                   ],
                 ),

@@ -24,7 +24,7 @@ final List<TarefaModel> ListaTipoTarefa = [
 ];
 
 enum TipoTarefaEnum {
-  aniversario('aniversário'),
+  aniversario('aniversario'),
   evento('evento'),
   financeiro('financeiro'),
   lembrete('lembrete'),

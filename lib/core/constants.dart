@@ -12,7 +12,7 @@ const String CIDADE = "Cidade";
 
 const String COMPLEMENTO = "Complemento";
 
-const String DIA = "Data da tarefa";
+const String DIA = "Data";
 const String DIA_SELECIONE = "Selecione a data";
 
 const String ENDERECO = "Endereço";
@@ -27,17 +27,21 @@ const String FORMA_MOVIMENTACAO_SELECIONE =
 const String FREQUENCIA = "Frequência";
 const String FREQUENCIA_SELECIONE = "Selecione a frequência da tarefas";
 
-const String HORA_SELECIONE = "Selecionar o horário";
+const String HORARIO = "Horário";
 
 const String LAGRADOURO = "Lagradouro";
+
+const String LINK = "Link";
 
 const String NOTIFICACAO = "Notificação";
 
 const String NUMERO = "Número";
 
-const String SELECIONE = "Selecione uma opção";
+const String SELECIONE = "Selecione";
 
 const String TAREFA = "Tarefa";
+
+const String TELEFONE = "Telefone";
 
 const String TIPO_MOVIMENTACAO = "Movimentação financeira";
 const String TIPO_MOVIMENTACAO_SELECIONE =

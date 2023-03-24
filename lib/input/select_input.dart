@@ -40,7 +40,6 @@ class _SelectInput2State extends State<SelectInput> {
   @override
   void initState() {
     super.initState();
-
     _getSelect();
   }
 

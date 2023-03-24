@@ -52,7 +52,7 @@ class _HourWidgetState extends State<HourWidget> {
             const Padding(
               padding: EdgeInsets.fromLTRB(8, 16, 0, 24),
               child: Text(
-                HORA_SELECIONE,
+                HORARIO,
                 style: UiText.headline2,
               ),
             ),
