@@ -40,6 +40,8 @@ const String NUMERO = "Número";
 const String SELECIONE = "Selecione";
 
 const String TAREFA = "Tarefa";
+const String TAREFA_VAZIA =
+    'Preencha os campos para salvar a tarefa ou clique no botão "voltar" para descarta-lá';
 
 const String TELEFONE = "Telefone";
 

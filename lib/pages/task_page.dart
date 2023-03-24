@@ -14,6 +14,7 @@ import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
+import 'package:tarefas_app/widget/toast_widget.dart';
 import 'package:uuid/uuid.dart';
 
 class TaskPage extends StatefulWidget {
@@ -27,6 +28,8 @@ class _TaskPageState extends State<TaskPage> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   final Uuid uuid = const Uuid();
+
+  final ToastWidget _toastWidget = ToastWidget();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -53,7 +56,11 @@ class _TaskPageState extends State<TaskPage> {
   @override
   void initState() {
     super.initState();
-    if (currentTask.value != null) popularController;
+    if (currentTask.value != null) {
+      popularController;
+      return;
+    }
+    _tipoTarefaController.text = TipoTarefaEnum.aniversario.value;
   }
 
   void popularController() {
@@ -74,34 +81,33 @@ class _TaskPageState extends State<TaskPage> {
     _anexoController.text = currentTask.value!.anexo!;
   }
 
-  void confirmTask() {
-    _task = {
-      'id': uuid.v4(),
-      'idUsuario': 'dddddddd',
-      'nome': _nomeController.text,
-      'tipoTarefa': _tipoTarefaController.text,
-      'dia': _diaController.text,
-      'notificacao': _notificacaoController.text,
-      'frequencia': _frequenciaController.text,
-      'valor': _valorController.text,
-      'tipoMovimentacao': _tipoMovimentacaoController.text,
-      'formaPagamento': _valorController.text,
-      'anotacao': _anotacaoController.text,
-      'telefone': _telefoneController.text,
-      'endereco': _enderecoController.text,
-      'horario': _horarioController.text,
-      'link': _valorController.text,
-      'anexo': _anexoController.text,
-    };
+  bool candFrequencia() {
+    if (_tipoTarefaController.text == "") return false;
+    if (_tipoTarefaController.text == TipoTarefaEnum.aniversario.value)
+      return false;
+    return true;
+  }
 
-    // currentTask.value = _task as TaskModel?;
-    Navigator.pop(context);
+  bool candData() {
+    return _tipoTarefaController.text == "" ? false : true;
   }
 
   bool onlyFinanceiro() {
     return _tipoTarefaController.text == TipoTarefaEnum.financeiro.value
         ? true
         : false;
+  }
+
+  bool candNotificacao() {
+    return _tipoTarefaController.text == "" ? false : true;
+  }
+
+  bool candAnotacao() {
+    return _tipoTarefaController.text == "" ? false : true;
+  }
+
+  bool candAnexo() {
+    return _tipoTarefaController.text == "" ? false : true;
   }
 
   bool onlyEvento() {
@@ -116,16 +122,32 @@ class _TaskPageState extends State<TaskPage> {
         : false;
   }
 
-  bool lessAniversario() {
-    return _tipoTarefaController.text == TipoTarefaEnum.aniversario.value
-        ? false
-        : true;
-  }
+  void confirmTask() {
+    if (_nomeController.text != "" && _notificacaoController.text != "") {
+      _task = {
+        'id': uuid.v4(),
+        'idUsuario': 'idUsuarioTemp',
+        'nome': _nomeController.text,
+        'tipoTarefa': _tipoTarefaController.text,
+        'dia': _diaController.text,
+        'notificacao': _notificacaoController.text,
+        'frequencia': _frequenciaController.text,
+        'valor': _valorController.text,
+        'tipoMovimentacao': _tipoMovimentacaoController.text,
+        'formaPagamento': _valorController.text,
+        'anotacao': _anotacaoController.text,
+        'telefone': _telefoneController.text,
+        'endereco': _enderecoController.text,
+        'horario': _horarioController.text,
+        'link': _valorController.text,
+        'anexo': _anexoController.text,
+      };
 
-  bool candInputData() {
-    if (_tipoTarefaController.text == TipoTarefaEnum.ligar.value) return true;
-    if (_tipoTarefaController.text == TipoTarefaEnum.evento.value) return true;
-    return false;
+      // currentTask.value = _task as TaskModel?;
+      Navigator.pop(context);
+    } else {
+      _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_VAZIA);
+    }
   }
 
   @override
@@ -175,36 +197,37 @@ class _TaskPageState extends State<TaskPage> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    TextInput(
-                      controller: _nomeController,
-                      label: TAREFA,
-                      callback: (value) => _nomeController.text = value,
-                    ),
                     SelectInput(
                       controller: _tipoTarefaController,
                       tipo: TipoSelectEnum.tipoTarefa,
                       callback: (value) =>
                           setState(() => _tipoTarefaController.text = value),
                     ),
-                    if (lessAniversario())
+                    TextInput(
+                      controller: _nomeController,
+                      label: TAREFA,
+                      callback: (value) => _nomeController.text = value,
+                    ),
+                    if (candFrequencia())
                       SelectInput(
                         controller: _frequenciaController,
                         tipo: TipoSelectEnum.frequencia,
                         callback: (value) =>
                             setState(() => _frequenciaController.text = value),
                       ),
-                    if (candInputData())
+                    if (candData())
                       SelectInput(
                         controller: _diaController,
                         tipo: TipoSelectEnum.dia,
                         callback: (value) =>
                             setState(() => _diaController.text = value),
                       ),
-                    NotificacaoInput(
-                      controller: _notificacaoController,
-                      callback: (value) =>
-                          setState(() => _notificacaoController.text = value),
-                    ),
+                    if (candNotificacao())
+                      NotificacaoInput(
+                        controller: _notificacaoController,
+                        callback: (value) =>
+                            setState(() => _notificacaoController.text = value),
+                      ),
                     if (onlyFinanceiro())
                       SelectInput(
                         controller: _tipoMovimentacaoController,
@@ -248,16 +271,18 @@ class _TaskPageState extends State<TaskPage> {
                         keyboard: TextInputType.phone,
                         callback: (value) => _telefoneController.text = value,
                       ),
-                    AnotacaoInput(
-                      controller: _anotacaoController,
-                      callback: (value) => _anotacaoController.text = value,
-                    ),
-                    SelectInput(
-                      controller: _anexoController,
-                      tipo: TipoSelectEnum.TipoAnexo,
-                      callback: (value) =>
-                          setState(() => _anexoController.text = value),
-                    ),
+                    if (candAnotacao())
+                      AnotacaoInput(
+                        controller: _anotacaoController,
+                        callback: (value) => _anotacaoController.text = value,
+                      ),
+                    if (candAnexo())
+                      SelectInput(
+                        controller: _anexoController,
+                        tipo: TipoSelectEnum.TipoAnexo,
+                        callback: (value) =>
+                            setState(() => _anexoController.text = value),
+                      ),
                   ],
                 ),
               );

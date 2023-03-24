@@ -19,7 +19,7 @@ class UiColor {
   static const Color text_2 = Color(0x40fefefe);
   static const Color text_3 = Color(0xFF1b1c1b);
 
-  static const Color alerta = Color(0xFF698ee5);
+  static const Color alerta = Color(0xFFc89550);
   static const Color erro = Color(0xFFd75a31);
   static const Color sucesso = Color(0xFF54c893);
 
