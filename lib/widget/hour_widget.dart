@@ -1,5 +1,9 @@
+import 'package:another_xlider/another_xlider.dart';
+import 'package:another_xlider/models/handler.dart';
+import 'package:another_xlider/models/tooltip/tooltip.dart';
+import 'package:another_xlider/models/trackbar.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter_circular_slider/flutter_circular_slider.dart';
+import 'package:intl/intl.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -21,29 +25,20 @@ class HourWidget extends StatefulWidget {
 }
 
 class _HourWidgetState extends State<HourWidget> {
-  DateTime now = DateTime.now();
-
-  final int _dividedHours = 24;
-  final int _dividedMinutes = 60;
-
-  late int _hour = now.hour;
-  late int _minute = now.minute;
-
-  final int _divisions = 288;
+  String label = '';
 
   @override
   void initState() {
     super.initState();
-    _updateClock(_hour, _minute);
+    DateTime agora = DateTime.now();
+    print(agora);
   }
 
-  _updateClock(int hour, int minute) {
-    setState(() {
-      _hour = hour;
-      _minute = minute;
-    });
+  onDragging(int minutes) {
+    final date = DateTime.utc(2023, 1, 1).add(Duration(minutes: minutes));
+    final dateFormatter = DateFormat('HH\'h\'mm\'m\'');
 
-    widget._callback('$_hour:$_minute');
+    setState(() => label = dateFormatter.format(date));
   }
 
   @override
@@ -61,25 +56,42 @@ class _HourWidgetState extends State<HourWidget> {
                 style: UiText.headline2,
               ),
             ),
-            DoubleCircularSlider(
-              24,
-              0,
-              10,
-              width: MediaQuery.of(context).size.width,
-              primarySectors: _dividedHours,
-              secondarySectors: _dividedMinutes,
-              baseColor: const Color.fromRGBO(255, 255, 255, 0.1),
-              selectionColor: const Color.fromRGBO(255, 255, 255, 0.3),
-              handlerColor: UiColor.task,
-              shouldCountLaps: true,
-              onSelectionChange: (int hour, int minute, int laps) =>
-                  _updateClock(hour, minute),
-              child: Padding(
-                padding: const EdgeInsets.all(42.0),
-                child: Center(
-                  child: Text(
-                    '${_hour}h${_minute}m',
-                    style: UiText.headline6,
+            Center(
+              child: Text(
+                label,
+                style: UiText.headline2,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: FlutterSlider(
+                values: const [1],
+                max: 1440,
+                min: 1,
+                handlerWidth: 24,
+                handlerHeight: 24,
+                handler: FlutterSliderHandler(
+                  decoration: const BoxDecoration(),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: UiColor.task,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+                selectByTap: true,
+                onDragging: (handlerIndex, lowerValue, upperValue) =>
+                    onDragging(lowerValue.toInt()),
+                onDragStarted: (handlerIndex, lowerValue, upperValue) {},
+                tooltip: FlutterSliderTooltip(disabled: true),
+                trackBar: FlutterSliderTrackBar(
+                  inactiveTrackBar: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: UiColor.element,
+                  ),
+                  activeTrackBar: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: UiColor.element,
                   ),
                 ),
               ),

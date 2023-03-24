@@ -2,11 +2,11 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/task_class.dart';
+import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
 import 'package:tarefas_app/input/valor_input.dart';
-import 'package:tarefas_app/input/calendar_input%20.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/notificacao_input%20.dart';
 import 'package:tarefas_app/input/text_input.dart';
@@ -100,6 +100,18 @@ class _TaskPageState extends State<TaskPage> {
     Navigator.pop(context);
   }
 
+  bool onlyFinanceiro() {
+    return _tipoTarefaController.text == TipoTarefaEnum.financeiro.value
+        ? true
+        : false;
+  }
+
+  bool canInputEndereco() {
+    return _tipoTarefaController.text == TipoTarefaEnum.evento.value
+        ? true
+        : false;
+  }
+
   @override
   void dispose() {
     _nomeController.dispose();
@@ -147,10 +159,6 @@ class _TaskPageState extends State<TaskPage> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    EnderecoInput(
-                      controller: _enderecoController,
-                      callback: (value) => _enderecoController.text = value,
-                    ),
                     TextInput(
                       controller: _nomeController,
                       label: TAREFA,
@@ -163,6 +171,11 @@ class _TaskPageState extends State<TaskPage> {
                         setState(() => _tipoTarefaController.text = value),
                       },
                     ),
+                    if (canInputEndereco())
+                      EnderecoInput(
+                        controller: _enderecoController,
+                        callback: (value) => _enderecoController.text = value,
+                      ),
                     SelectInput(
                       controller: _frequenciaController,
                       tipo: TipoSelectEnum.frequencia,
@@ -177,32 +190,44 @@ class _TaskPageState extends State<TaskPage> {
                         setState(() => _diaController.text = value),
                       },
                     ),
-                    SelectInput(
-                      controller: _tipoMovimentacaoController,
-                      tipo: TipoSelectEnum.tipoMovimentacao,
-                      callback: (value) => {
-                        setState(
-                            () => _tipoMovimentacaoController.text = value),
-                      },
-                    ),
-                    SelectInput(
-                      controller: _formaPagamentoController,
-                      tipo: TipoSelectEnum.formaMovimentacao,
-                      callback: (value) => {
-                        setState(() => _formaPagamentoController.text = value),
-                      },
-                    ),
-                    CalendarInput(
-                      controller: _diaController,
-                      callback: (value) => {
-                        setState(() => _diaController.text = value),
-                      },
-                    ),
                     NotificacaoInput(
                       controller: _notificacaoController,
                       callback: (value) => {
                         setState(() => _notificacaoController.text = value),
                       },
+                    ),
+                    if (onlyFinanceiro())
+                      SelectInput(
+                        controller: _tipoMovimentacaoController,
+                        tipo: TipoSelectEnum.tipoMovimentacao,
+                        callback: (value) => {
+                          setState(
+                              () => _tipoMovimentacaoController.text = value),
+                        },
+                      ),
+                    if (onlyFinanceiro())
+                      SelectInput(
+                        controller: _formaPagamentoController,
+                        tipo: TipoSelectEnum.formaMovimentacao,
+                        callback: (value) => {
+                          setState(
+                              () => _formaPagamentoController.text = value),
+                        },
+                      ),
+                    if (onlyFinanceiro())
+                      ValorInput(
+                        controller: _valorController,
+                        callback: (value) => _valorController.text = value,
+                      ),
+                    // CalendarInput(
+                    //   controller: _notificacaoController,
+                    //   callback: (value) => {
+                    //     setState(() => _notificacaoController.text = value),
+                    //   },
+                    // ),
+                    AnotacaoInput(
+                      controller: _anotacaoController,
+                      callback: (value) => _anotacaoController.text = value,
                     ),
                     SelectInput(
                       controller: _anexoController,
@@ -210,14 +235,6 @@ class _TaskPageState extends State<TaskPage> {
                       callback: (value) => {
                         setState(() => _anexoController.text = value),
                       },
-                    ),
-                    ValorInput(
-                      controller: _valorController,
-                      callback: (value) => _valorController.text = value,
-                    ),
-                    AnotacaoInput(
-                      controller: _anotacaoController,
-                      callback: (value) => _anotacaoController.text = value,
                     ),
                   ],
                 ),

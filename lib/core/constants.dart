@@ -20,7 +20,7 @@ const String ENDERECO_DIGITE = "Adicionar endereço";
 
 const String ESTADO = "Estado";
 
-const String FORMA_MOVIMENTACAO = "Forma de movimentação";
+const String FORMA_MOVIMENTACAO = "Forma de movimentacão";
 const String FORMA_MOVIMENTACAO_SELECIONE =
     "Selecione forma de movimentação financeira";
 
@@ -35,13 +35,11 @@ const String NOTIFICACAO = "Notificação";
 
 const String NUMERO = "Número";
 
-const String PAIS = "Pais";
-
 const String SELECIONE = "Selecione uma opção";
 
 const String TAREFA = "Tarefa";
 
-const String TIPO_MOVIMENTACAO = "Movimentação da tarefa";
+const String TIPO_MOVIMENTACAO = "Movimentação financeira";
 const String TIPO_MOVIMENTACAO_SELECIONE =
     "Selecione o tipo de movimentação da tarefa";
 
