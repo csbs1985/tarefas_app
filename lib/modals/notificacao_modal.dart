@@ -5,8 +5,9 @@ import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/calendar_widget.dart';
+import 'package:tarefas_app/widget/toast_widget.dart';
 
-import '../widget/hour_widget.dart';
+import '../widget/horario_widget.dart';
 
 class NotificacaoModal extends StatefulWidget {
   const NotificacaoModal({
@@ -24,8 +25,27 @@ class NotificacaoModal extends StatefulWidget {
 }
 
 class _SelectInputState extends State<NotificacaoModal> {
-  late String _date;
-  late String _hour;
+  final ToastWidget _toastWidget = ToastWidget();
+
+  String _date = "";
+  String _hour = "";
+
+  @override
+  void initState() {
+    super.initState();
+    initNotificacao();
+  }
+
+  initNotificacao() {
+    if (widget._controller.text != "") {
+      List<String> partes = widget._controller.text.split("-");
+
+      setState(() {
+        _date = partes[0];
+        _hour = partes[1];
+      });
+    }
+  }
 
   void _setDate(String value) {
     _date = value;
@@ -36,9 +56,15 @@ class _SelectInputState extends State<NotificacaoModal> {
   }
 
   void _confirm() {
-    if (_date != "" && _hour != "") widget._callback('_date - _hour');
-
-    Navigator.of(context).pop();
+    if (_date != "" && _hour != "") {
+      widget._callback('$_date-$_hour');
+      Navigator.of(context).pop();
+    } else
+      _toastWidget.toast(
+        context,
+        ToastEnum.ERRO.value,
+        NOTIFICACAO_VAZIO,
+      );
   }
 
   @override
@@ -61,7 +87,7 @@ class _SelectInputState extends State<NotificacaoModal> {
                 controller: widget._controller,
                 callback: (value) => _setDate(value),
               ),
-              HourWidget(
+              HorarioWidget(
                 controller: widget._controller,
                 callback: (value) => _setHour(value),
               )

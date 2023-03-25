@@ -75,7 +75,7 @@ class EnderecoClass {
     if (cep.isNotEmpty) endereco.write(' - CEP: $cep');
     if (bairro.isNotEmpty) endereco.write(' - $bairro');
     if (localidade.isNotEmpty) endereco.write(' - $localidade');
-    if (uf.isNotEmpty) endereco.write('- $uf');
+    if (uf.isNotEmpty) endereco.write(' - $uf');
     return endereco.toString();
   }
 

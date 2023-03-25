@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:intl/intl.dart';
-import 'package:tarefas_app/classes/data_classes.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -24,15 +23,12 @@ class CalendarWidget extends StatefulWidget {
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
-  final DataClass _dataClass = DataClass();
-
   final _minSelectedDate = DateTime(1950, 1, 1, 0, 0, 0);
   final _maxSelectedDate = DateTime(2050, 12, 31, 0, 0, 0);
 
   void _selectDay(DateTime date, List<Event> events) {
     setState(() {
-      _dataClass.formatDateTime(date.toString());
-      String dataString = DateFormat('dd/MM/yyyy HH:mm:ss').format(date);
+      String dataString = DateFormat('dd/MM/yyyy').format(date);
 
       widget._controller.text = dataString;
       widget._callback(dataString);
@@ -40,10 +36,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   }
 
   _selectedDateTime() {
-    print(widget._controller.text);
-    if (widget._controller.text.isNotEmpty) {
-      DateTime dataHora =
-          DateFormat('dd/MM/yyyy HH:mm:ss').parse(widget._controller.text);
+    if (widget._controller.text != "") {
+      String dateString = widget._controller.text;
+      DateTime dataHora = DateTime.parse(
+          "${dateString.split("/")[2]}-${dateString.split("/")[1]}-${dateString.split("/")[0]}");
       return dataHora;
     }
   }

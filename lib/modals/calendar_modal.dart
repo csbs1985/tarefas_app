@@ -6,6 +6,7 @@ import 'package:tarefas_app/widget/calendar_widget.dart';
 
 class CalendarModal extends StatefulWidget {
   const CalendarModal({
+    super.key,
     required controller,
     required Function callback,
   })  : _controller = controller,
@@ -36,10 +37,6 @@ class _SelectInputState extends State<CalendarModal> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(16, 16, 0, 8),
-                child: Text(DIA_SELECIONE, style: UiText.headline2),
-              ),
               CalendarWidget(
                 controller: widget._controller,
                 callback: (value) => _setControllerModal(value),

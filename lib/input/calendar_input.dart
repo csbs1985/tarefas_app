@@ -53,6 +53,13 @@ class _CalendarInputState extends State<CalendarInput> {
     });
   }
 
+  void _clear() {
+    setState(() {
+      widget._controller.text = '';
+      widget._callback('');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -104,7 +111,7 @@ class _CalendarInputState extends State<CalendarInput> {
                   height: 20,
                   color: UiColor.icon,
                 ),
-                onPressed: () => _setControllerModal(''),
+                onPressed: () => _clear(),
               )
             ],
           ),

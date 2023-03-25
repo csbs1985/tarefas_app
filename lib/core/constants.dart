@@ -42,6 +42,7 @@ const String LINK = "Link";
 const String MAPA_ERRO = "Não foi possivél abrir o mapa";
 
 const String NOTIFICACAO = "Notificação";
+const String NOTIFICACAO_VAZIO = "Preencha a data e a hora";
 
 const String NUMERO = "Número";
 

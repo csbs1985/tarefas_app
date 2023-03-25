@@ -30,6 +30,7 @@ linter:
     import_of_legacy_library_into_null_safe: false
     lowercase_with_underscores: false
     non_constant_identifier_names: false
+    undefined_lint_warning: false
     unnecessary_import: false
     unnecessary_null_comparison: false
     unused_local_variable: false

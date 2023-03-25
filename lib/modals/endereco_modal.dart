@@ -45,7 +45,6 @@ class _AddressModalState extends State<EnderecoModal> {
   @override
   void initState() {
     super.initState();
-
     initEndereco();
   }
 
