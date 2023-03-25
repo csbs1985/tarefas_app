@@ -34,6 +34,7 @@ const String FREQUENCIA = "Frequência";
 const String FREQUENCIA_SELECIONE = "Selecione a frequência da tarefas";
 
 const String HORARIO = "Horário";
+const String HORARIO_SELECIONE = "Selecione o horário";
 
 const String LAGRADOURO = "Lagradouro";
 
@@ -42,7 +43,7 @@ const String LINK = "Link";
 const String MAPA_ERRO = "Não foi possivél abrir o mapa";
 
 const String NOTIFICACAO = "Notificação";
-const String NOTIFICACAO_VAZIO = "Preencha a data e a hora";
+const String NOTIFICACAO_VAZIO = "Selecione a data e a hora";
 
 const String NUMERO = "Número";
 

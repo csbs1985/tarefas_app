@@ -44,15 +44,27 @@ class _HorarioWidgetState extends State<HorarioWidget> {
   }
 
   void formatHorario() {
-    String horario = '${_horaSelecionada}h${_minutoSelecionado}m';
+    String hora =
+        _horaSelecionada < 10 ? '0$_horaSelecionada' : '$_horaSelecionada';
+
+    String minuto = _minutoSelecionado < 10
+        ? '0$_minutoSelecionado'
+        : '$_minutoSelecionado';
+
+    String horario = '${hora}h${minuto}m';
     widget._callback(horario);
   }
 
   @override
   Widget build(BuildContext context) {
-    Map<String, int> valorInicial = widget._controller.text == ""
-        ? _horarioClass.horarioDateNowDouble()
-        : _horarioClass.horarioStringDouble(widget._controller.text);
+    Map<String, int> valorInicial = <String, int>{};
+
+    if (widget._controller.text == "") {
+      valorInicial = _horarioClass.horarioDateNowDouble();
+      onSelectedItemChangedHora(valorInicial["hora"]!);
+      onSelectedItemChangedMinuto(valorInicial["minuto"]!);
+    } else
+      valorInicial = _horarioClass.horarioStringDouble(widget._controller.text);
 
     FixedExtentScrollController horaController =
         FixedExtentScrollController(initialItem: valorInicial["hora"]!);
@@ -65,7 +77,7 @@ class _HorarioWidgetState extends State<HorarioWidget> {
         const Padding(
           padding: EdgeInsets.fromLTRB(8, 16, 0, 16),
           child: Text(
-            HORARIO,
+            HORARIO_SELECIONE,
             style: UiText.headline2,
           ),
         ),
@@ -89,10 +101,7 @@ class _HorarioWidgetState extends State<HorarioWidget> {
                     onSelectedItemChangedHora(value),
               ),
             ),
-            const Text(
-              'h',
-              style: UiText.headline7,
-            ),
+            const Text('h', style: UiText.headline7),
             SizedBox(
               height: _height,
               width: _width,
@@ -110,10 +119,7 @@ class _HorarioWidgetState extends State<HorarioWidget> {
                     onSelectedItemChangedMinuto(value),
               ),
             ),
-            const Text(
-              'm',
-              style: UiText.headline1,
-            ),
+            const Text('m', style: UiText.headline1),
           ],
         ),
       ],

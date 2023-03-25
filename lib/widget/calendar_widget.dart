@@ -71,8 +71,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           selectedDayButtonColor: UiColor.task,
           height: 400,
           daysHaveCircularBorder: false,
-          markedDateCustomShapeBorder:
-              BeveledRectangleBorder(borderRadius: BorderRadius.circular(6)),
           onDayPressed: (DateTime date, List<Event> events) =>
               _selectDay(date, events),
         ),

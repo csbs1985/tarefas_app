@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/classes/calendario_class.dart';
+import 'package:tarefas_app/classes/horario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -25,6 +27,8 @@ class NotificacaoModal extends StatefulWidget {
 }
 
 class _SelectInputState extends State<NotificacaoModal> {
+  final CalendarioClasss _calendarioClasss = CalendarioClasss();
+  final HorarioClass _horarioClass = HorarioClass();
   final ToastWidget _toastWidget = ToastWidget();
 
   String _date = "";
@@ -38,7 +42,7 @@ class _SelectInputState extends State<NotificacaoModal> {
 
   initNotificacao() {
     if (widget._controller.text != "") {
-      List<String> partes = widget._controller.text.split("-");
+      List<String> partes = widget._controller.text.split(" às ");
 
       setState(() {
         _date = partes[0];
@@ -57,7 +61,7 @@ class _SelectInputState extends State<NotificacaoModal> {
 
   void _confirm() {
     if (_date != "" && _hour != "") {
-      widget._callback('$_date-$_hour');
+      widget._callback('$_date às $_hour');
       Navigator.of(context).pop();
     } else
       _toastWidget.toast(
@@ -84,11 +88,13 @@ class _SelectInputState extends State<NotificacaoModal> {
                 ),
               ),
               CalendarWidget(
-                controller: widget._controller,
+                controller:
+                    _calendarioClasss.somenteData(widget._controller.text),
                 callback: (value) => _setDate(value),
               ),
               HorarioWidget(
-                controller: widget._controller,
+                controller:
+                    _horarioClass.somenteHorario(widget._controller.text),
                 callback: (value) => _setHour(value),
               )
             ],
