@@ -22,6 +22,9 @@ class HorarioWidget extends StatefulWidget {
 class _HorarioWidgetState extends State<HorarioWidget> {
   final HorarioClass _horarioClass = HorarioClass();
 
+  FixedExtentScrollController horaController = FixedExtentScrollController();
+  FixedExtentScrollController minutoController = FixedExtentScrollController();
+
   final double _height = 160;
   final double _width = 48;
   final double _extent = 32;
@@ -32,6 +35,34 @@ class _HorarioWidgetState extends State<HorarioWidget> {
 
   int _horaSelecionada = 0;
   int _minutoSelecionado = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initHorario();
+  }
+
+  void initHorario() {
+    Map<String, int> valorInicial = <String, int>{};
+
+    if (widget._controller.text != "")
+      valorInicial = _horarioClass.horarioStringDouble(widget._controller.text);
+    else {
+      valorInicial = _horarioClass.horarioDateNowDouble();
+      onSelectedItemChangedHora(valorInicial["hora"]!);
+      onSelectedItemChangedMinuto(valorInicial["minuto"]!);
+    }
+
+    setState(() {
+      _horaSelecionada = valorInicial["hora"]!;
+      _minutoSelecionado = valorInicial["minuto"]!;
+    });
+
+    horaController =
+        FixedExtentScrollController(initialItem: valorInicial["hora"]!);
+    minutoController =
+        FixedExtentScrollController(initialItem: valorInicial["minuto"]!);
+  }
 
   void onSelectedItemChangedHora(int hora) {
     setState(() => _horaSelecionada = hora);
@@ -52,25 +83,12 @@ class _HorarioWidgetState extends State<HorarioWidget> {
         : '$_minutoSelecionado';
 
     String horario = '${hora}h${minuto}m';
+    print(horario);
     widget._callback(horario);
   }
 
   @override
   Widget build(BuildContext context) {
-    Map<String, int> valorInicial = <String, int>{};
-
-    if (widget._controller.text == "") {
-      valorInicial = _horarioClass.horarioDateNowDouble();
-      onSelectedItemChangedHora(valorInicial["hora"]!);
-      onSelectedItemChangedMinuto(valorInicial["minuto"]!);
-    } else
-      valorInicial = _horarioClass.horarioStringDouble(widget._controller.text);
-
-    FixedExtentScrollController horaController =
-        FixedExtentScrollController(initialItem: valorInicial["hora"]!);
-    FixedExtentScrollController minutoController =
-        FixedExtentScrollController(initialItem: valorInicial["minuto"]!);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

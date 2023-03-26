@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 class HorarioClass {
   TextEditingController somenteHorario(String dataHora) {
-    TextEditingController controller = TextEditingController();
-
     if (dataHora != "") {
       List<String> partes = dataHora.split(" às ");
       return TextEditingController(text: partes[1]);

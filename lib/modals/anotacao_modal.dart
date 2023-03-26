@@ -22,14 +22,11 @@ class AnotacaoModal extends StatefulWidget {
 }
 
 class _AnotacaoModalState extends State<AnotacaoModal> {
-  FocusNode focusNode = FocusNode();
-
   String _text = '';
 
   @override
   void initState() {
     super.initState();
-    focusNode.requestFocus();
     setState(() => _text = widget._controller.text);
   }
 
@@ -42,12 +39,6 @@ class _AnotacaoModalState extends State<AnotacaoModal> {
   void _setText() {
     widget._callback(_text);
     Navigator.of(context).pop();
-  }
-
-  @override
-  void dispose() {
-    focusNode.dispose();
-    super.dispose();
   }
 
   @override
@@ -67,7 +58,6 @@ class _AnotacaoModalState extends State<AnotacaoModal> {
             ),
             Expanded(
               child: TextField(
-                focusNode: focusNode,
                 minLines: 20,
                 maxLines: null,
                 enabled: true,

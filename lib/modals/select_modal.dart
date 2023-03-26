@@ -5,6 +5,7 @@ import 'package:tarefas_app/theme/ui_text.dart';
 
 class SelectModal extends StatefulWidget {
   const SelectModal({
+    super.key,
     required controller,
     required List body,
     required String label,
@@ -42,37 +43,35 @@ class _SelectInputState extends State<SelectModal> {
     return Material(
       color: UiColor.back,
       child: SingleChildScrollView(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 24),
-                  child: Text(widget._label, style: UiText.headline2),
-                ),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (var item in widget._body)
-                      TextButton(
-                        onPressed: () => selectButton(item),
-                        child: Text(
-                          item.text,
-                          style: _checkSelected(item.text)
-                              ? UiText.buttonSelected
-                              : UiText.button,
-                        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 16, 0, 24),
+                child: Text(widget._label, style: UiText.headline2),
+              ),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (var item in widget._body)
+                    TextButton(
+                      onPressed: () => selectButton(item),
+                      style: _checkSelected(item.text)
+                          ? UiButton.buttonSelected
+                          : UiButton.button,
+                      child: Text(
+                        item.text,
                         style: _checkSelected(item.text)
-                            ? UiButton.buttonSelected
-                            : UiButton.button,
+                            ? UiText.buttonSelected
+                            : UiText.button,
                       ),
-                  ],
-                ),
-              ],
-            ),
+                    ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

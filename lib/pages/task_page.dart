@@ -5,6 +5,7 @@ import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/input/anexo_input.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/calendar_input.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
@@ -28,11 +29,9 @@ class TaskPage extends StatefulWidget {
 class _TaskPageState extends State<TaskPage> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final Uuid uuid = const Uuid();
-
+  final Uuid _uuid = const Uuid();
   final ToastWidget _toastWidget = ToastWidget();
-
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _tipoTarefaController = TextEditingController();
@@ -79,36 +78,19 @@ class _TaskPageState extends State<TaskPage> {
     _enderecoController.text = currentTask.value!.endereco as String;
     _horarioController.text = currentTask.value!.horario!;
     _linkController.text = currentTask.value!.link!;
-    _anexoController.text = currentTask.value!.anexo!;
+    _anexoController.text = currentTask.value!.anexo as String;
   }
 
   bool candFrequencia() {
-    if (_tipoTarefaController.text == "") return false;
     if (_tipoTarefaController.text == TipoTarefaEnum.aniversario.value)
       return false;
     return true;
-  }
-
-  bool candData() {
-    return _tipoTarefaController.text == "" ? false : true;
   }
 
   bool onlyFinanceiro() {
     return _tipoTarefaController.text == TipoTarefaEnum.financeiro.value
         ? true
         : false;
-  }
-
-  bool candNotificacao() {
-    return _tipoTarefaController.text == "" ? false : true;
-  }
-
-  bool candAnotacao() {
-    return _tipoTarefaController.text == "" ? false : true;
-  }
-
-  bool candAnexo() {
-    return _tipoTarefaController.text == "" ? false : true;
   }
 
   bool onlyEvento() {
@@ -123,10 +105,18 @@ class _TaskPageState extends State<TaskPage> {
         : false;
   }
 
+  void callbackTipoTarefa(String callback) {
+    if (callback == "") {
+      _tipoTarefaController.text = ListaTipoTarefa.first.text;
+      return;
+    }
+    _tipoTarefaController.text = callback;
+  }
+
   void confirmTask() {
     if (_nomeController.text != "" && _notificacaoController.text != "") {
       _task = {
-        'id': uuid.v4(),
+        'id': _uuid.v4(),
         'idUsuario': 'idUsuarioTemp',
         'nome': _nomeController.text,
         'tipoTarefa': _tipoTarefaController.text,
@@ -174,8 +164,6 @@ class _TaskPageState extends State<TaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    // _notificacaoController.text = "25/03/2023 às 14h10m";
-
     return Scaffold(
       backgroundColor: UiColor.modal,
       appBar: AppBar(
@@ -204,7 +192,7 @@ class _TaskPageState extends State<TaskPage> {
                       controller: _tipoTarefaController,
                       tipo: TipoSelectEnum.tipoTarefa,
                       callback: (value) =>
-                          setState(() => _tipoTarefaController.text = value),
+                          setState(() => callbackTipoTarefa(value)),
                     ),
                     TextoInput(
                       controller: _nomeController,
@@ -218,18 +206,16 @@ class _TaskPageState extends State<TaskPage> {
                         callback: (value) =>
                             setState(() => _frequenciaController.text = value),
                       ),
-                    if (candData())
-                      CalendarInput(
-                        controller: _diaController,
-                        callback: (value) =>
-                            setState(() => _diaController.text = value),
-                      ),
-                    if (candNotificacao())
-                      NotificacaoInput(
-                        controller: _notificacaoController,
-                        callback: (value) =>
-                            setState(() => _notificacaoController.text = value),
-                      ),
+                    CalendarInput(
+                      controller: _diaController,
+                      callback: (value) =>
+                          setState(() => _diaController.text = value),
+                    ),
+                    NotificacaoInput(
+                      controller: _notificacaoController,
+                      callback: (value) =>
+                          setState(() => _notificacaoController.text = value),
+                    ),
                     if (onlyFinanceiro())
                       SelectInput(
                         controller: _tipoMovimentacaoController,
@@ -273,18 +259,15 @@ class _TaskPageState extends State<TaskPage> {
                         keyboard: TextInputType.phone,
                         callback: (value) => _telefoneController.text = value,
                       ),
-                    if (candAnotacao())
-                      AnotacaoInput(
-                        controller: _anotacaoController,
-                        callback: (value) => _anotacaoController.text = value,
-                      ),
-                    if (candAnexo())
-                      SelectInput(
-                        controller: _anexoController,
-                        tipo: TipoSelectEnum.TipoAnexo,
-                        callback: (value) =>
-                            setState(() => _anexoController.text = value),
-                      ),
+                    AnotacaoInput(
+                      controller: _anotacaoController,
+                      callback: (value) => _anotacaoController.text = value,
+                    ),
+                    AnexoInput(
+                      controller: _anexoController,
+                      callback: (value) =>
+                          setState(() => _anexoController.text = value),
+                    ),
                   ],
                 ),
               );

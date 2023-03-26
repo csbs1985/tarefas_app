@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:tarefas_app/classes/carregamento_class.dart';
 import 'package:tarefas_app/classes/dias_class.dart';
 import 'package:tarefas_app/classes/forma-pagamento_class.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
@@ -69,11 +68,6 @@ class _SelectInput2State extends State<SelectInput> {
         _label = FORMA_MOVIMENTACAO;
         _labelSelect = FORMA_MOVIMENTACAO_SELECIONE;
         _body = ListaFormaPagamento;
-        break;
-      case TipoSelectEnum.TipoAnexo:
-        _label = ANEXO;
-        _labelSelect = ANEXO_SELECIONE;
-        _body = ListaAnexo;
         break;
     }
   }
