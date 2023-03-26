@@ -12,6 +12,7 @@ class UiColor {
   static const Color element = Color(0xFF3F3F3F);
   static const Color icon = Color(0xFF3F3F3F);
   static const Color input = Color(0xFF1b1c1b);
+  static const Color link = Color(0xFF8ab4f8);
   static const Color modal = Color(0xFF1b1c1b);
   static const Color overlay = Color(0x80c89550);
   static const Color planning = Color(0xFF54c893);

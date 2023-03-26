@@ -113,4 +113,12 @@ class UiText {
     fontWeight: FontWeight.bold,
     color: UiColor.back,
   );
+
+  static const TextStyle link = TextStyle(
+    fontSize: 16,
+    fontFamily: 'ElementalSansPro',
+    fontWeight: FontWeight.normal,
+    color: UiColor.link,
+    decoration: TextDecoration.underline,
+  );
 }

@@ -10,6 +10,7 @@ import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/calendario_input.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
 import 'package:tarefas_app/input/horario_input.dart';
+import 'package:tarefas_app/input/link_input.dart';
 import 'package:tarefas_app/input/notificacao_input%20.dart';
 import 'package:tarefas_app/input/texto_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
@@ -247,9 +248,8 @@ class _TaskPageState extends State<TaskPage> {
                         callback: (value) => _horarioController.text = value,
                       ),
                     if (onlyEvento())
-                      TextoInput(
+                      LinkInput(
                         controller: _linkController,
-                        label: LINK,
                         callback: (value) => _linkController.text = value,
                       ),
                     if (onlyLigar())

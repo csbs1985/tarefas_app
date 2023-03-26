@@ -39,6 +39,11 @@ const String HORARIO_SELECIONE = "Selecione o horário";
 const String LAGRADOURO = "Lagradouro";
 
 const String LINK = "Link";
+const String LINK_ABRIR = "Abrir link";
+const String LINK_COPIAR = "Copiar link";
+const String LINK_DIGITE = "Adicionar link";
+const String LINK_ERRO = "Endereço url inválido";
+const String LINK_VAZIO = "Adicione o endereço web primeiro";
 
 const String MAPA_ERRO = "Não foi possivél abrir o mapa";
 
