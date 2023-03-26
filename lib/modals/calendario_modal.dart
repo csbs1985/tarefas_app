@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/calendar_widget.dart';
 
-class CalendarModal extends StatefulWidget {
-  const CalendarModal({
+class CalendarioModal extends StatefulWidget {
+  const CalendarioModal({
     super.key,
     required controller,
     required Function callback,
@@ -16,10 +14,10 @@ class CalendarModal extends StatefulWidget {
   final Function _callback;
 
   @override
-  State<CalendarModal> createState() => _SelectInputState();
+  State<CalendarioModal> createState() => _SelectInputState();
 }
 
-class _SelectInputState extends State<CalendarModal> {
+class _SelectInputState extends State<CalendarioModal> {
   void _setControllerModal(String value) {
     setState(() {
       widget._controller.text = value;

@@ -7,8 +7,9 @@ import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/anexo_input.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
-import 'package:tarefas_app/input/calendar_input.dart';
+import 'package:tarefas_app/input/calendario_input.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
+import 'package:tarefas_app/input/horario_input.dart';
 import 'package:tarefas_app/input/notificacao_input%20.dart';
 import 'package:tarefas_app/input/texto_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
@@ -206,7 +207,7 @@ class _TaskPageState extends State<TaskPage> {
                         callback: (value) =>
                             setState(() => _frequenciaController.text = value),
                       ),
-                    CalendarInput(
+                    CalendarioInput(
                       controller: _diaController,
                       callback: (value) =>
                           setState(() => _diaController.text = value),
@@ -241,9 +242,8 @@ class _TaskPageState extends State<TaskPage> {
                         callback: (value) => _enderecoController.text = value,
                       ),
                     if (onlyEvento())
-                      TextoInput(
+                      HorarioInput(
                         controller: _horarioController,
-                        label: HORARIO,
                         callback: (value) => _horarioController.text = value,
                       ),
                     if (onlyEvento())
