@@ -4,7 +4,7 @@ enum TipoSelectEnum {
   dia('dia'),
   tipoMovimentacao('tipoMovimentacao'),
   formaMovimentacao('formaMovimentacao'),
-  TipoAnexo('TipoAnexo');
+  tipoFrequencia('tipoFrequencia');
 
   final String value;
   const TipoSelectEnum(this.value);

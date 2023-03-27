@@ -31,7 +31,11 @@ const String FORMA_MOVIMENTACAO_SELECIONE =
     "Selecione forma de movimentação financeira";
 
 const String FREQUENCIA = "Frequência";
-const String FREQUENCIA_SELECIONE = "Selecione a frequência da tarefas";
+const String FREQUENCIA_A_CADA_NUMERO = "A cada (número)";
+const String FREQUENCIA_A_CADA_TIPO = "Período da frequência";
+const String FREQUENCIA_SELECIONE = "Selecione a frequência da tarefa";
+const String FREQUENCIA_PARCELAS = "Quantidade de parcelas";
+const String FREQUENCIA_PARCELAS_INICIAR = "Iniciar na parcela";
 
 const String HORARIO = "Horário";
 const String HORARIO_SELECIONE = "Selecione o horário";
@@ -51,6 +55,8 @@ const String NOTIFICACAO = "Notificação";
 const String NOTIFICACAO_VAZIO = "Selecione a data e a hora";
 
 const String NUMERO = "Número";
+
+const String PREENCHER = "Favor preencher os campos";
 
 const String SELECIONE = "Selecione";
 

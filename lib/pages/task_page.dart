@@ -9,6 +9,7 @@ import 'package:tarefas_app/input/anexo_input.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/calendario_input.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
+import 'package:tarefas_app/input/frequencia_input.dart';
 import 'package:tarefas_app/input/horario_input.dart';
 import 'package:tarefas_app/input/link_input.dart';
 import 'package:tarefas_app/input/notificacao_input%20.dart';
@@ -202,9 +203,8 @@ class _TaskPageState extends State<TaskPage> {
                       callback: (value) => _nomeController.text = value,
                     ),
                     if (candFrequencia())
-                      SelectInput(
+                      FrequenciaInput(
                         controller: _frequenciaController,
-                        tipo: TipoSelectEnum.frequencia,
                         callback: (value) =>
                             setState(() => _frequenciaController.text = value),
                       ),

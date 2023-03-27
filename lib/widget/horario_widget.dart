@@ -83,7 +83,6 @@ class _HorarioWidgetState extends State<HorarioWidget> {
         : '$_minutoSelecionado';
 
     String horario = '${hora}h${minuto}m';
-    print(horario);
     widget._callback(horario);
   }
 
