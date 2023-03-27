@@ -27,8 +27,8 @@ class FrequenciaModal extends StatefulWidget {
 }
 
 class _SelectInputState extends State<FrequenciaModal> {
-  final ToastWidget _toastWidget = ToastWidget();
   final FrequenciaClass _frequenciaClass = FrequenciaClass();
+  final ToastWidget _toastWidget = ToastWidget();
 
   final TextEditingController _frequenciaController = TextEditingController();
   final TextEditingController _aCadaController = TextEditingController();

@@ -21,10 +21,10 @@ class FrequenciaInput extends StatefulWidget {
   final TextEditingController _controller;
 
   @override
-  State<FrequenciaInput> createState() => _FrequenciaInput2State();
+  State<FrequenciaInput> createState() => _FrequenciaInputState();
 }
 
-class _FrequenciaInput2State extends State<FrequenciaInput> {
+class _FrequenciaInputState extends State<FrequenciaInput> {
   final FrequenciaClass _frequenciaClass = FrequenciaClass();
 
   String frequencia = "";
@@ -43,19 +43,25 @@ class _FrequenciaInput2State extends State<FrequenciaInput> {
   }
 
   void _setControllerModal(String value) {
-    Map<String, dynamic> jsonMap = _frequenciaClass.separarFrequencia(value);
+    if (widget._controller.text != "") {
+      Map<String, dynamic> jsonMap = _frequenciaClass.separarFrequencia(value);
 
-    if (jsonMap['frequencia'] == FrequenciaEnum.aCada.value)
-      frequencia = "A cada ${jsonMap['aCada']} ${jsonMap['periodo']}";
-    else if (jsonMap['frequencia'] == FrequenciaEnum.parcelas.value)
-      frequencia = "${jsonMap['parcelas']} parcelas";
-    else
-      frequencia = jsonMap['frequencia'];
+      if (jsonMap['frequencia'] == FrequenciaEnum.aCada.value)
+        frequencia = "A cada ${jsonMap['aCada']} ${jsonMap['periodo']}";
+      else if (jsonMap['frequencia'] == FrequenciaEnum.parcelas.value)
+        frequencia = "${jsonMap['parcelas']} parcelas";
+      else
+        frequencia = jsonMap['frequencia'];
 
-    setState(() {
-      widget._controller.text = value;
-      widget._callback(value);
-    });
+      setState(() {
+        widget._controller.text = value;
+        widget._callback(value);
+      });
+    }
+  }
+
+  void _clearFrequencia() {
+    setState(() => widget._controller.text = "");
   }
 
   @override
@@ -112,7 +118,7 @@ class _FrequenciaInput2State extends State<FrequenciaInput> {
                   height: 20,
                   color: UiColor.icon,
                 ),
-                onPressed: () => _setControllerModal(''),
+                onPressed: () => _clearFrequencia(),
               )
             ],
           ),
