@@ -12,6 +12,8 @@ const String CEP = "CEP";
 
 const String CIDADE = "Cidade";
 
+const String CONFIRMAR = "Confirmar";
+
 const String COMPLEMENTO = "Complemento";
 
 const String COPIAR = "Copiar endereço";
@@ -61,6 +63,7 @@ const String PREENCHER = "Favor preencher os campos";
 const String SELECIONE = "Selecione";
 
 const String TAREFA = "Tarefa";
+const String TAREFA_SUCESSO = "Tarefa criada";
 const String TAREFA_VAZIA =
     'Preencha os campos para salvar a tarefa ou clique no botão "voltar" para descarta-lá';
 

@@ -3,13 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/calendario_class.dart';
 import 'package:tarefas_app/classes/horario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/theme/ui_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
-import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/calendar_widget.dart';
+import 'package:tarefas_app/widget/horario_widget.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
-
-import '../widget/horario_widget.dart';
 
 class NotificacaoModal extends StatefulWidget {
   const NotificacaoModal({
@@ -64,48 +63,43 @@ class _SelectInputState extends State<NotificacaoModal> {
       widget._callback('$_date às $_hour');
       Navigator.of(context).pop();
     } else
-      _toastWidget.toast(
-        context,
-        ToastEnum.ERRO.value,
-        NOTIFICACAO_VAZIO,
-      );
+      _toastWidget.toast(context, ToastEnum.ERRO.value, NOTIFICACAO_VAZIO);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 8, 0, 16),
-                child: Text(
-                  NOTIFICACAO,
-                  style: UiText.headline2,
-                ),
-              ),
-              CalendarWidget(
+    return Material(
+      color: UiColor.back,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: CalendarWidget(
                 controller:
                     _calendarioClasss.somenteData(widget._controller.text),
                 callback: (value) => _setDate(value),
               ),
-              HorarioWidget(
-                controller:
-                    _horarioClass.somenteHorario(widget._controller.text),
-                callback: (value) => _setHour(value),
-              )
-            ],
-          ),
+            ),
+            HorarioWidget(
+              controller: _horarioClass.somenteHorario(widget._controller.text),
+              callback: (value) => _setHour(value),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () => _confirm(),
+                  style: UiButton.buttonSelected,
+                  iconSize: 56,
+                  icon: SvgPicture.asset(UiSvg.confirm),
+                ),
+              ],
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: UiColor.task,
-        elevation: 0,
-        onPressed: () => _confirm(),
-        child: SvgPicture.asset(UiSvg.confirm),
       ),
     );
   }

@@ -54,6 +54,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           child: Text(DIA_SELECIONE, style: UiText.headline2),
         ),
         CalendarCarousel(
+          height: 360,
           locale: 'pt_BR',
           minSelectedDate: _minSelectedDate,
           maxSelectedDate: _maxSelectedDate,
@@ -69,7 +70,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           todayButtonColor: UiColor.element,
           selectedDayBorderColor: Colors.transparent,
           selectedDayButtonColor: UiColor.task,
-          height: 400,
           daysHaveCircularBorder: false,
           onDayPressed: (DateTime date, List<Event> events) =>
               _selectDay(date, events),

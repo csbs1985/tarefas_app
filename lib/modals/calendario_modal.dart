@@ -30,17 +30,17 @@ class _SelectInputState extends State<CalendarioModal> {
     return Material(
       color: UiColor.back,
       child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CalendarWidget(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: CalendarWidget(
                 controller: widget._controller,
                 callback: (value) => _setControllerModal(value),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
