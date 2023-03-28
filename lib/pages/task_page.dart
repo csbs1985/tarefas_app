@@ -12,6 +12,7 @@ import 'package:tarefas_app/input/frequencia_input.dart';
 import 'package:tarefas_app/input/horario_input.dart';
 import 'package:tarefas_app/input/link_input.dart';
 import 'package:tarefas_app/input/notificacao_input%20.dart';
+import 'package:tarefas_app/input/telefone_input.dart';
 import 'package:tarefas_app/input/texto_input.dart';
 import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/input/valor_input.dart';
@@ -274,10 +275,8 @@ class _TaskPageState extends State<TaskPage> {
                         callback: (value) => _linkController.text = value,
                       ),
                     if (onlyLigar())
-                      TextoInput(
+                      TelefoneInput(
                         controller: _telefoneController,
-                        label: TELEFONE,
-                        keyboard: TextInputType.phone,
                         callback: (value) => _telefoneController.text = value,
                       ),
                     AnotacaoInput(
