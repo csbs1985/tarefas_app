@@ -5,6 +5,7 @@ import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/tipo_frequencia_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/texto_input.dart';
+import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -194,14 +195,7 @@ class _SelectInputState extends State<FrequenciaModal> {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              top: BorderSide(
-                                width: 1,
-                                color: UiColor.border,
-                              ),
-                            ),
-                          ),
+                          decoration: UiBorder.borda,
                           child: const Text(
                             FREQUENCIA_A_CADA_TIPO,
                             style: UiText.headline2,

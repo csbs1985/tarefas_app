@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -30,14 +31,7 @@ class _TextoInputState extends State<CepInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            width: 1,
-            color: UiColor.border,
-          ),
-        ),
-      ),
+      decoration: UiBorder.borda,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
