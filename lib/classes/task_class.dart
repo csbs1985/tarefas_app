@@ -23,7 +23,7 @@ class TaskModel {
   late EnderecoModel? endereco;
   late String? horario;
   late String? link;
-  late String? anexo;
+  late List<String?> anexo;
 
   TaskModel(
     this.id,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_theme.dart';
@@ -28,11 +29,11 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    return MaterialApp.router(
+    return GetMaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerDelegate: routes.routerDelegate,
       routeInformationParser: routes.routeInformationParser,
       routeInformationProvider: routes.routeInformationProvider,
-      debugShowCheckedModeBanner: false,
       theme: UiTheme.theme1,
     );
   }

@@ -5,7 +5,6 @@ import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/input/anexo_input.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/calendario_input.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
@@ -263,11 +262,11 @@ class _TaskPageState extends State<TaskPage> {
                       controller: _anotacaoController,
                       callback: (value) => _anotacaoController.text = value,
                     ),
-                    AnexoInput(
-                      controller: _anexoController,
-                      callback: (value) =>
-                          setState(() => _anexoController.text = value),
-                    ),
+                    // AnexoInput(
+                    //   controller: _anexoController,
+                    //   callback: (value) =>
+                    //       setState(() => _anexoController.text = value),
+                    // ),
                   ],
                 ),
               );

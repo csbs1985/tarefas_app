@@ -25,6 +25,10 @@ dependencies:
   flutter_masked_text2: ^0.9.1
   url_launcher: ^6.1.10
   flutter_time_range: ^0.0.3
+  camera_camera: ^3.0.0-dev
+  image_picker: ^0.8.7
+  get: ^4.6.5
+  camera: ^0.10.3+2
 
 dev_dependencies:
   flutter_test:
