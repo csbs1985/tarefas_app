@@ -72,6 +72,13 @@ class _SelectInputState extends State<FrequenciaModal> {
         : false;
   }
 
+  bool candFloating() {
+    return (_frequenciaController.text == FrequenciaEnum.aCada.value ||
+            _frequenciaController.text == FrequenciaEnum.parcelas.value)
+        ? true
+        : false;
+  }
+
   bool _checkSelected(String text) {
     return _frequenciaController.text == text ? true : false;
   }
@@ -139,8 +146,9 @@ class _SelectInputState extends State<FrequenciaModal> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
+    return Material(
+      color: UiColor.back,
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
@@ -226,16 +234,24 @@ class _SelectInputState extends State<FrequenciaModal> {
                         )
                       ],
                     ),
+                  const SizedBox(height: 16),
+                  if (candFloating())
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: () => onfloatingActionButton(),
+                          style: UiButton.buttonSelected,
+                          iconSize: 56,
+                          icon: SvgPicture.asset(UiSvg.confirm),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: UiColor.task,
-        onPressed: () => onfloatingActionButton(),
-        child: SvgPicture.asset(UiSvg.confirm),
       ),
     );
   }

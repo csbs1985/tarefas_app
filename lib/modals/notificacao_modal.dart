@@ -50,15 +50,11 @@ class _SelectInputState extends State<NotificacaoModal> {
     }
   }
 
-  void _setDate(String value) {
-    _date = value;
-  }
+  void _setDate(String value) => _date = value;
 
-  void _setHour(String value) {
-    _hour = value;
-  }
+  void _setHour(String value) => _hour = value;
 
-  void _confirm() {
+  void _onPressed() {
     if (_date != "" && _hour != "") {
       widget._callback('$_date às $_hour');
       Navigator.of(context).pop();
@@ -91,7 +87,7 @@ class _SelectInputState extends State<NotificacaoModal> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                  onPressed: () => _confirm(),
+                  onPressed: () => _onPressed(),
                   style: UiButton.buttonSelected,
                   iconSize: 56,
                   icon: SvgPicture.asset(UiSvg.confirm),

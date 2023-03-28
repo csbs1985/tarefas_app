@@ -53,7 +53,7 @@ class _TaskPageState extends State<TaskPage> {
   final TextEditingController _linkController = TextEditingController();
   final TextEditingController _anexoController = TextEditingController();
 
-  late Map<String, dynamic>? _task;
+  Map<String, dynamic> _task = <String, dynamic>{};
 
   @override
   void initState() {
@@ -108,11 +108,32 @@ class _TaskPageState extends State<TaskPage> {
   }
 
   void callbackTipoTarefa(String callback) {
+    clearTask();
+
     if (callback == "") {
       _tipoTarefaController.text = ListaTipoTarefa.first.text;
       return;
     }
     _tipoTarefaController.text = callback;
+  }
+
+  void clearTask() {
+    _task.clear();
+
+    _nomeController.clear();
+    _tipoTarefaController.clear();
+    _diaController.clear();
+    _notificacaoController.clear();
+    _frequenciaController.clear();
+    _valorController.text = VALOR_INICIAL;
+    _tipoMovimentacaoController.clear();
+    _formaPagamentoController.clear();
+    _anotacaoController.clear();
+    _telefoneController.clear();
+    _enderecoController.clear();
+    _horarioController.clear();
+    _linkController.clear();
+    _anexoController.clear();
   }
 
   void confirmTask() {
@@ -136,7 +157,8 @@ class _TaskPageState extends State<TaskPage> {
         'anexo': _anexoController.text,
       };
 
-      // currentTask.value = _task as TaskModel?;
+      // currentTask.value = _task;
+      _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_SUCESSO);
       Navigator.pop(context);
     } else {
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_VAZIA);
