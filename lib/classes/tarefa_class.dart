@@ -7,10 +7,11 @@ import 'package:tarefas_app/classes/tipo-movimentacao_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
-ValueNotifier<TarefaModel?> currentTask = ValueNotifier<TarefaModel?>(null);
+ValueNotifier<TarefaModel?> currentTarefa = ValueNotifier<TarefaModel?>(null);
 
 class TarefaModel {
   late String id;
+  late String dataCriacao;
   late String idUsuario;
   late String nome;
   late TarefaModel tipoTarefa;
@@ -29,6 +30,7 @@ class TarefaModel {
 
   TarefaModel(
     this.id,
+    this.dataCriacao,
     this.idUsuario,
     this.nome,
     this.tipoTarefa,

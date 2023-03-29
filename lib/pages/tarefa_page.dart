@@ -4,7 +4,7 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
-import 'package:tarefas_app/classes/task_class.dart';
+import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
@@ -67,7 +67,7 @@ class _TarefaPageState extends State<TarefaPage> {
   @override
   void initState() {
     super.initState();
-    if (currentTask.value != null) {
+    if (currentTarefa.value != null) {
       popularController;
       return;
     }
@@ -75,21 +75,21 @@ class _TarefaPageState extends State<TarefaPage> {
   }
 
   void popularController() {
-    _nomeController.text = currentTask.value!.nome;
-    _tipoTarefaController.text = currentTask.value!.tipoTarefa as String;
-    _diaController.text = currentTask.value!.dia;
-    _notificacaoController.text = currentTask.value!.notificacao as String;
-    _frequenciaController.text = currentTask.value!.frequencia as String;
-    _valorController.text = currentTask.value!.valor!;
+    _nomeController.text = currentTarefa.value!.nome;
+    _tipoTarefaController.text = currentTarefa.value!.tipoTarefa as String;
+    _diaController.text = currentTarefa.value!.dia;
+    _notificacaoController.text = currentTarefa.value!.notificacao as String;
+    _frequenciaController.text = currentTarefa.value!.frequencia as String;
+    _valorController.text = currentTarefa.value!.valor!;
     _tipoMovimentacaoController.text =
-        currentTask.value!.tipoMovimentacao as String;
-    _formaPagamentoController.text = currentTask.value!.formaPagamento!;
-    _anotacaoController.text = currentTask.value!.anotacao!;
-    _telefoneController.text = currentTask.value!.telefone as String;
-    _enderecoController.text = currentTask.value!.endereco as String;
-    _horarioController.text = currentTask.value!.horario!;
-    _linkController.text = currentTask.value!.link!;
-    _anexoController.text = currentTask.value!.anexo as String;
+        currentTarefa.value!.tipoMovimentacao as String;
+    _formaPagamentoController.text = currentTarefa.value!.formaPagamento!;
+    _anotacaoController.text = currentTarefa.value!.anotacao!;
+    _telefoneController.text = currentTarefa.value!.telefone as String;
+    _enderecoController.text = currentTarefa.value!.endereco as String;
+    _horarioController.text = currentTarefa.value!.horario!;
+    _linkController.text = currentTarefa.value!.link!;
+    _anexoController.text = currentTarefa.value!.anexo as String;
   }
 
   bool candFrequencia() {
@@ -149,6 +149,7 @@ class _TarefaPageState extends State<TarefaPage> {
     if (_nomeController.text != "" && _notificacaoController.text != "") {
       _tarefa = {
         'id': _uuid.v4(),
+        'dataCriacao': DateTime.now().toString(),
         'idUsuario': 'idUsuarioTemp',
         'nome': _nomeController.text,
         'tipoTarefa': _tipoTarefaController.text,
@@ -195,7 +196,7 @@ class _TarefaPageState extends State<TarefaPage> {
     _linkController.dispose();
     _anexoController.dispose();
 
-    currentTask.value = null;
+    currentTarefa.value = null;
     super.dispose();
   }
 
@@ -219,7 +220,7 @@ class _TarefaPageState extends State<TarefaPage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
         child: ValueListenableBuilder(
-            valueListenable: currentTask,
+            valueListenable: currentTarefa,
             builder: (BuildContext context, task, _) {
               return Form(
                 key: _formKey,
