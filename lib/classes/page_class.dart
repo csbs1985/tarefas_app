@@ -26,10 +26,10 @@ class PageClass {
       'color': UiColor.concluded,
       'style': UiText.titleConcluded,
     },
-    PageEnum.task: {
+    PageEnum.tarefa: {
       'text': 'Tarefa',
-      'color': UiColor.task,
-      'style': UiText.titleTask,
+      'color': UiColor.tarefa,
+      'style': UiText.titleTarefa,
     },
   };
 
@@ -54,7 +54,7 @@ class PageClass {
     if (page == 1) return UiColor.calendar;
     if (page == 2) return UiColor.all;
     if (page == 3) return UiColor.concluded;
-    return UiColor.task;
+    return UiColor.tarefa;
   }
 }
 
@@ -63,7 +63,7 @@ enum PageEnum {
   calendar(1),
   all(2),
   concluded(3),
-  task(4);
+  tarefa(4);
 
   final int value;
   const PageEnum(this.value);

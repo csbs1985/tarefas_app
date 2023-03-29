@@ -117,7 +117,7 @@ class _TarefaPageState extends State<TarefaPage> {
   }
 
   void callbackTipoTarefa(String callback) {
-    clearTask();
+    clearTarefa();
 
     if (callback == "") {
       _tipoTarefaController.text = ListaTipoTarefa.first.text;
@@ -126,7 +126,7 @@ class _TarefaPageState extends State<TarefaPage> {
     _tipoTarefaController.text = callback;
   }
 
-  void clearTask() {
+  void clearTarefa() {
     _tarefa.clear();
 
     _nomeController.clear();
@@ -145,7 +145,7 @@ class _TarefaPageState extends State<TarefaPage> {
     _anexoController.clear();
   }
 
-  void confirmTask(BuildContext context) {
+  void onFloatingActionButton(BuildContext context) {
     if (_nomeController.text != "" && _notificacaoController.text != "") {
       _tarefa = {
         'id': _uuid.v4(),
@@ -214,14 +214,14 @@ class _TarefaPageState extends State<TarefaPage> {
         titleSpacing: 0,
         title: const Text(
           TAREFA,
-          style: UiText.titleTask,
+          style: UiText.titleTarefa,
         ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
         child: ValueListenableBuilder(
             valueListenable: currentTarefa,
-            builder: (BuildContext context, task, _) {
+            builder: (BuildContext context, taerfa, _) {
               return Form(
                 key: _formKey,
                 child: Column(
@@ -307,8 +307,8 @@ class _TarefaPageState extends State<TarefaPage> {
             }),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: UiColor.task,
-        onPressed: () => confirmTask(context),
+        backgroundColor: UiColor.tarefa,
+        onPressed: () => onFloatingActionButton(context),
         child: SvgPicture.asset(UiSvg.confirm),
       ),
     );

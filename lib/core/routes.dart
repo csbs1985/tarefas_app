@@ -17,7 +17,7 @@ final routes = GoRouter(
       ),
     ),
     GoRoute(
-      path: RouteEnum.TASK.value,
+      path: RouteEnum.TAREFA.value,
       builder: (context, state) => const TarefaPage(),
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
@@ -54,7 +54,7 @@ enum RouteEnum {
   CALENDAR('/calendar'),
   CONCLUDED('/concluded'),
   PLANNING('/planning'),
-  TASK('/task'),
+  TAREFA('/tarefa'),
   HOME('/home');
 
   final String value;

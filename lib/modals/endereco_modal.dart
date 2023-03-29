@@ -232,7 +232,7 @@ class _AddressModalState extends State<EnderecoModal> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: UiColor.task,
+        backgroundColor: UiColor.tarefa,
         elevation: 0,
         onPressed: () => _setText(),
         child: SvgPicture.asset(UiSvg.confirm),

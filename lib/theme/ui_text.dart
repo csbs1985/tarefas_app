@@ -30,11 +30,11 @@ class UiText {
     color: UiColor.concluded,
   );
 
-  static const TextStyle titleTask = TextStyle(
+  static const TextStyle titleTarefa = TextStyle(
     fontSize: 24,
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.bold,
-    color: UiColor.task,
+    color: UiColor.tarefa,
   );
 
   static const TextStyle headline1 = TextStyle(
@@ -48,7 +48,7 @@ class UiText {
     fontSize: 16,
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.normal,
-    color: UiColor.task,
+    color: UiColor.tarefa,
   );
 
   static const TextStyle headline3 = TextStyle(
@@ -76,7 +76,7 @@ class UiText {
     fontSize: 36,
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.normal,
-    color: UiColor.task,
+    color: UiColor.tarefa,
   );
 
   static const TextStyle headline7 = TextStyle(
@@ -97,14 +97,14 @@ class UiText {
     fontSize: 14,
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.normal,
-    color: UiColor.task,
+    color: UiColor.tarefa,
   );
 
   static const TextStyle buttonSecondary = TextStyle(
     fontSize: 16,
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.normal,
-    color: UiColor.task,
+    color: UiColor.tarefa,
   );
 
   static const TextStyle buttonSelected = TextStyle(
