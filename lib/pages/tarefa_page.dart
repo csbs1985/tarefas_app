@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/task_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
@@ -37,10 +38,11 @@ class _TarefaPageState extends State<TarefaPage> {
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final Uuid _uuid = const Uuid();
   final TarefaClass _tarefaClass = TarefaClass();
-  final ToastWidget _toastWidget = ToastWidget();
+  final FrequenciaClass _frequenciaClass = FrequenciaClass();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final Uuid _uuid = const Uuid();
+  final ToastWidget _toastWidget = ToastWidget();
 
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _tipoTarefaController = TextEditingController();
@@ -152,7 +154,8 @@ class _TarefaPageState extends State<TarefaPage> {
         'tipoTarefa': _tipoTarefaController.text,
         'dia': _diaController.text,
         'notificacao': _notificacaoController.text,
-        'frequencia': _frequenciaController.text,
+        'frequencia':
+            _frequenciaClass.formatFrequencia(_frequenciaController.text),
         'valor': _valorController.text,
         'tipoMovimentacao': _tipoMovimentacaoController.text,
         'formaPagamento': _formaPagamentoController.text,

@@ -53,4 +53,20 @@ class FrequenciaClass {
     Map<String, dynamic> jsonMap = jsonDecode(frequencia);
     return jsonMap;
   }
+
+  formatFrequencia(String frequencia) {
+    Map<String, dynamic> format = <String, dynamic>{};
+
+    var jsonMap = separarFrequencia(frequencia);
+
+    format = {
+      'frequencia': jsonMap['frequencia'],
+      'aCada': jsonMap['aCada'],
+      'periodo': jsonMap['periodo'],
+      'parcelas': jsonMap['parcelas'],
+      'inicio': jsonMap['inicio'],
+    };
+
+    return format;
+  }
 }
