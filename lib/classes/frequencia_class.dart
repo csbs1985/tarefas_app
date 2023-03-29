@@ -30,6 +30,7 @@ final List<FrequenciaModel> ListaFrequencia = [
   FrequenciaModel(text: FrequenciaEnum.fimSemana.value, value: 5),
   FrequenciaModel(text: FrequenciaEnum.aCada.value, value: 6),
   FrequenciaModel(text: FrequenciaEnum.parcelas.value, value: 7),
+  FrequenciaModel(text: FrequenciaEnum.unica.value, value: 8),
 ];
 
 enum FrequenciaEnum {
@@ -40,7 +41,8 @@ enum FrequenciaEnum {
   diasSemana('dias da semana'),
   fimSemana('fim de semana'),
   aCada('a cada'),
-  parcelas('parcelas');
+  parcelas('parcelas'),
+  unica('única');
 
   final String value;
   const FrequenciaEnum(this.value);

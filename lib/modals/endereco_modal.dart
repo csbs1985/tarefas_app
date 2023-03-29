@@ -209,7 +209,7 @@ class _AddressModalState extends State<EnderecoModal> {
                         onPressed: () => _copyToClipboard(),
                         style: UiButton.buttonSecondary,
                         child: const Text(
-                          COPIAR,
+                          ENDERECO_COPIAR,
                           style: UiText.buttonSecondary,
                         ),
                       ),

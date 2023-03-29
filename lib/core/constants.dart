@@ -16,7 +16,6 @@ const String CONFIRMAR = "Confirmar";
 
 const String COMPLEMENTO = "Complemento";
 
-const String COPIAR = "Copiar endereço";
 const String COPIAR_SUCESSO = "Copiado para a área de transferência";
 
 const String DIA = "Data";
@@ -25,6 +24,8 @@ const String DIA_SELECIONE = "Selecione a data";
 const String ENDERECO = "Endereço";
 const String ENDERECO_DIGITE = "Adicionar endereço";
 const String ENDERECO_VAZIO = "Preencha o endereço primeiro";
+
+const String ENDERECO_COPIAR = "Copiar endereço";
 
 const String ESTADO = "Estado";
 
@@ -63,6 +64,8 @@ const String PREENCHER = "Favor preencher os campos";
 const String SELECIONE = "Selecione";
 
 const String TAREFA = "Tarefa";
+const String TAREFA_ERRO_POST =
+    "Erro ao salvar tarefa, tente novamente mais tarde.";
 const String TAREFA_SUCESSO = "Tarefa criada";
 const String TAREFA_VAZIA =
     'Preencha os campos para salvar a tarefa ou clique no botão "voltar" para descarta-lá';

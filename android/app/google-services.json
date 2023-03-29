@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "306298333362",
+    "project_id": "tarefas-739a9",
+    "storage_bucket": "tarefas-739a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306298333362:android:f29b16d725bd908dd841ab",
+        "android_client_info": {
+          "package_name": "com.example.tarefas_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306298333362-b6q36o90vul7dr6g1mm0atp3fdt9vfco.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tarefas_app",
+            "certificate_hash": "24407fbe5b9c3ba93d5017417b830bbc8b54bc21"
+          }
+        },
+        {
+          "client_id": "306298333362-0lci5e8f768nneuj718on0fr4mnmcdeh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIGRsjbO1fcsPhrTi1byCPp5AHbzjPL3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306298333362-0lci5e8f768nneuj718on0fr4mnmcdeh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

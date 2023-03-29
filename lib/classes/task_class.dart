@@ -1,13 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/notificacao_class.dart';
 import 'package:tarefas_app/classes/tipo-movimentacao_class.dart';
-import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
+import 'package:tarefas_app/firebase/tarefa_firebase.dart';
+import 'package:tarefas_app/widget/toast_widget.dart';
 
-ValueNotifier<TaskModel?> currentTask = ValueNotifier<TaskModel?>(null);
+ValueNotifier<TarefaModel?> currentTask = ValueNotifier<TarefaModel?>(null);
 
-class TaskModel {
+class TarefaModel {
   late String id;
   late String idUsuario;
   late String nome;
@@ -25,7 +27,7 @@ class TaskModel {
   late String? link;
   late List<String?> anexo;
 
-  TaskModel(
+  TarefaModel(
     this.id,
     this.idUsuario,
     this.nome,
@@ -43,4 +45,17 @@ class TaskModel {
     this.link,
     this.anexo,
   );
+}
+
+class TarefaClass {
+  final TarefaFirebase _tarefaFirebase = TarefaFirebase();
+  final ToastWidget _toastWidget = ToastWidget();
+
+  postTarefa(Map<String, dynamic> tarefa) async {
+    try {
+      await _tarefaFirebase.postTarefa(tarefa);
+    } on FirebaseAuthException catch (error) {
+      debugPrint('ERRO-TAREFA-POST: $error');
+    }
+  }
 }

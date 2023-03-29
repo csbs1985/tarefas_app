@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,17 +24,21 @@ import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 import 'package:uuid/uuid.dart';
 
-class TaskPage extends StatefulWidget {
-  const TaskPage({Key? key}) : super(key: key);
+class TarefaPage extends StatefulWidget {
+  const TarefaPage({Key? key}) : super(key: key);
 
   @override
-  State<TaskPage> createState() => _TaskPageState();
+  State<TarefaPage> createState() => _TarefaPageState();
 }
 
-class _TaskPageState extends State<TaskPage> {
+class _TarefaPageState extends State<TarefaPage> {
+  late FirebaseFirestore db;
+  late FirebaseAuth auth;
+
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   final Uuid _uuid = const Uuid();
+  final TarefaClass _tarefaClass = TarefaClass();
   final ToastWidget _toastWidget = ToastWidget();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -54,7 +60,7 @@ class _TaskPageState extends State<TaskPage> {
   final TextEditingController _linkController = TextEditingController();
   final TextEditingController _anexoController = TextEditingController();
 
-  Map<String, dynamic> _task = <String, dynamic>{};
+  Map<String, dynamic> _tarefa = <String, dynamic>{};
 
   @override
   void initState() {
@@ -119,7 +125,7 @@ class _TaskPageState extends State<TaskPage> {
   }
 
   void clearTask() {
-    _task.clear();
+    _tarefa.clear();
 
     _nomeController.clear();
     _tipoTarefaController.clear();
@@ -137,9 +143,9 @@ class _TaskPageState extends State<TaskPage> {
     _anexoController.clear();
   }
 
-  void confirmTask() {
+  void confirmTask(BuildContext context) {
     if (_nomeController.text != "" && _notificacaoController.text != "") {
-      _task = {
+      _tarefa = {
         'id': _uuid.v4(),
         'idUsuario': 'idUsuarioTemp',
         'nome': _nomeController.text,
@@ -149,21 +155,24 @@ class _TaskPageState extends State<TaskPage> {
         'frequencia': _frequenciaController.text,
         'valor': _valorController.text,
         'tipoMovimentacao': _tipoMovimentacaoController.text,
-        'formaPagamento': _valorController.text,
+        'formaPagamento': _formaPagamentoController.text,
         'anotacao': _anotacaoController.text,
         'telefone': _telefoneController.text,
         'endereco': _enderecoController.text,
         'horario': _horarioController.text,
-        'link': _valorController.text,
+        'link': _linkController.text,
         'anexo': _anexoController.text,
       };
 
-      // currentTask.value = _task;
-      _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_SUCESSO);
-      Navigator.pop(context);
-    } else {
+      try {
+        _tarefaClass.postTarefa(_tarefa);
+        _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_SUCESSO);
+        Navigator.pop(context);
+      } on Exception {
+        _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_ERRO_POST);
+      }
+    } else
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_VAZIA);
-    }
   }
 
   @override
@@ -295,7 +304,7 @@ class _TaskPageState extends State<TaskPage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: UiColor.task,
-        onPressed: () => confirmTask(),
+        onPressed: () => confirmTask(context),
         child: SvgPicture.asset(UiSvg.confirm),
       ),
     );

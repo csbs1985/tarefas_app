@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tarefas_app/pages/task_page.dart';
+import 'package:tarefas_app/pages/tarefa_page.dart';
 import 'package:tarefas_app/pages/home_page.dart';
 
 final routes = GoRouter(
@@ -18,11 +18,11 @@ final routes = GoRouter(
     ),
     GoRoute(
       path: RouteEnum.TASK.value,
-      builder: (context, state) => const TaskPage(),
+      builder: (context, state) => const TarefaPage(),
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const TaskPage(),
+        child: const TarefaPage(),
       ),
     ),
   ],
