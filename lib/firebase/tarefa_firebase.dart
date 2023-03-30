@@ -5,7 +5,7 @@ class TarefaFirebase {
       FirebaseFirestore.instance.collection('tarefas');
 
   getAllTarefas(String idUsuario) {
-    return tarefas.where('idUsuario', isEqualTo: idUsuario).get();
+    return tarefas.where('idUsuario', isEqualTo: idUsuario);
   }
 
   getTarefa(String IdTarefa) {

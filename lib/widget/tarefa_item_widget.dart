@@ -68,6 +68,8 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
                   Text(
                     _tarefaClass.formatSubtitulo(widget._item),
                     style: UiText.headline3,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

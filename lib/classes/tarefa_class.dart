@@ -56,6 +56,7 @@ class TarefaModel {
 
 class TarefaClass {
   final DataClass _dataClass = DataClass();
+  final EnderecoClass _enderecoClass = EnderecoClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
 
   postTarefa(Map<String, dynamic> tarefa) async {
@@ -79,10 +80,18 @@ class TarefaClass {
   }
 
   String formatSubtitulo(Map<String, dynamic> tarefa) {
-    //\u2022
     if (tarefa['tipoTarefa'] == TipoTarefaEnum.aniversario.value)
-      return "dia ${_dataClass.formatDateExtenso(tarefa['dia'])}";
-
-    return "formatSubtitulo";
+      return "aniverário \u2022 dia ${_dataClass.formatDateExtenso(tarefa['dia'])}";
+    else if (tarefa['tipoTarefa'] == TipoTarefaEnum.financeiro.value)
+      return "financeiro \u2022 R\$ ${tarefa['valor']}";
+    else if (tarefa['tipoTarefa'] == TipoTarefaEnum.lembrete.value)
+      return "lembrete \u2022 dia ${_dataClass.formatDateExtenso(tarefa['dia'])}";
+    else if (tarefa['tipoTarefa'] == TipoTarefaEnum.ligar.value)
+      return "ligar \u2022 ${tarefa['telefone']}";
+    else {
+      return tarefa['endereco'] == ""
+          ? "evento \u2022 url:${tarefa['link']}"
+          : "evento \u2022 ${_enderecoClass.montarEnderecoString(tarefa['endereco'])}";
+    }
   }
 }

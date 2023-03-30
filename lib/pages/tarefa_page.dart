@@ -166,6 +166,7 @@ class _TarefaPageState extends State<TarefaPage> {
         'horario': _horarioController.text,
         'link': _linkController.text,
         'anexo': _anexoController.text,
+        'aberto': true,
       };
 
       try {
