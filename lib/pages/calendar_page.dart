@@ -16,7 +16,7 @@ class _CalendarPageState extends State<CalendarPage> {
       child: Column(
         children: const [
           HeaderWidget(page: PageEnum.calendar),
-          Text('planning'),
+          Text('planejamento'),
         ],
       ),
     );

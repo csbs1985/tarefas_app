@@ -4,6 +4,7 @@ import 'package:tarefas_app/theme/ui_color.dart';
 
 class AppBarWidget extends StatefulWidget with PreferredSizeWidget {
   const AppBarWidget({
+    super.key,
     required Function? callback,
     required int menuItem,
     required PageController pageController,
@@ -42,7 +43,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       child: AppBar(
         actions: [
           _sizedMargin,
-          _buildMenuButton(PageEnum.planning),
+          _buildMenuButton(PageEnum.planejamento),
           _sizedGap,
           _buildMenuButton(PageEnum.calendar),
           _sizedGap,
@@ -63,7 +64,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
         child: AnimatedContainer(
           color: Colors.transparent,
           duration: const Duration(milliseconds: 400),
-          padding: EdgeInsets.fromLTRB(0, 18, 0, 4),
+          padding: const EdgeInsets.fromLTRB(0, 18, 0, 4),
           child: SizedBox(
             height: 2,
             child: Container(

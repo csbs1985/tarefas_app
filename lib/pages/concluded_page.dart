@@ -16,7 +16,7 @@ class _ConcludedPageState extends State<ConcludedPage> {
       child: Column(
         children: const [
           HeaderWidget(page: PageEnum.concluded),
-          Text('planning'),
+          Text('planejamento'),
         ],
       ),
     );

@@ -53,7 +53,7 @@ enum RouteEnum {
   ALL('/all'),
   CALENDAR('/calendar'),
   CONCLUDED('/concluded'),
-  PLANNING('/planning'),
+  PLANEJAMENTO('/planejamento'),
   TAREFA('/tarefa'),
   HOME('/home');
 

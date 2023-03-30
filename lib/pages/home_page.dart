@@ -6,7 +6,7 @@ import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/pages/all_page.dart';
 import 'package:tarefas_app/pages/calendar_page.dart';
 import 'package:tarefas_app/pages/concluded_page.dart';
-import 'package:tarefas_app/pages/planning_page.dart';
+import 'package:tarefas_app/pages/planejamento_page.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/appbar_widget.dart';
 
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         controller: pageController,
         onPageChanged: setCurrentPage,
         children: const [
-          PlanningPage(),
+          PlanejamentoPage(),
           CalendarPage(),
           AllPage(),
           ConcludedPage(),

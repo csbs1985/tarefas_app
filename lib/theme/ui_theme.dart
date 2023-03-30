@@ -12,6 +12,6 @@ class UiTheme {
     ),
     inputDecorationTheme: UiTextField.textField,
     textSelectionTheme:
-        const TextSelectionThemeData(cursorColor: UiColor.planning),
+        const TextSelectionThemeData(cursorColor: UiColor.planejamento),
   );
 }

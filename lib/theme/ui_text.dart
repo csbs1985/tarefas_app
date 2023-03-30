@@ -6,7 +6,7 @@ class UiText {
     fontSize: 24,
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.bold,
-    color: UiColor.planning,
+    color: UiColor.planejamento,
   );
 
   static const TextStyle titleCalendar = TextStyle(

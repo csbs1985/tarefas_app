@@ -16,7 +16,7 @@ class _AllPageState extends State<AllPage> {
       child: Column(
         children: const [
           HeaderWidget(page: PageEnum.all),
-          Text('planning'),
+          Text('planejamento'),
         ],
       ),
     );
