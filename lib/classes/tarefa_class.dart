@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/notificacao_class.dart';
 import 'package:tarefas_app/classes/tipo-movimentacao_class.dart';
+import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
-import 'package:tarefas_app/widget/toast_widget.dart';
+import 'package:tarefas_app/theme/ui_svg.dart';
 
 ValueNotifier<TarefaModel?> currentTarefa = ValueNotifier<TarefaModel?>(null);
 
@@ -13,7 +16,7 @@ class TarefaModel {
   late String id;
   late String dataCriacao;
   late String idUsuario;
-  late String nome;
+  late String tarefa;
   late TarefaModel tipoTarefa;
   late String dia;
   late NotificacaoModel notificacao;
@@ -27,12 +30,13 @@ class TarefaModel {
   late String? horario;
   late String? link;
   late List<String?> anexo;
+  late bool aberto;
 
   TarefaModel(
     this.id,
     this.dataCriacao,
     this.idUsuario,
-    this.nome,
+    this.tarefa,
     this.tipoTarefa,
     this.dia,
     this.notificacao,
@@ -46,12 +50,13 @@ class TarefaModel {
     this.horario,
     this.link,
     this.anexo,
+    this.aberto,
   );
 }
 
 class TarefaClass {
+  final DataClass _dataClass = DataClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
-  final ToastWidget _toastWidget = ToastWidget();
 
   postTarefa(Map<String, dynamic> tarefa) async {
     try {
@@ -59,5 +64,25 @@ class TarefaClass {
     } on FirebaseAuthException catch (error) {
       debugPrint('ERRO-TAREFA-POST: $error');
     }
+  }
+
+  SvgPicture svgPicture(String tarefa) {
+    if (tarefa == TipoTarefaEnum.aniversario.value)
+      return SvgPicture.asset(UiSvg.aniversario);
+    if (tarefa == TipoTarefaEnum.evento.value)
+      return SvgPicture.asset(UiSvg.evento);
+    if (tarefa == TipoTarefaEnum.financeiro.value)
+      return SvgPicture.asset(UiSvg.financeiro);
+    if (tarefa == TipoTarefaEnum.lembrete.value)
+      return SvgPicture.asset(UiSvg.lembrete);
+    return SvgPicture.asset(UiSvg.ligar);
+  }
+
+  String formatSubtitulo(Map<String, dynamic> tarefa) {
+    //\u2022
+    if (tarefa['tipoTarefa'] == TipoTarefaEnum.aniversario.value)
+      return "dia ${_dataClass.formatDateExtenso(tarefa['dia'])}";
+
+    return "formatSubtitulo";
   }
 }

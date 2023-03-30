@@ -75,7 +75,7 @@ class _TarefaPageState extends State<TarefaPage> {
   }
 
   void popularController() {
-    _nomeController.text = currentTarefa.value!.nome;
+    _nomeController.text = currentTarefa.value!.tarefa;
     _tipoTarefaController.text = currentTarefa.value!.tipoTarefa as String;
     _diaController.text = currentTarefa.value!.dia;
     _notificacaoController.text = currentTarefa.value!.notificacao as String;
@@ -151,7 +151,7 @@ class _TarefaPageState extends State<TarefaPage> {
         'id': _uuid.v4(),
         'dataCriacao': DateTime.now().toString(),
         'idUsuario': 'idUsuarioTemp',
-        'nome': _nomeController.text,
+        'tarefa': _nomeController.text,
         'tipoTarefa': _tipoTarefaController.text,
         'dia': _diaController.text,
         'notificacao': _notificacaoController.text,
@@ -234,7 +234,10 @@ class _TarefaPageState extends State<TarefaPage> {
                     ),
                     TextoInput(
                       controller: _nomeController,
-                      label: TAREFA,
+                      label: _tipoTarefaController.text ==
+                              TipoTarefaEnum.aniversario.value
+                          ? ANIVERSARIANTE
+                          : TAREFA,
                       callback: (value) => _nomeController.text = value,
                     ),
                     if (candFrequencia())

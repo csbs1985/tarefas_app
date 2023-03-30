@@ -1,10 +1,10 @@
 <svg id="birthday-cake" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
     <rect id="back" width="20" height="20" fill="none"/>
     <g id="icon" transform="translate(2 2)">
-      <line id="Linha_9" data-name="Linha 9" y1="1.718" transform="translate(8.001)" fill="none" stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
-      <path id="Caminho_16" data-name="Caminho 16" d="M28.777,10.62h1.386a.277.277,0,0,1,.277.277v2.818H28.5V10.9A.277.277,0,0,1,28.777,10.62Z" transform="translate(-21.469 -8.902)" fill="none" stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
-      <path id="Caminho_17" data-name="Caminho 17" d="M9.16,36.65V39.8H21.818V36.65" transform="translate(-7.488 -27.719)" fill="none" stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
-      <path id="Caminho_18" data-name="Caminho 18" d="M6.038,21.79H16.222a1.7,1.7,0,0,1,1.7,1.7v1.261a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7h0a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7h0a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7h0a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7V23.486a1.7,1.7,0,0,1,1.7-1.7ZM16.646,32.262H5.611a1.663,1.663,0,0,1-1.48-.906l-.973-1.9a.277.277,0,0,1,.247-.4H18.852a.277.277,0,0,1,.247.4l-.97,1.9A1.663,1.663,0,0,1,16.646,32.262Z" transform="translate(-3.128 -16.977)" fill="none" stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+      <line id="Linha_9" data-name="Linha 9" y1="1.718" transform="translate(8.001)" fill="none" stroke="#bcbcbc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+      <path id="Caminho_16" data-name="Caminho 16" d="M28.777,10.62h1.386a.277.277,0,0,1,.277.277v2.818H28.5V10.9A.277.277,0,0,1,28.777,10.62Z" transform="translate(-21.469 -8.902)" fill="none" stroke="#bcbcbc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+      <path id="Caminho_17" data-name="Caminho 17" d="M9.16,36.65V39.8H21.818V36.65" transform="translate(-7.488 -27.719)" fill="none" stroke="#bcbcbc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
+      <path id="Caminho_18" data-name="Caminho 18" d="M6.038,21.79H16.222a1.7,1.7,0,0,1,1.7,1.7v1.261a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7h0a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7h0a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7h0a1.7,1.7,0,0,1-1.7,1.7h0a1.7,1.7,0,0,1-1.7-1.7V23.486a1.7,1.7,0,0,1,1.7-1.7ZM16.646,32.262H5.611a1.663,1.663,0,0,1-1.48-.906l-.973-1.9a.277.277,0,0,1,.247-.4H18.852a.277.277,0,0,1,.247.4l-.97,1.9A1.663,1.663,0,0,1,16.646,32.262Z" transform="translate(-3.128 -16.977)" fill="none" stroke="#bcbcbc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
     </g>
   </svg>
   

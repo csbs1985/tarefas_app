@@ -3,6 +3,8 @@ const String ABRIR = "Abrir mapa";
 const String ANEXO = "Anexo";
 const String ANEXO_SELECIONE = "Selecione modo de carregamento";
 
+const String ANIVERSARIANTE = "Aniversariante";
+
 const String ANOTACAO = "Anotação";
 const String ANOTACAO_DIGITE = "Adicionar anotação";
 
@@ -64,6 +66,7 @@ const String PREENCHER = "Favor preencher os campos";
 const String SELECIONE = "Selecione";
 
 const String TAREFA = "Tarefa";
+const String TAREFA_ERRO_UP = "Não foi possivél atualizar a tarefa";
 const String TAREFA_ERRO_POST =
     "Erro ao salvar tarefa, tente novamente mais tarde.";
 const String TAREFA_SUCESSO = "Tarefa criada";

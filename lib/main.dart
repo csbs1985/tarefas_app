@@ -2,11 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_theme.dart';
 
 void main() async {
+  await initializeDateFormatting('pt_BR', null);
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
