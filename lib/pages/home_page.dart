@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: color,
         elevation: 0,
         onPressed: () => context.push(RouteEnum.TAREFA.value),
-        child: SvgPicture.asset(UiSvg.create),
+        child: SvgPicture.asset(UiSvg.criar),
       ),
     );
   }

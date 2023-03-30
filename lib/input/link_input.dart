@@ -87,7 +87,7 @@ class _AddressInputState extends State<LinkInput> {
               IconButton(
                 splashColor: Colors.transparent,
                 icon: SvgPicture.asset(
-                  UiSvg.clean,
+                  UiSvg.limpar,
                   height: 20,
                   color: UiColor.icon,
                 ),

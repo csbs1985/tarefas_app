@@ -61,7 +61,7 @@ class _SelectInputState extends State<HorarioModal> {
                   onPressed: () => onFloatingActionButton(),
                   style: UiButton.buttonSelected,
                   iconSize: 56,
-                  icon: SvgPicture.asset(UiSvg.confirm),
+                  icon: SvgPicture.asset(UiSvg.confirmar),
                 ),
               ],
             ),

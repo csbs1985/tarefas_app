@@ -208,7 +208,7 @@ class _TarefaPageState extends State<TarefaPage> {
         backgroundColor: UiColor.modal,
         toolbarHeight: 64,
         leading: IconButton(
-          icon: SvgPicture.asset(UiSvg.back),
+          icon: SvgPicture.asset(UiSvg.voltar),
           onPressed: () => Navigator.of(context).pop(),
         ),
         titleSpacing: 0,
@@ -309,7 +309,7 @@ class _TarefaPageState extends State<TarefaPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: UiColor.tarefa,
         onPressed: () => onFloatingActionButton(context),
-        child: SvgPicture.asset(UiSvg.confirm),
+        child: SvgPicture.asset(UiSvg.confirmar),
       ),
     );
   }

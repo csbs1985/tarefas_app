@@ -243,7 +243,7 @@ class _SelectInputState extends State<FrequenciaModal> {
                           onPressed: () => onfloatingActionButton(),
                           style: UiButton.buttonSelected,
                           iconSize: 56,
-                          icon: SvgPicture.asset(UiSvg.confirm),
+                          icon: SvgPicture.asset(UiSvg.confirmar),
                         ),
                       ],
                     ),

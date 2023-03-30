@@ -89,7 +89,7 @@ class _AnexoInput2State extends State<AnexoInput> {
               IconButton(
                 splashColor: Colors.transparent,
                 icon: SvgPicture.asset(
-                  UiSvg.clean,
+                  UiSvg.limpar,
                   height: 20,
                   color: UiColor.icon,
                 ),

@@ -112,7 +112,7 @@ class _AddressModalState extends State<LinkModal> {
         backgroundColor: UiColor.tarefa,
         elevation: 0,
         onPressed: () => _setText(),
-        child: SvgPicture.asset(UiSvg.confirm),
+        child: SvgPicture.asset(UiSvg.confirmar),
       ),
     );
   }

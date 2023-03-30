@@ -3,6 +3,7 @@ import 'package:tarefas_app/classes/page_class.dart';
 
 class HeaderWidget extends StatefulWidget {
   const HeaderWidget({
+    super.key,
     required PageEnum page,
     bool back = false,
   })  : _page = page,
@@ -25,6 +26,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.transparent,
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
       child: Text(

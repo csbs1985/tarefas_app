@@ -90,7 +90,7 @@ class _SelectInputState extends State<NotificacaoModal> {
                   onPressed: () => _onPressed(),
                   style: UiButton.buttonSelected,
                   iconSize: 56,
-                  icon: SvgPicture.asset(UiSvg.confirm),
+                  icon: SvgPicture.asset(UiSvg.confirmar),
                 ),
               ],
             ),
