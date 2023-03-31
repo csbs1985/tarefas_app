@@ -20,7 +20,7 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Column(
         children: [
           const AppBarTituloWidget(page: PageEnum.planejados),
@@ -30,7 +30,6 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
             shrinkWrap: true,
             reverse: true,
             physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
             loadingBuilder: (context) => const Text('loading'),
             errorBuilder: (context, error, _) => const Text('error'),
             itemBuilder: (BuildContext context,

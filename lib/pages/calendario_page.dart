@@ -13,7 +13,8 @@ class CalendarioPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarioPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Column(
         children: const [
           AppBarTituloWidget(page: PageEnum.calendario),

@@ -57,7 +57,7 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
         margin: const EdgeInsets.only(bottom: 8),
         padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
         decoration: BoxDecoration(
-          color: UiColor.element,
+          color: UiColor.item_tarefa,
           borderRadius: BorderRadius.circular(UiBorder.rounded),
         ),
         child: Row(

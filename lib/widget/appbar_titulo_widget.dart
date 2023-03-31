@@ -28,7 +28,7 @@ class _HeaderWidgetState extends State<AppBarTituloWidget> {
     return Container(
       color: Colors.transparent,
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(8, 16, 8, 24),
+      padding: const EdgeInsets.fromLTRB(0, 16, 0, 24),
       child: Text(
         _pageClass.getText(widget._page),
         style: _pageClass.getStyle(widget._page),
