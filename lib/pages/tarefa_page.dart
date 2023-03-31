@@ -86,7 +86,8 @@ class _TarefaPageState extends State<TarefaPage> {
     _horarioController.text = currentTarefa.value!['horario!'];
     _linkController.text = currentTarefa.value!['link!'];
     _anexoController.text = currentTarefa.value!['anexo'];
-    _frequenciaController.text = currentTarefa.value!['frequencia'].toString();
+    _frequenciaController.text =
+        _frequenciaClass.mapToString(currentTarefa.value!['frequencia']);
   }
 
   bool candFrequencia() {
@@ -232,8 +233,7 @@ class _TarefaPageState extends State<TarefaPage> {
                     SelectInput(
                       controller: _tipoTarefaController,
                       tipo: TipoSelectEnum.tipoTarefa,
-                      callback: (value) =>
-                          setState(() => callbackTipoTarefa(value)),
+                      callback: (value) => callbackTipoTarefa(value),
                     ),
                     TextoInput(
                       controller: _nomeController,
@@ -246,32 +246,29 @@ class _TarefaPageState extends State<TarefaPage> {
                     if (candFrequencia())
                       FrequenciaInput(
                         controller: _frequenciaController,
-                        callback: (value) =>
-                            setState(() => _frequenciaController.text = value),
+                        callback: (value) => _frequenciaController.text = value,
                       ),
                     CalendarioInput(
                       controller: _diaController,
-                      callback: (value) =>
-                          setState(() => _diaController.text = value),
+                      callback: (value) => _diaController.text = value,
                     ),
                     NotificacaoInput(
                       controller: _notificacaoController,
-                      callback: (value) =>
-                          setState(() => _notificacaoController.text = value),
+                      callback: (value) => _notificacaoController.text = value,
                     ),
                     if (onlyFinanceiro())
                       SelectInput(
                         controller: _tipoMovimentacaoController,
                         tipo: TipoSelectEnum.tipoMovimentacao,
-                        callback: (value) => setState(
-                            () => _tipoMovimentacaoController.text = value),
+                        callback: (value) =>
+                            _tipoMovimentacaoController.text = value,
                       ),
                     if (onlyFinanceiro())
                       SelectInput(
                         controller: _formaPagamentoController,
                         tipo: TipoSelectEnum.formaMovimentacao,
-                        callback: (value) => setState(
-                            () => _formaPagamentoController.text = value),
+                        callback: (value) =>
+                            _formaPagamentoController.text = value,
                       ),
                     if (onlyFinanceiro())
                       ValorInput(
@@ -305,7 +302,7 @@ class _TarefaPageState extends State<TarefaPage> {
                     // AnexoInput(
                     //   controller: _anexoController,
                     //   callback: (value) =>
-                    //       setState(() => _anexoController.text = value),
+                    //       _anexoController.text = value),
                     // ),
                   ],
                 ),

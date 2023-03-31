@@ -49,16 +49,20 @@ enum FrequenciaEnum {
 }
 
 class FrequenciaClass {
-  separarFrequencia(String frequencia) {
-    Map<String, dynamic> jsonMap = jsonDecode(frequencia);
-    return jsonMap;
+  String mapToString(Map<String, dynamic> frequnecia) {
+    return json.encode(frequnecia, toEncodable: (value) => value ?? "");
+  }
+
+  Map<String, dynamic> stringToMap(String frequencia) {
+    Map<String, dynamic> retorno = jsonDecode(frequencia);
+    return retorno;
   }
 
   formatFrequencia(String frequencia) {
     Map<String, dynamic> format = <String, dynamic>{};
 
     if (frequencia.isNotEmpty) {
-      var jsonMap = separarFrequencia(frequencia);
+      var jsonMap = stringToMap(frequencia);
 
       format = {
         'frequencia': jsonMap['frequencia'] ?? "",

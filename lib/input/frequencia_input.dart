@@ -28,7 +28,13 @@ class FrequenciaInput extends StatefulWidget {
 class _FrequenciaInputState extends State<FrequenciaInput> {
   final FrequenciaClass _frequenciaClass = FrequenciaClass();
 
-  String frequencia = "";
+  String _frequencia = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _setControllerModal(widget._controller.text);
+  }
 
   _openModal(TipoSelectEnum select) {
     showCupertinoModalBottomSheet(
@@ -45,14 +51,14 @@ class _FrequenciaInputState extends State<FrequenciaInput> {
 
   void _setControllerModal(String value) {
     if (widget._controller.text != "") {
-      Map<String, dynamic> jsonMap = _frequenciaClass.separarFrequencia(value);
+      Map<String, dynamic> jsonMap = _frequenciaClass.stringToMap(value);
 
       if (jsonMap['frequencia'] == FrequenciaEnum.aCada.value)
-        frequencia = "A cada ${jsonMap['aCada']} ${jsonMap['periodo']}";
+        _frequencia = "A cada ${jsonMap['aCada']} ${jsonMap['periodo']}";
       else if (jsonMap['frequencia'] == FrequenciaEnum.parcelas.value)
-        frequencia = "${jsonMap['parcelas']} parcelas";
+        _frequencia = "${jsonMap['parcelas']} parcelas";
       else
-        frequencia = jsonMap['frequencia'];
+        _frequencia = jsonMap['frequencia'];
 
       setState(() {
         widget._controller.text = value;
@@ -95,7 +101,7 @@ class _FrequenciaInputState extends State<FrequenciaInput> {
                       padding: const EdgeInsets.fromLTRB(0, 12, 0, 16),
                       child: Text(
                         widget._controller.text.isNotEmpty
-                            ? frequencia
+                            ? _frequencia
                             : SELECIONE,
                         style: widget._controller.text.isNotEmpty
                             ? UiText.headline1

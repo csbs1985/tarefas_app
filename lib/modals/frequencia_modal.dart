@@ -48,7 +48,7 @@ class _SelectInputState extends State<FrequenciaModal> {
   void initFrequencia() {
     if (widget._controller.text != "") {
       Map<String, dynamic> jsonMap =
-          _frequenciaClass.separarFrequencia(widget._controller.text);
+          _frequenciaClass.stringToMap(widget._controller.text);
 
       setState(() {
         _frequenciaController.text = jsonMap['frequencia'];
