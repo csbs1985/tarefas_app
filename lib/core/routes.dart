@@ -2,22 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/pages/tarefa_page.dart';
-import 'package:tarefas_app/pages/home_page.dart';
+import 'package:tarefas_app/pages/inicio_page.dart';
 
 final AuthService _authService = AuthService();
 
 final GoRouter routes = GoRouter(
   debugLogDiagnostics: true,
-  initialLocation: RouteEnum.HOME.value,
+  initialLocation: RouteEnum.INICIO.value,
   // refreshListenable: _authService,
   // redirect: (context, state) => _authService.redirect(state),
   routes: [
     GoRoute(
-      path: RouteEnum.HOME.value,
+      path: RouteEnum.INICIO.value,
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const HomePage(),
+        child: const InicioPage(),
       ),
     ),
     GoRoute(
@@ -52,13 +52,9 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
 }
 
 enum RouteEnum {
-  ALL('/all'),
-  CALENDAR('/calendar'),
-  CONCLUDED('/concluded'),
-  PLANEJAMENTO('/planejamento'),
-  TAREFA('/tarefa'),
-  LOGIN('/login'),
-  HOME('/home');
+  ENTRAR('/entrar'),
+  INICIO('/inicio'),
+  TAREFA('/tarefa');
 
   final String value;
   const RouteEnum(this.value);

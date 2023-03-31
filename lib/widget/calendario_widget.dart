@@ -6,8 +6,8 @@ import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
-class CalendarWidget extends StatefulWidget {
-  const CalendarWidget({
+class CalendarioWidget extends StatefulWidget {
+  const CalendarioWidget({
     Key? key,
     required controller,
     required Function callback,
@@ -19,10 +19,10 @@ class CalendarWidget extends StatefulWidget {
   final Function _callback;
 
   @override
-  State<CalendarWidget> createState() => _CalendarWidgetState();
+  State<CalendarioWidget> createState() => _CalendarWidgetState();
 }
 
-class _CalendarWidgetState extends State<CalendarWidget> {
+class _CalendarWidgetState extends State<CalendarioWidget> {
   final _minSelectedDate = DateTime(1950, 1, 1, 0, 0, 0);
   final _maxSelectedDate = DateTime(2050, 12, 31, 0, 0, 0);
 

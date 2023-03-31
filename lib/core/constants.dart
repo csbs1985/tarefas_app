@@ -10,9 +10,13 @@ const String ANOTACAO_DIGITE = "Adicionar anotação";
 
 const String BAIRRO = "Bairro";
 
+const String CALENDARIO = "Calendário";
+
 const String CEP = "CEP";
 
 const String CIDADE = "Cidade";
+
+const String CONCLUIDAS = "Concluídas";
 
 const String CONFIRMAR = "Confirmar";
 
@@ -61,9 +65,13 @@ const String NOTIFICACAO_VAZIO = "Selecione a data e a hora";
 
 const String NUMERO = "Número";
 
+const String PLANEJADOS = "Planejados";
+
 const String PREENCHER = "Favor preencher os campos";
 
 const String SELECIONE = "Selecione";
+
+const String TODAS = "Todas";
 
 const String TAREFA = "Tarefa";
 const String TAREFA_ERRO_UP = "Não foi possivél atualizar a tarefa";

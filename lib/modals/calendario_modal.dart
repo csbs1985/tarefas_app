@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/widget/calendar_widget.dart';
+import 'package:tarefas_app/widget/calendario_widget.dart';
 
 class CalendarioModal extends StatefulWidget {
   const CalendarioModal({
@@ -35,7 +35,7 @@ class _SelectInputState extends State<CalendarioModal> {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              child: CalendarWidget(
+              child: CalendarioWidget(
                 controller: widget._controller,
                 callback: (value) => _setControllerModal(value),
               ),

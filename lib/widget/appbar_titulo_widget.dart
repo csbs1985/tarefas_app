@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:tarefas_app/classes/page_class.dart';
 
-class HeaderWidget extends StatefulWidget {
-  const HeaderWidget({
+class AppBarTituloWidget extends StatefulWidget {
+  const AppBarTituloWidget({
     super.key,
     required PageEnum page,
     bool back = false,
@@ -13,10 +13,10 @@ class HeaderWidget extends StatefulWidget {
   final bool _back;
 
   @override
-  State<HeaderWidget> createState() => _HeaderWidgetState();
+  State<AppBarTituloWidget> createState() => _HeaderWidgetState();
 }
 
-class _HeaderWidgetState extends State<HeaderWidget> {
+class _HeaderWidgetState extends State<AppBarTituloWidget> {
   final PageClass _pageClass = PageClass();
 
   void backPage(PageEnum page) {
@@ -28,7 +28,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     return Container(
       color: Colors.transparent,
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+      padding: const EdgeInsets.fromLTRB(8, 16, 8, 24),
       child: Text(
         _pageClass.getText(widget._page),
         style: _pageClass.getStyle(widget._page),

@@ -67,11 +67,9 @@ class _TarefaPageState extends State<TarefaPage> {
   @override
   void initState() {
     super.initState();
-    if (currentTarefa.value!.isNotEmpty) {
-      popularController();
-      return;
-    }
-    _tipoTarefaController.text = TipoTarefaEnum.aniversario.value;
+    currentTarefa.value != null
+        ? popularController()
+        : _tipoTarefaController.text = TipoTarefaEnum.aniversario.value;
   }
 
   void popularController() {
@@ -219,7 +217,7 @@ class _TarefaPageState extends State<TarefaPage> {
         titleSpacing: 0,
         title: const Text(
           TAREFA,
-          style: UiText.titleTarefa,
+          style: UiText.tituloTarefa,
         ),
       ),
       body: SingleChildScrollView(

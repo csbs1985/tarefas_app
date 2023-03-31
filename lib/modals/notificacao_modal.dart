@@ -6,7 +6,7 @@ import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
-import 'package:tarefas_app/widget/calendar_widget.dart';
+import 'package:tarefas_app/widget/calendario_widget.dart';
 import 'package:tarefas_app/widget/horario_widget.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
@@ -72,7 +72,7 @@ class _SelectInputState extends State<NotificacaoModal> {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              child: CalendarWidget(
+              child: CalendarioWidget(
                 controller:
                     _calendarioClasss.somenteData(widget._controller.text),
                 callback: (value) => _setDate(value),

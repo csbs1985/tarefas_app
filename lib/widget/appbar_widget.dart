@@ -43,13 +43,13 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       child: AppBar(
         actions: [
           _sizedMargin,
-          _buildMenuButton(PageEnum.planejamento),
+          _buildMenuButton(PageEnum.planejados),
           _sizedGap,
-          _buildMenuButton(PageEnum.calendar),
+          _buildMenuButton(PageEnum.calendario),
           _sizedGap,
-          _buildMenuButton(PageEnum.all),
+          _buildMenuButton(PageEnum.todas),
           _sizedGap,
-          _buildMenuButton(PageEnum.concluded),
+          _buildMenuButton(PageEnum.concluidas),
           _sizedMargin,
         ],
       ),

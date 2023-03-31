@@ -111,14 +111,14 @@ class _HorarioWidgetState extends State<HorarioWidget> {
                 children: _hours
                     .map((hour) => Text(
                           hour,
-                          style: UiText.headline7,
+                          style: UiText.headline6,
                         ))
                     .toList(),
                 onSelectedItemChanged: (value) =>
                     onSelectedItemChangedHora(value),
               ),
             ),
-            const Text('h', style: UiText.headline7),
+            const Text('h', style: UiText.headline6),
             SizedBox(
               height: _height,
               width: _width,
@@ -129,7 +129,7 @@ class _HorarioWidgetState extends State<HorarioWidget> {
                 children: _minutes
                     .map((minute) => Text(
                           minute,
-                          style: UiText.headline7,
+                          style: UiText.headline6,
                         ))
                     .toList(),
                 onSelectedItemChanged: (value) =>
