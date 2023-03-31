@@ -10,7 +10,8 @@ import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 
-ValueNotifier<TarefaModel?> currentTarefa = ValueNotifier<TarefaModel?>(null);
+ValueNotifier<Map<String, dynamic>?> currentTarefa =
+    ValueNotifier<Map<String, dynamic>?>(null);
 
 class TarefaModel {
   late String id;

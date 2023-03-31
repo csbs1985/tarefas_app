@@ -26,7 +26,7 @@ import 'package:tarefas_app/widget/toast_widget.dart';
 import 'package:uuid/uuid.dart';
 
 class TarefaPage extends StatefulWidget {
-  const TarefaPage({Key? key}) : super(key: key);
+  const TarefaPage({super.key});
 
   @override
   State<TarefaPage> createState() => _TarefaPageState();
@@ -67,29 +67,28 @@ class _TarefaPageState extends State<TarefaPage> {
   @override
   void initState() {
     super.initState();
-    if (currentTarefa.value != null) {
-      popularController;
+    if (currentTarefa.value!.isNotEmpty) {
+      popularController();
       return;
     }
     _tipoTarefaController.text = TipoTarefaEnum.aniversario.value;
   }
 
   void popularController() {
-    _nomeController.text = currentTarefa.value!.tarefa;
-    _tipoTarefaController.text = currentTarefa.value!.tipoTarefa as String;
-    _diaController.text = currentTarefa.value!.dia;
-    _notificacaoController.text = currentTarefa.value!.notificacao as String;
-    _frequenciaController.text = currentTarefa.value!.frequencia as String;
-    _valorController.text = currentTarefa.value!.valor!;
-    _tipoMovimentacaoController.text =
-        currentTarefa.value!.tipoMovimentacao as String;
-    _formaPagamentoController.text = currentTarefa.value!.formaPagamento!;
-    _anotacaoController.text = currentTarefa.value!.anotacao!;
-    _telefoneController.text = currentTarefa.value!.telefone as String;
-    _enderecoController.text = currentTarefa.value!.endereco as String;
-    _horarioController.text = currentTarefa.value!.horario!;
-    _linkController.text = currentTarefa.value!.link!;
-    _anexoController.text = currentTarefa.value!.anexo as String;
+    _nomeController.text = currentTarefa.value!['tarefa'];
+    _tipoTarefaController.text = currentTarefa.value!['tipoTarefa'];
+    _diaController.text = currentTarefa.value!['dia'];
+    _notificacaoController.text = currentTarefa.value!['notificacao'];
+    _valorController.text = currentTarefa.value!['valor!'];
+    _tipoMovimentacaoController.text = currentTarefa.value!['tipoMovimentacao'];
+    _formaPagamentoController.text = currentTarefa.value!['formaPagamento!'];
+    _anotacaoController.text = currentTarefa.value!['anotacao!'];
+    _telefoneController.text = currentTarefa.value!['telefone'];
+    _enderecoController.text = currentTarefa.value!['endereco'];
+    _horarioController.text = currentTarefa.value!['horario!'];
+    _linkController.text = currentTarefa.value!['link!'];
+    _anexoController.text = currentTarefa.value!['anexo'];
+    _frequenciaController.text = currentTarefa.value!['frequencia'].toString();
   }
 
   bool candFrequencia() {
@@ -180,6 +179,11 @@ class _TarefaPageState extends State<TarefaPage> {
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_VAZIA);
   }
 
+  void bakcPage() {
+    currentTarefa.value = null;
+    Navigator.of(context).pop();
+  }
+
   @override
   void dispose() {
     _nomeController.dispose();
@@ -210,7 +214,7 @@ class _TarefaPageState extends State<TarefaPage> {
         toolbarHeight: 64,
         leading: IconButton(
           icon: SvgPicture.asset(UiSvg.voltar),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => bakcPage(),
         ),
         titleSpacing: 0,
         title: const Text(

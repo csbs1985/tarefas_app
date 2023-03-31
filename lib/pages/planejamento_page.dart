@@ -20,7 +20,7 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         children: [
           const HeaderWidget(page: PageEnum.planejamento),

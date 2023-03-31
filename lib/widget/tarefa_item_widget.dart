@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -42,45 +44,54 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
         : SvgPicture.asset(UiSvg.fechado);
   }
 
+  void selectTarefa() {
+    currentTarefa.value = widget._item;
+    context.push(RouteEnum.TAREFA.value);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
-      decoration: BoxDecoration(
-        color: UiColor.element,
-        borderRadius: BorderRadius.circular(UiBorder.rounded),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _tarefaClass.svgPicture(widget._item['tipoTarefa']),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget._item['tarefa'],
-                    style: UiText.headline1,
-                  ),
-                  Text(
-                    _tarefaClass.formatSubtitulo(widget._item),
-                    style: UiText.headline3,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+    return GestureDetector(
+      onTap: () => selectTarefa(),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
+        decoration: BoxDecoration(
+          color: UiColor.element,
+          borderRadius: BorderRadius.circular(UiBorder.rounded),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _tarefaClass.svgPicture(widget._item['tipoTarefa']),
+            Expanded(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget._item['tarefa'],
+                      style: UiText.headline1,
+                    ),
+                    Text(
+                      _tarefaClass.formatSubtitulo(widget._item),
+                      style: UiText.headline3,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          IconButton(
-            splashColor: Colors.transparent,
-            icon: _checkAberto(),
-            onPressed: () => _onPressed(),
-          )
-        ],
+            IconButton(
+              splashColor: Colors.transparent,
+              icon: _checkAberto(),
+              onPressed: () => _onPressed(),
+            )
+          ],
+        ),
       ),
     );
   }
