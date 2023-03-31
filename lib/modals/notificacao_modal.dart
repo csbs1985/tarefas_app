@@ -30,8 +30,8 @@ class _SelectInputState extends State<NotificacaoModal> {
   final HorarioClass _horarioClass = HorarioClass();
   final ToastWidget _toastWidget = ToastWidget();
 
-  String _date = "";
-  String _hour = "";
+  final TextEditingController _dataController = TextEditingController();
+  final TextEditingController _horaController = TextEditingController();
 
   @override
   void initState() {
@@ -41,22 +41,25 @@ class _SelectInputState extends State<NotificacaoModal> {
 
   initNotificacao() {
     if (widget._controller.text != "") {
-      List<String> partes = widget._controller.text.split(" às ");
+      List<String> partes = widget._controller.text.split(" ");
 
       setState(() {
-        _date = partes[0];
-        _hour = partes[1];
+        _dataController.text = widget._controller.text;
+        _horaController.text = partes[1];
       });
     }
   }
 
-  void _setDate(String value) => _date = value;
+  void _setDate(String value) => _dataController.text = value;
 
-  void _setHour(String value) => _hour = value;
+  void _setHour(String value) => _horaController.text = value;
 
   void _onPressed() {
-    if (_date != "" && _hour != "") {
-      widget._callback('$_date às $_hour');
+    if (_dataController.text != "" && _horaController.text != "") {
+      String dataHorario = _horarioClass.unirDataHora(
+          _dataController.text, _horaController.text);
+
+      widget._callback(dataHorario);
       Navigator.of(context).pop();
     } else
       _toastWidget.toast(context, ToastEnum.ERRO.value, NOTIFICACAO_VAZIO);
@@ -79,7 +82,7 @@ class _SelectInputState extends State<NotificacaoModal> {
               ),
             ),
             HorarioWidget(
-              controller: _horarioClass.somenteHorario(widget._controller.text),
+              controller: _horaController,
               callback: (value) => _setHour(value),
             ),
             const SizedBox(height: 16),

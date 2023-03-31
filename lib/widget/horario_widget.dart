@@ -46,7 +46,7 @@ class _HorarioWidgetState extends State<HorarioWidget> {
     Map<String, int> valorInicial = <String, int>{};
 
     if (widget._controller.text != "")
-      valorInicial = _horarioClass.horarioStringDouble(widget._controller.text);
+      valorInicial = _horarioClass.separarHoraMinuto(widget._controller.text);
     else {
       valorInicial = _horarioClass.horarioDateNowDouble();
       onSelectedItemChangedHora(valorInicial["hora"]!);
@@ -82,7 +82,7 @@ class _HorarioWidgetState extends State<HorarioWidget> {
         ? '0$_minutoSelecionado'
         : '$_minutoSelecionado';
 
-    String horario = '${hora}h${minuto}m';
+    String horario = '$hora:$minuto';
     widget._callback(horario);
   }
 

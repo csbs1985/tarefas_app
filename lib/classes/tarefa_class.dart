@@ -32,6 +32,7 @@ class TarefaModel {
   late String? link;
   late List<String?> anexo;
   late bool aberto;
+  late String dataNotificacao;
 
   TarefaModel(
     this.id,
@@ -52,6 +53,7 @@ class TarefaModel {
     this.link,
     this.anexo,
     this.aberto,
+    this.dataNotificacao,
   );
 }
 
@@ -63,6 +65,14 @@ class TarefaClass {
   postTarefa(Map<String, dynamic> tarefa) async {
     try {
       await _tarefaFirebase.postTarefa(tarefa);
+    } on FirebaseAuthException catch (error) {
+      debugPrint('ERRO-TAREFA-POST: $error');
+    }
+  }
+
+  pathTarefa(Map<String, dynamic> tarefa) async {
+    try {
+      await _tarefaFirebase.pathTarefa(tarefa);
     } on FirebaseAuthException catch (error) {
       debugPrint('ERRO-TAREFA-POST: $error');
     }
@@ -80,13 +90,13 @@ class TarefaClass {
     return SvgPicture.asset(UiSvg.ligar);
   }
 
-  String formatSubtitulo(Map<String, dynamic> tarefa) {
+  String formatLegenda(Map<String, dynamic> tarefa) {
     if (tarefa['tipoTarefa'] == TipoTarefaEnum.aniversario.value)
-      return "aniverário \u2022 dia ${_dataClass.formatDateExtenso(tarefa['dia'])}";
+      return "aniverário \u2022  ${_dataClass.formatDateExtenso(tarefa['dia'])}";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.financeiro.value)
       return "financeiro \u2022 R\$ ${tarefa['valor']}";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.lembrete.value)
-      return "lembrete \u2022 dia ${_dataClass.formatDateExtenso(tarefa['dia'])}";
+      return "lembrete \u2022  ${_dataClass.formatDateExtenso(tarefa['dia'])}";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.ligar.value)
       return "ligar \u2022 ${tarefa['telefone']}";
     else {
@@ -94,5 +104,10 @@ class TarefaClass {
           ? "evento \u2022 url:${tarefa['link']}"
           : "evento \u2022 ${_enderecoClass.montarEnderecoString(tarefa['endereco'])}";
     }
+  }
+
+  String formatDataNotificacao(data) {
+    DateTime dateTime = DateTime.parse(data.replaceAll(" às ", ""));
+    return dateTime.toString();
   }
 }

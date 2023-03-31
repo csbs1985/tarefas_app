@@ -91,9 +91,9 @@ class _TarefaPageState extends State<TarefaPage> {
   }
 
   bool candFrequencia() {
-    if (_tipoTarefaController.text == TipoTarefaEnum.aniversario.value)
-      return false;
-    return true;
+    return _tipoTarefaController.text == TipoTarefaEnum.aniversario.value
+        ? false
+        : true;
   }
 
   bool onlyFinanceiro() {
@@ -117,16 +117,17 @@ class _TarefaPageState extends State<TarefaPage> {
   void callbackTipoTarefa(String callback) {
     clearTarefa();
 
-    if (callback == "") {
-      _tipoTarefaController.text = ListaTipoTarefa.first.text;
-      return;
-    }
-    _tipoTarefaController.text = callback;
+    setState(() {
+      if (callback == "") {
+        _tipoTarefaController.text = ListaTipoTarefa.first.text;
+        return;
+      }
+      _tipoTarefaController.text = callback;
+    });
   }
 
   void clearTarefa() {
     _tarefa.clear();
-
     _nomeController.clear();
     _tipoTarefaController.clear();
     _diaController.clear();
@@ -168,8 +169,14 @@ class _TarefaPageState extends State<TarefaPage> {
       };
 
       try {
-        _tarefaClass.postTarefa(_tarefa);
-        _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_SUCESSO);
+        if (currentTarefa.value == "") {
+          _tarefaClass.postTarefa(_tarefa);
+          _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
+        } else {
+          _tarefaClass.pathTarefa(_tarefa);
+          _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
+        }
+
         Navigator.pop(context);
       } on Exception {
         _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_ERRO_POST);
@@ -223,91 +230,85 @@ class _TarefaPageState extends State<TarefaPage> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
-        child: ValueListenableBuilder(
-            valueListenable: currentTarefa,
-            builder: (BuildContext context, taerfa, _) {
-              return Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    SelectInput(
-                      controller: _tipoTarefaController,
-                      tipo: TipoSelectEnum.tipoTarefa,
-                      callback: (value) => callbackTipoTarefa(value),
-                    ),
-                    TextoInput(
-                      controller: _nomeController,
-                      label: _tipoTarefaController.text ==
-                              TipoTarefaEnum.aniversario.value
-                          ? ANIVERSARIANTE
-                          : TAREFA,
-                      callback: (value) => _nomeController.text = value,
-                    ),
-                    if (candFrequencia())
-                      FrequenciaInput(
-                        controller: _frequenciaController,
-                        callback: (value) => _frequenciaController.text = value,
-                      ),
-                    CalendarioInput(
-                      controller: _diaController,
-                      callback: (value) => _diaController.text = value,
-                    ),
-                    NotificacaoInput(
-                      controller: _notificacaoController,
-                      callback: (value) => _notificacaoController.text = value,
-                    ),
-                    if (onlyFinanceiro())
-                      SelectInput(
-                        controller: _tipoMovimentacaoController,
-                        tipo: TipoSelectEnum.tipoMovimentacao,
-                        callback: (value) =>
-                            _tipoMovimentacaoController.text = value,
-                      ),
-                    if (onlyFinanceiro())
-                      SelectInput(
-                        controller: _formaPagamentoController,
-                        tipo: TipoSelectEnum.formaMovimentacao,
-                        callback: (value) =>
-                            _formaPagamentoController.text = value,
-                      ),
-                    if (onlyFinanceiro())
-                      ValorInput(
-                        controller: _valorController,
-                        callback: (value) => _valorController.text = value,
-                      ),
-                    if (onlyEvento())
-                      EnderecoInput(
-                        controller: _enderecoController,
-                        callback: (value) => _enderecoController.text = value,
-                      ),
-                    if (onlyEvento())
-                      HorarioInput(
-                        controller: _horarioController,
-                        callback: (value) => _horarioController.text = value,
-                      ),
-                    if (onlyEvento())
-                      LinkInput(
-                        controller: _linkController,
-                        callback: (value) => _linkController.text = value,
-                      ),
-                    if (onlyLigar())
-                      TelefoneInput(
-                        controller: _telefoneController,
-                        callback: (value) => _telefoneController.text = value,
-                      ),
-                    AnotacaoInput(
-                      controller: _anotacaoController,
-                      callback: (value) => _anotacaoController.text = value,
-                    ),
-                    // AnexoInput(
-                    //   controller: _anexoController,
-                    //   callback: (value) =>
-                    //       _anexoController.text = value),
-                    // ),
-                  ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SelectInput(
+                controller: _tipoTarefaController,
+                tipo: TipoSelectEnum.tipoTarefa,
+                callback: (value) => callbackTipoTarefa(value),
+              ),
+              TextoInput(
+                controller: _nomeController,
+                label: _tipoTarefaController.text ==
+                        TipoTarefaEnum.aniversario.value
+                    ? ANIVERSARIANTE
+                    : TAREFA,
+                callback: (value) => _nomeController.text = value,
+              ),
+              if (candFrequencia())
+                FrequenciaInput(
+                  controller: _frequenciaController,
+                  callback: (value) => _frequenciaController.text = value,
                 ),
-              );
-            }),
+              CalendarioInput(
+                controller: _diaController,
+                callback: (value) => _diaController.text = value,
+              ),
+              NotificacaoInput(
+                controller: _notificacaoController,
+                callback: (value) => _notificacaoController.text = value,
+              ),
+              if (onlyFinanceiro())
+                SelectInput(
+                  controller: _tipoMovimentacaoController,
+                  tipo: TipoSelectEnum.tipoMovimentacao,
+                  callback: (value) => _tipoMovimentacaoController.text = value,
+                ),
+              if (onlyFinanceiro())
+                SelectInput(
+                  controller: _formaPagamentoController,
+                  tipo: TipoSelectEnum.formaMovimentacao,
+                  callback: (value) => _formaPagamentoController.text = value,
+                ),
+              if (onlyFinanceiro())
+                ValorInput(
+                  controller: _valorController,
+                  callback: (value) => _valorController.text = value,
+                ),
+              if (onlyEvento())
+                EnderecoInput(
+                  controller: _enderecoController,
+                  callback: (value) => _enderecoController.text = value,
+                ),
+              if (onlyEvento())
+                HorarioInput(
+                  controller: _horarioController,
+                  callback: (value) => _horarioController.text = value,
+                ),
+              if (onlyEvento())
+                LinkInput(
+                  controller: _linkController,
+                  callback: (value) => _linkController.text = value,
+                ),
+              if (onlyLigar())
+                TelefoneInput(
+                  controller: _telefoneController,
+                  callback: (value) => _telefoneController.text = value,
+                ),
+              AnotacaoInput(
+                controller: _anotacaoController,
+                callback: (value) => _anotacaoController.text = value,
+              ),
+              // AnexoInput(
+              //   controller: _anexoController,
+              //   callback: (value) =>
+              //       _anexoController.text = value),
+              // ),
+            ],
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: UiColor.tarefa,

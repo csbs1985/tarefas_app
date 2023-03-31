@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
-import 'package:intl/intl.dart';
+import 'package:tarefas_app/classes/calendario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -23,25 +23,16 @@ class CalendarioWidget extends StatefulWidget {
 }
 
 class _CalendarWidgetState extends State<CalendarioWidget> {
+  final CalendarioClasss _calendarioClasss = CalendarioClasss();
+
   final _minSelectedDate = DateTime(1950, 1, 1, 0, 0, 0);
   final _maxSelectedDate = DateTime(2050, 12, 31, 0, 0, 0);
 
   void _selectDay(DateTime date, List<Event> events) {
     setState(() {
-      String dataString = DateFormat('dd/MM/yyyy').format(date);
-
-      widget._controller.text = dataString;
-      widget._callback(dataString);
+      widget._controller.text = date.toString();
+      widget._callback(date.toString());
     });
-  }
-
-  _selectedDateTime() {
-    if (widget._controller.text != "") {
-      String dateString = widget._controller.text;
-      DateTime dataHora = DateTime.parse(
-          "${dateString.split("/")[2]}-${dateString.split("/")[1]}-${dateString.split("/")[0]}");
-      return dataHora;
-    }
   }
 
   @override
@@ -58,7 +49,8 @@ class _CalendarWidgetState extends State<CalendarioWidget> {
           locale: 'pt_BR',
           minSelectedDate: _minSelectedDate,
           maxSelectedDate: _maxSelectedDate,
-          selectedDateTime: _selectedDateTime(),
+          selectedDateTime:
+              _calendarioClasss.stringToDatetime(widget._controller.text),
           headerTextStyle: UiText.headline2,
           weekendTextStyle: UiText.headline3,
           daysTextStyle: UiText.headline1,

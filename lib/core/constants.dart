@@ -74,10 +74,13 @@ const String SELECIONE = "Selecione";
 const String TODAS = "Todas";
 
 const String TAREFA = "Tarefa";
-const String TAREFA_ERRO_UP = "Não foi possivél atualizar a tarefa";
+
+const String TAREFA_ALTERADA = "Tarefa alterada com sucesso";
+const String TAREFA_CRIADA = "Tarefa criada com sucesso";
 const String TAREFA_ERRO_POST =
     "Erro ao salvar tarefa, tente novamente mais tarde.";
-const String TAREFA_SUCESSO = "Tarefa criada";
+const String TAREFA_ERRO_UP = "Não foi possivél atualizar a tarefa";
+const String TAREFA_SEM_RESULTADO = "Sem resultado para mostrar";
 const String TAREFA_VAZIA =
     'Preencha os campos para salvar a tarefa ou clique no botão "voltar" para descarta-lá';
 

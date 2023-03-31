@@ -13,6 +13,10 @@ class TarefaFirebase {
   }
 
   pathTarefa(Map<String, dynamic> tarefa) {
+    return tarefas.doc(tarefa['id']).update(tarefa);
+  }
+
+  pathTarefaAberto(Map<String, dynamic> tarefa) {
     return tarefas.doc(tarefa['id']).update({'aberto': tarefa['aberto']});
   }
 

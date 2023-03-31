@@ -1,15 +1,4 @@
-import 'package:flutter/material.dart';
-
 class HorarioClass {
-  TextEditingController somenteHorario(String dataHora) {
-    if (dataHora != "") {
-      List<String> partes = dataHora.split(" às ");
-      return TextEditingController(text: partes[1]);
-    }
-
-    return TextEditingController(text: "");
-  }
-
   Map<String, int> horarioDateNowDouble() {
     DateTime agora = DateTime.now();
 
@@ -19,12 +8,15 @@ class HorarioClass {
     return {"hora": hora, "minuto": minuto};
   }
 
-  Map<String, int> horarioStringDouble(String time) {
-    List<String> horaMinuto = time.split('h');
-
-    int hora = int.parse(horaMinuto[0]);
-    int minuto = int.parse(horaMinuto[1].substring(0, 2));
-
+  Map<String, int> separarHoraMinuto(String time) {
+    int hora = int.parse(time.substring(0, 2));
+    int minuto = int.parse(time.substring(3, 5));
     return {"hora": hora, "minuto": minuto};
+  }
+
+  String unirDataHora(String data, String hora) {
+    String dataFormat = data.replaceAll(" 00:00:00.000", "");
+    String dataHorario = '$dataFormat $hora:00.000';
+    return dataHorario;
   }
 }

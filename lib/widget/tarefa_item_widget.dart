@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/core/routes.dart';
@@ -12,9 +13,14 @@ import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
 class TarefaItemWidget extends StatefulWidget {
-  const TarefaItemWidget({super.key, required Map<String, dynamic> item})
-      : _item = item;
+  const TarefaItemWidget({
+    super.key,
+    required int pagina,
+    required Map<String, dynamic> item,
+  })  : _pagina = pagina,
+        _item = item;
 
+  final int _pagina;
   final Map<String, dynamic> _item;
 
   @override
@@ -24,12 +30,13 @@ class TarefaItemWidget extends StatefulWidget {
 class _TarefaItemWidgetState extends State<TarefaItemWidget> {
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
+  final PageClass _pageClass = PageClass();
   final ToastWidget _toastWidget = ToastWidget();
 
   void _onPressed() {
     try {
       widget._item['aberto'] = !widget._item['aberto'];
-      _tarefaFirebase.pathTarefa(widget._item);
+      _tarefaFirebase.pathTarefaAberto(widget._item);
       _checkAberto();
     } catch (e) {
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_ERRO_UP);
@@ -51,10 +58,11 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var color = _pageClass.getColorInt(currentPageInt.value);
+
     return GestureDetector(
       onTap: () => selectTarefa(),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
         padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
         decoration: BoxDecoration(
           color: UiColor.item_tarefa,
@@ -76,7 +84,7 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
                       style: UiText.headline1,
                     ),
                     Text(
-                      _tarefaClass.formatSubtitulo(widget._item),
+                      _tarefaClass.formatLegenda(widget._item),
                       style: UiText.headline3,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -88,6 +96,7 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
             IconButton(
               splashColor: Colors.transparent,
               icon: _checkAberto(),
+              color: color,
               onPressed: () => _onPressed(),
             )
           ],
