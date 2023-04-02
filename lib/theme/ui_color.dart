@@ -20,7 +20,7 @@ class UiColor {
   static const Color icon = Color(0x90e4e8ec);
   static const Color input = Color(0xFF1b1c1b);
   static const Color link = Color(0xFF8ab4f8);
-  static const Color modal = Color(0xFF1b1c1b); //TODO: validar cor
+  static const Color modal = Color(0xFF121212);
   static const Color menuItem = Color(0x40fefefe);
   static const Color menuItemSelected = Color(0xFFfefefe);
   static const Color overlay = Color(0x80c89550); //TODO: validar cor
