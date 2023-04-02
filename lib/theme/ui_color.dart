@@ -17,7 +17,7 @@ class UiColor {
   static const Color planejados = Color(0xFF54c893);
   static const Color tarefa = Color(0xFFc89550);
   static const Color text_1 = Color(0xFFe4e8ec);
-  static const Color text_2 = Color(0x90e4e8ec);
+  static const Color text_2 = Color(0xFF9fa2a5);
   static const Color text_3 = Color(0xFF1b1c1b);
   static const Color todas = Color(0xFF698ee5);
   static const Color item_tarefa = Color(0xFF1A1A1A);

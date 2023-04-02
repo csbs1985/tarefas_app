@@ -72,6 +72,12 @@ class UiText {
     color: UiColor.text_1,
   );
 
+  static const TextStyle headline7 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.normal,
+    color: UiColor.text_3,
+  );
+
   static const TextStyle button = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
