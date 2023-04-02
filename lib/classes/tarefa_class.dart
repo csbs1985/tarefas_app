@@ -105,9 +105,4 @@ class TarefaClass {
           : "evento \u2022 ${_enderecoClass.montarEnderecoString(tarefa['endereco'])}";
     }
   }
-
-  String formatDataNotificacao(data) {
-    DateTime dateTime = DateTime.parse(data.replaceAll(" às ", ""));
-    return dateTime.toString();
-  }
 }

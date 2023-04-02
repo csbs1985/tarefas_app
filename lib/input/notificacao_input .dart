@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:tarefas_app/buttons/limpar_button.dart';
 import 'package:tarefas_app/classes/data_class.dart';
-import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/modals/notificacao_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
@@ -25,7 +24,6 @@ class NotificacaoInput extends StatefulWidget {
 
 class _NotificacaoInputState extends State<NotificacaoInput> {
   final DataClass _dataClass = DataClass();
-  final TarefaClass _tarefaClass = TarefaClass();
 
   void _openModal() {
     showDialog(
@@ -47,7 +45,7 @@ class _NotificacaoInputState extends State<NotificacaoInput> {
 
   void _setControllerModal(String value) {
     setState(() {
-      widget._controller.text = _tarefaClass.formatDataNotificacao(value);
+      widget._controller.text = _dataClass.formatDataNotificacao(value);
       widget._callback(value);
     });
   }

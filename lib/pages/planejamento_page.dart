@@ -41,8 +41,7 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
                 Map<String, dynamic> tarefa = snapshot.data();
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8),
-                  child: TarefaItemWidget(
-                      background: PageEnum.planejados.value, item: tarefa),
+                  child: TarefaItemWidget(item: tarefa),
                 );
               },
             ),

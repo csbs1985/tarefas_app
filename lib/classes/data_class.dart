@@ -35,6 +35,6 @@ class DataClass {
 
   String unirDataHora(String data, String hora) {
     String dataFormat = data.substring(0, 10);
-    return '$dataFormat $hora:00.000';
+    return '$dataFormat $hora';
   }
 }
