@@ -63,7 +63,7 @@ class _ValorInputState extends State<ValorInput> {
               ],
             ),
           ),
-          LimparButton(callback: (value) => widget._controller.clear()),
+          LimparButton(callback: (value) => _clear()),
         ],
       ),
     );

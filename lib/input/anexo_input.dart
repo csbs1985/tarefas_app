@@ -85,7 +85,9 @@ class _AnexoInput2State extends State<AnexoInput> {
                   ],
                 ),
               ),
-              LimparButton(callback: (value) => _setControllerModal('')),
+              LimparButton(
+                callback: (value) => _setControllerModal(''),
+              ), // TODO: verificar se precisar passar o boolean
             ],
           ),
         ),

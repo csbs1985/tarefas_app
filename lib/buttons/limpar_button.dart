@@ -6,15 +6,22 @@ class LimparButton extends StatefulWidget {
   const LimparButton({
     super.key,
     required Function callback,
-  }) : _callback = callback;
+    bool? boolean = true,
+  })  : _callback = callback,
+        _boolean = boolean;
 
   final Function _callback;
+  final bool? _boolean;
 
   @override
   State<LimparButton> createState() => _LimparButtonState();
 }
 
 class _LimparButtonState extends State<LimparButton> {
+  _onPressed() {
+    return widget._boolean! ? widget._callback(true) : widget._callback();
+  }
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -23,7 +30,7 @@ class _LimparButtonState extends State<LimparButton> {
         UiSvg.limpar,
         height: 20,
       ),
-      onPressed: () => widget._callback(),
+      onPressed: () => _onPressed(),
     );
   }
 }

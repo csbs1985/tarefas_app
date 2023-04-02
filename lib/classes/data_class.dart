@@ -19,10 +19,13 @@ class DataClass {
   }
 
   String formatDataNotificacao(String value) {
-    DateTime dataHora = DateTime.parse(value);
-    String dataStr = DateFormat("dd 'de' MMMM", 'pt_Br').format(dataHora);
-    String horaStr = DateFormat("HH'h'mm'm'").format(dataHora);
-    return "dia $dataStr às $horaStr";
+    if (value.isNotEmpty) {
+      DateTime dataHora = DateTime.parse(value);
+      String dataStr = DateFormat("dd 'de' MMMM", 'pt_Br').format(dataHora);
+      String horaStr = DateFormat("HH'h'mm'm'").format(dataHora);
+      return "dia $dataStr às $horaStr";
+    }
+    return "";
   }
 
   formatDataStringToDatetime(value) {
