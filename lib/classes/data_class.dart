@@ -1,24 +1,40 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DataClass {
-  DateTime formatDateTime(String data) {
-    DateTime dataTime = DateFormat('dd/MM/yyyy').parse(data);
-    return dataTime;
+  TextEditingController formatDataSomente(String dataHora) {
+    if (dataHora != "") {
+      List<String> partes = dataHora.split(" às ");
+      return TextEditingController(text: partes[0]);
+    }
+
+    return TextEditingController(text: "");
   }
 
-  String formatDateExtenso(String data) {
-    DateTime dataTime = DateFormat('dd/MM/yyyy').parse(data);
+  String formatDataCalendario(String data) {
+    DateTime date = DateTime.parse(data);
     String dataFormatada =
-        DateFormat('d \'de\' MMM \'de\' y', 'pt_Br').format(dataTime);
-
+        DateFormat("'dia' dd 'de' MMMM", 'pt_Br').format(date);
     return dataFormatada;
   }
 
-  String formatNotificacao(String value) {
+  String formatDataNotificacao(String value) {
     DateTime dataHora = DateTime.parse(value);
     String dataStr = DateFormat("dd 'de' MMMM", 'pt_Br').format(dataHora);
     String horaStr = DateFormat("HH'h'mm'm'").format(dataHora);
-    String resultado = "dia $dataStr às $horaStr";
-    return resultado;
+    return "dia $dataStr às $horaStr";
+  }
+
+  formatDataStringToDatetime(value) {
+    if (value != "") {
+      String dateString = value;
+      DateTime dateTime = DateTime.parse(dateString);
+      return dateTime;
+    }
+  }
+
+  String unirDataHora(String data, String hora) {
+    String dataFormat = data.substring(0, 10);
+    return '$dataFormat $hora:00.000';
   }
 }

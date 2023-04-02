@@ -81,7 +81,7 @@ class _NotificacaoInputState extends State<NotificacaoInput> {
                       child: Text(
                         widget._controller.text.isNotEmpty
                             ? _dataClass
-                                .formatNotificacao(widget._controller.text)
+                                .formatDataNotificacao(widget._controller.text)
                             : SELECIONE,
                         style: widget._controller.text.isNotEmpty
                             ? UiText.headline1

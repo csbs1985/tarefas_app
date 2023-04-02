@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
-import 'package:tarefas_app/classes/calendario_class.dart';
+import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -23,7 +23,7 @@ class CalendarioWidget extends StatefulWidget {
 }
 
 class _CalendarWidgetState extends State<CalendarioWidget> {
-  final CalendarioClasss _calendarioClasss = CalendarioClasss();
+  final DataClass _dataClass = DataClass();
 
   final _minSelectedDate = DateTime(1950, 1, 1, 0, 0, 0);
   final _maxSelectedDate = DateTime(2050, 12, 31, 0, 0, 0);
@@ -50,7 +50,7 @@ class _CalendarWidgetState extends State<CalendarioWidget> {
           minSelectedDate: _minSelectedDate,
           maxSelectedDate: _maxSelectedDate,
           selectedDateTime:
-              _calendarioClasss.stringToDatetime(widget._controller.text),
+              _dataClass.formatDataStringToDatetime(widget._controller.text),
           headerTextStyle: UiText.headline2,
           weekendTextStyle: UiText.headline3,
           daysTextStyle: UiText.headline1,

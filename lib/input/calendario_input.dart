@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
+import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/modals/calendario_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
@@ -25,11 +25,7 @@ class CalendarioInput extends StatefulWidget {
 }
 
 class _CalendarioInputState extends State<CalendarioInput> {
-  _formatDate(String date) {
-    DateTime dataHora = DateFormat('dd/MM/yyyy').parse(date);
-    String dataHoraFormatada = DateFormat('dd/MM/yyyy').format(dataHora);
-    return dataHoraFormatada;
-  }
+  final DataClass _dataClass = DataClass();
 
   void _openModal() {
     showDialog(
@@ -92,7 +88,8 @@ class _CalendarioInputState extends State<CalendarioInput> {
                       padding: const EdgeInsets.fromLTRB(0, 12, 0, 16),
                       child: Text(
                         widget._controller.text.isNotEmpty
-                            ? _formatDate(widget._controller.text)
+                            ? _dataClass
+                                .formatDataCalendario(widget._controller.text)
                             : SELECIONE,
                         style: widget._controller.text.isNotEmpty
                             ? UiText.headline1

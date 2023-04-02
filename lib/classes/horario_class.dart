@@ -13,10 +13,4 @@ class HorarioClass {
     int minuto = int.parse(time.substring(3, 5));
     return {"hora": hora, "minuto": minuto};
   }
-
-  String unirDataHora(String data, String hora) {
-    String dataFormat = data.replaceAll(" 00:00:00.000", "");
-    String dataHorario = '$dataFormat $hora:00.000';
-    return dataHorario;
-  }
 }

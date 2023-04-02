@@ -146,43 +146,68 @@ class _TarefaPageState extends State<TarefaPage> {
 
   void onFloatingActionButton(BuildContext context) {
     if (_nomeController.text != "" && _notificacaoController.text != "") {
-      _tarefa = {
-        'id': _uuid.v4(),
-        'dataCriacao': DateTime.now().toString(),
-        'idUsuario': 'idUsuarioTemp',
-        'tarefa': _nomeController.text,
-        'tipoTarefa': _tipoTarefaController.text,
-        'dia': _diaController.text,
-        'notificacao': _notificacaoController.text,
-        'frequencia':
-            _frequenciaClass.formatFrequencia(_frequenciaController.text),
-        'valor': _valorController.text,
-        'tipoMovimentacao': _tipoMovimentacaoController.text,
-        'formaPagamento': _formaPagamentoController.text,
-        'anotacao': _anotacaoController.text,
-        'telefone': _telefoneController.text,
-        'endereco': _enderecoController.text,
-        'horario': _horarioController.text,
-        'link': _linkController.text,
-        'anexo': _anexoController.text,
-        'aberto': true,
-      };
-
       try {
-        if (currentTarefa.value == "") {
-          _tarefaClass.postTarefa(_tarefa);
-          _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
-        } else {
-          _tarefaClass.pathTarefa(_tarefa);
-          _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
-        }
-
+        currentTarefa.value == null ? postTarefa() : pathTarefa();
         Navigator.pop(context);
       } on Exception {
         _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_ERRO_POST);
       }
     } else
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_VAZIA);
+  }
+
+  void postTarefa() {
+    _tarefa = {
+      'id': _uuid.v4(),
+      'dataCriacao': DateTime.now().toString(),
+      'idUsuario': 'idUsuarioTemp',
+      'tarefa': _nomeController.text,
+      'tipoTarefa': _tipoTarefaController.text,
+      'dia': _diaController.text,
+      'notificacao': _notificacaoController.text,
+      'frequencia':
+          _frequenciaClass.formatFrequencia(_frequenciaController.text),
+      'valor': _valorController.text,
+      'tipoMovimentacao': _tipoMovimentacaoController.text,
+      'formaPagamento': _formaPagamentoController.text,
+      'anotacao': _anotacaoController.text,
+      'telefone': _telefoneController.text,
+      'endereco': _enderecoController.text,
+      'horario': _horarioController.text,
+      'link': _linkController.text,
+      'anexo': _anexoController.text,
+      'aberto': true,
+    };
+
+    _tarefaClass.postTarefa(_tarefa);
+    _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
+  }
+
+  void pathTarefa() {
+    _tarefa = {
+      'id': currentTarefa.value!['id'],
+      'dataCriacao': currentTarefa.value!['dataCriacao'],
+      'idUsuario': currentTarefa.value!['idUsuario'],
+      'tarefa': _nomeController.text,
+      'tipoTarefa': _tipoTarefaController.text,
+      'dia': _diaController.text,
+      'notificacao': _notificacaoController.text,
+      'frequencia':
+          _frequenciaClass.formatFrequencia(_frequenciaController.text),
+      'valor': _valorController.text,
+      'tipoMovimentacao': _tipoMovimentacaoController.text,
+      'formaPagamento': _formaPagamentoController.text,
+      'anotacao': _anotacaoController.text,
+      'telefone': _telefoneController.text,
+      'endereco': _enderecoController.text,
+      'horario': _horarioController.text,
+      'link': _linkController.text,
+      'anexo': _anexoController.text,
+      'aberto': currentTarefa.value!['aberto'],
+    };
+
+    _tarefaClass.pathTarefa(_tarefa);
+    _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
   }
 
   void bakcPage() {
@@ -301,11 +326,6 @@ class _TarefaPageState extends State<TarefaPage> {
                 controller: _anotacaoController,
                 callback: (value) => _anotacaoController.text = value,
               ),
-              // AnexoInput(
-              //   controller: _anexoController,
-              //   callback: (value) =>
-              //       _anexoController.text = value),
-              // ),
             ],
           ),
         ),
