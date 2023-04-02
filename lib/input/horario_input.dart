@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/buttons/limpar_button.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/modals/horario_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
 class HorarioInput extends StatefulWidget {
@@ -30,7 +29,7 @@ class _HorarioInputState extends State<HorarioInput> {
       barrierColor: UiColor.overlay,
       builder: (context) => AlertDialog(
         insetPadding: const EdgeInsets.all(16),
-        backgroundColor: UiColor.back,
+        backgroundColor: UiColor.background,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(UiBorder.rounded),
         ),
@@ -95,15 +94,7 @@ class _HorarioInputState extends State<HorarioInput> {
                   ],
                 ),
               ),
-              IconButton(
-                splashColor: Colors.transparent,
-                icon: SvgPicture.asset(
-                  UiSvg.limpar,
-                  height: 20,
-                  color: UiColor.icon,
-                ),
-                onPressed: () => _clear(),
-              )
+              LimparButton(callback: (value) => _clear()),
             ],
           ),
         ),

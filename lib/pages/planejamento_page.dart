@@ -42,7 +42,7 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: TarefaItemWidget(
-                      pagina: PageEnum.planejados.value, item: tarefa),
+                      background: PageEnum.planejados.value, item: tarefa),
                 );
               },
             ),

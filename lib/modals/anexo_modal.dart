@@ -69,7 +69,7 @@ class _SelectInputState extends State<AnexoModal> {
 
     //   if (arq != null) {
     //     setState(() => _imageCamera = arq);
-    //     Get.back();
+    //     Get.background();
     //   }
   }
 
@@ -80,7 +80,7 @@ class _SelectInputState extends State<AnexoModal> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: UiColor.back,
+      color: UiColor.background,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),

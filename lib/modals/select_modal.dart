@@ -41,7 +41,7 @@ class _SelectInputState extends State<SelectModal> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: UiColor.back,
+      color: UiColor.background,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),

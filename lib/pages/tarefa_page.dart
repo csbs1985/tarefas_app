@@ -239,9 +239,7 @@ class _TarefaPageState extends State<TarefaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: UiColor.modal,
       appBar: AppBar(
-        backgroundColor: UiColor.modal,
         toolbarHeight: 64,
         leading: IconButton(
           icon: SvgPicture.asset(UiSvg.voltar),

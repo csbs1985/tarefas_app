@@ -1,11 +1,9 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/buttons/limpar_button.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
-import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
 class TelefoneInput extends StatefulWidget {
@@ -60,15 +58,7 @@ class _TelefoneInputState extends State<TelefoneInput> {
               ],
             ),
           ),
-          IconButton(
-            splashColor: Colors.transparent,
-            icon: SvgPicture.asset(
-              UiSvg.limpar,
-              height: 20,
-              color: UiColor.icon,
-            ),
-            onPressed: () => widget._controller.clear(),
-          )
+          LimparButton(callback: (value) => widget._controller.clear()),
         ],
       ),
     );

@@ -44,7 +44,7 @@ class _SelectInputState extends State<HorarioModal> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: UiColor.back,
+      color: UiColor.background,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:tarefas_app/buttons/limpar_button.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/modals/link_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
 class LinkInput extends StatefulWidget {
@@ -84,15 +83,7 @@ class _AddressInputState extends State<LinkInput> {
                   ],
                 ),
               ),
-              IconButton(
-                splashColor: Colors.transparent,
-                icon: SvgPicture.asset(
-                  UiSvg.limpar,
-                  height: 20,
-                  color: UiColor.icon,
-                ),
-                onPressed: () => _setControllerModal(''),
-              )
+              LimparButton(callback: (value) => _setControllerModal('')),
             ],
           ),
         ),

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/buttons/limpar_button.dart';
 import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/modals/notificacao_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
 class NotificacaoInput extends StatefulWidget {
@@ -34,7 +33,7 @@ class _NotificacaoInputState extends State<NotificacaoInput> {
       barrierColor: UiColor.overlay,
       builder: (context) => AlertDialog(
         insetPadding: const EdgeInsets.all(16),
-        backgroundColor: UiColor.back,
+        backgroundColor: UiColor.background,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(UiBorder.rounded),
         ),
@@ -91,15 +90,7 @@ class _NotificacaoInputState extends State<NotificacaoInput> {
                   ],
                 ),
               ),
-              IconButton(
-                splashColor: Colors.transparent,
-                icon: SvgPicture.asset(
-                  UiSvg.limpar,
-                  height: 20,
-                  color: UiColor.icon,
-                ),
-                onPressed: () => _setControllerModal(''),
-              )
+              LimparButton(callback: (value) => _setControllerModal('')),
             ],
           ),
         ),

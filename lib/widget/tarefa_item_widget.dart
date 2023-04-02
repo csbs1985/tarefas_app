@@ -15,9 +15,9 @@ import 'package:tarefas_app/widget/toast_widget.dart';
 class TarefaItemWidget extends StatefulWidget {
   const TarefaItemWidget({
     super.key,
-    required int pagina,
+    required int background,
     required Map<String, dynamic> item,
-  })  : _pagina = pagina,
+  })  : _pagina = background,
         _item = item;
 
   final int _pagina;

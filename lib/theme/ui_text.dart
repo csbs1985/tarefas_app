@@ -57,7 +57,7 @@ class UiText {
     fontSize: 16,
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.normal,
-    color: UiColor.back,
+    color: UiColor.background,
   );
 
   static const TextStyle headline5 = TextStyle(
@@ -93,7 +93,7 @@ class UiText {
   static const TextStyle buttonSelected = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,
-    color: UiColor.back,
+    color: UiColor.background,
   );
 
   static const TextStyle link = TextStyle(

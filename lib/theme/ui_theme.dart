@@ -4,10 +4,10 @@ import 'package:tarefas_app/theme/ui_text_form_field.dart';
 
 class UiTheme {
   static ThemeData theme1 = ThemeData(
-    scaffoldBackgroundColor: UiColor.back,
+    scaffoldBackgroundColor: UiColor.background,
     fontFamily: 'ElementalSansPro',
     appBarTheme: const AppBarTheme(
-      backgroundColor: UiColor.back,
+      backgroundColor: UiColor.background,
       elevation: 0,
     ),
     inputDecorationTheme: UiTextField.textField,
