@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/theme/ui_button.dart';
+import 'package:tarefas_app/buttons/floating_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/horario_widget.dart';
 
 class HorarioModal extends StatefulWidget {
@@ -57,12 +55,7 @@ class _SelectInputState extends State<HorarioModal> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(
-                  onPressed: () => onFloatingActionButton(),
-                  style: UiButton.buttonSelected,
-                  iconSize: 56,
-                  icon: SvgPicture.asset(UiSvg.confirmar),
-                ),
+                FloatingButton(callback: () => onFloatingActionButton()),
               ],
             ),
           ],

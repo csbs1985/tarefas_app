@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/buttons/floating_button.dart';
 import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/theme/ui_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/calendario_widget.dart';
 import 'package:tarefas_app/widget/horario_widget.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
@@ -87,12 +85,7 @@ class _SelectInputState extends State<NotificacaoModal> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(
-                  onPressed: () => _onPressed(),
-                  style: UiButton.buttonSelected,
-                  iconSize: 56,
-                  icon: SvgPicture.asset(UiSvg.confirmar),
-                ),
+                FloatingButton(callback: () => _onPressed()),
               ],
             ),
           ],
