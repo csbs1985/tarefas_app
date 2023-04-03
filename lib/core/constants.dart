@@ -33,6 +33,9 @@ const String ENDERECO_VAZIO = "Preencha o endereço primeiro";
 const String ENDERECO_COPIAR = "Copiar endereço";
 
 const String ENTRAR_ERRO = "Não foi possível concluir o login";
+const String ENTRAR_BEM_VINDO = "Bem vindo ao TAREFAS";
+const String ENTRAR_GOOGLE =
+    "\n Cadastre-se ou entre com sua conta Google nativa do dispositivo, selecionando o botão a baixo";
 
 const String ESTADO = "Estado";
 

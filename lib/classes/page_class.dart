@@ -10,27 +10,27 @@ class PageClass {
     PageEnum.planejados: {
       'text': PLANEJADOS,
       'color': UiColor.planejados,
-      'style': UiText.tituloPlanejados,
+      'style': UiText.planejados,
     },
     PageEnum.calendario: {
       'text': CALENDARIO,
       'color': UiColor.calendario,
-      'style': UiText.tituloCalendario,
+      'style': UiText.calendario,
     },
     PageEnum.todas: {
       'text': TODAS,
       'color': UiColor.todas,
-      'style': UiText.tituloTodas,
+      'style': UiText.todas,
     },
     PageEnum.concluidas: {
       'text': CONCLUIDAS,
       'color': UiColor.concluidas,
-      'style': UiText.tituloConcluidas,
+      'style': UiText.concluidas,
     },
     PageEnum.tarefa: {
       'text': TAREFA,
       'color': UiColor.tarefa,
-      'style': UiText.tituloTarefa,
+      'style': UiText.tarefa,
     },
   };
 

@@ -2,31 +2,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
 class UiText {
-  static const TextStyle tituloPlanejados = TextStyle(
+  static const TextStyle planejados = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: UiColor.planejados,
   );
 
-  static const TextStyle tituloCalendario = TextStyle(
+  static const TextStyle calendario = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: UiColor.calendario,
   );
 
-  static const TextStyle tituloTodas = TextStyle(
+  static const TextStyle todas = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: UiColor.todas,
   );
 
-  static const TextStyle tituloConcluidas = TextStyle(
+  static const TextStyle concluidas = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: UiColor.concluidas,
   );
 
-  static const TextStyle tituloTarefa = TextStyle(
+  static const TextStyle tarefa = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: UiColor.tarefa,
@@ -76,6 +76,13 @@ class UiText {
     fontSize: 24,
     fontWeight: FontWeight.normal,
     color: UiColor.text_3,
+  );
+
+  static const TextStyle headline8 = TextStyle(
+    fontSize: 28,
+    fontFamily: 'ElementalSansPro',
+    fontWeight: FontWeight.normal,
+    color: UiColor.text_1,
   );
 
   static const TextStyle button = TextStyle(

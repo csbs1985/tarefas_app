@@ -249,7 +249,7 @@ class _TarefaPageState extends State<TarefaPage> {
         titleSpacing: 0,
         title: const Text(
           TAREFA,
-          style: UiText.tituloTarefa,
+          style: UiText.tarefa,
         ),
       ),
       body: SingleChildScrollView(
