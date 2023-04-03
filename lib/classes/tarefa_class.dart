@@ -92,7 +92,7 @@ class TarefaClass {
 
   String formatLegenda(Map<String, dynamic> tarefa) {
     if (tarefa['tipoTarefa'] == TipoTarefaEnum.aniversario.value)
-      return "aniverário \u2022 ${_dataClass.formatDataCalendario(tarefa['dia'])}";
+      return "aniversário \u2022 ${_dataClass.formatDataCalendario(tarefa['dia'])}";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.financeiro.value)
       return "financeiro \u2022 R\$ ${tarefa['valor']}";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.lembrete.value)

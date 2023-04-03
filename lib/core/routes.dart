@@ -16,7 +16,7 @@ final GoRouter routes = GoRouter(
     final isLoginRoute = state.subloc == RouteEnum.ENTRAR.value;
 
     if (!isAuthenticated) return isLoginRoute ? null : RouteEnum.ENTRAR.value;
-    if (isAuthenticated) return RouteEnum.INICIO.value;
+    if (isLoginRoute) return RouteEnum.INICIO.value;
     return null;
   },
   routes: [

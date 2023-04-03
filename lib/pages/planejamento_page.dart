@@ -24,29 +24,36 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const AppBarTituloWidget(page: PageEnum.planejados),
-            FirestoreListView<Map<String, dynamic>>(
-              query: _tarefaFirebase.getAllTarefas(currentUsuario.value),
-              pageSize: 25,
-              shrinkWrap: true,
-              reverse: true,
-              physics: const NeverScrollableScrollPhysics(),
-              loadingBuilder: (context) => const ItemTarefaSkeleton(),
-              errorBuilder: (context, error, _) => const SemResultadoWidget(),
-              emptyBuilder: (context) => const SemResultadoWidget(),
-              itemBuilder: (BuildContext context,
-                  QueryDocumentSnapshot<dynamic> snapshot) {
-                Map<String, dynamic> tarefa = snapshot.data();
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: TarefaItemWidget(item: tarefa),
-                );
-              },
-            ),
-            const SizedBox(height: 90)
-          ],
+        child: ValueListenableBuilder(
+          valueListenable: currentUsuario,
+          builder: (BuildContext context, value, __) {
+            return Column(
+              children: [
+                const AppBarTituloWidget(page: PageEnum.planejados),
+                if (currentUsuario.value.isNotEmpty)
+                  FirestoreListView<Map<String, dynamic>>(
+                    query: _tarefaFirebase.getAllTarefas(currentUsuario.value),
+                    pageSize: 25,
+                    shrinkWrap: true,
+                    reverse: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    loadingBuilder: (context) => const ItemTarefaSkeleton(),
+                    errorBuilder: (context, error, _) =>
+                        const SemResultadoWidget(),
+                    emptyBuilder: (context) => const SemResultadoWidget(),
+                    itemBuilder: (BuildContext context,
+                        QueryDocumentSnapshot<dynamic> snapshot) {
+                      Map<String, dynamic> tarefa = snapshot.data();
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: TarefaItemWidget(item: tarefa),
+                      );
+                    },
+                  ),
+                const SizedBox(height: 90)
+              ],
+            );
+          },
         ),
       ),
     );

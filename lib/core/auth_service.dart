@@ -40,11 +40,11 @@ class AuthService extends ChangeNotifier {
 
       final UserCredential userCredential =
           await _auth.signInWithCredential(credential);
-      final User? user = userCredential.user;
+      usuario = userCredential.user;
 
       isAuthenticated = true;
       notifyListeners();
-      return user;
+      return usuario;
     } on FirebaseAuthException {
       _toastWidget.toast(context, ToastEnum.ERRO.value, ENTRAR_ERRO);
     }
