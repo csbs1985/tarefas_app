@@ -12,7 +12,7 @@
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
-		<key>CFBundleName</key>
+		<key>Tarefa</key>
 		<string>tarefas_app</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
@@ -23,7 +23,7 @@
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>LSRequiresIPhoneOS</key>
-		<true />
+		<true/>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
@@ -42,16 +42,18 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
-		<false />
+		<false/>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
-		<true />
+		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true />
+		<true/>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Can I use the Photo Library?</string>
 		<key>NSCameraUsageDescription</key>
 		<string>Can I use the camera please?</string>
 		<key>NSMicrophoneUsageDescription</key>
 		<string>Can I use the mic please?</string>
+		<key>UIStatusBarHidden</key>
+		<false/>
 	</dict>
 </plist>
