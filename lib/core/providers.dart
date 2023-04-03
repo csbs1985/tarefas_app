@@ -1,5 +1,8 @@
-// final getIt = GetIt.instance;
+import 'package:provider/provider.dart';
+import 'package:tarefas_app/core/auth_service.dart';
 
-// void setupGetIt() {
-//   getIt.registerSingleton<ProductParameters>(ProductParameters(productId: ''));
-// }
+final authService = AuthService();
+
+final providers = [
+  ChangeNotifierProvider<AuthService>.value(value: authService),
+];

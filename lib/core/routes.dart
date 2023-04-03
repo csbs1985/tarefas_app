@@ -1,17 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/core/auth_service.dart';
-import 'package:tarefas_app/pages/tarefa_page.dart';
+import 'package:tarefas_app/pages/entrar_page.dart';
 import 'package:tarefas_app/pages/inicio_page.dart';
+import 'package:tarefas_app/pages/tarefa_page.dart';
 
 final AuthService _authService = AuthService();
 
 final GoRouter routes = GoRouter(
   debugLogDiagnostics: true,
   initialLocation: RouteEnum.INICIO.value,
-  // refreshListenable: _authService,
-  // redirect: (context, state) => _authService.redirect(state),
+  refreshListenable: _authService,
+  redirect: (context, state) {
+    final isAuthenticated = _authService.isAuthenticated;
+    final isLoginRoute = state.subloc == RouteEnum.ENTRAR.value;
+
+    if (!isAuthenticated) return isLoginRoute ? null : RouteEnum.ENTRAR.value;
+    if (isAuthenticated) return RouteEnum.INICIO.value;
+    return null;
+  },
   routes: [
+    GoRoute(
+      path: RouteEnum.ENTRAR.value,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const EntrarPage(),
+      ),
+    ),
     GoRoute(
       path: RouteEnum.INICIO.value,
       pageBuilder: (context, state) => buildPageWithDefaultTransition(

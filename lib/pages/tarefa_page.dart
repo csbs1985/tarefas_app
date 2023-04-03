@@ -7,6 +7,7 @@ import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
+import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/calendario_input.dart';
@@ -160,7 +161,7 @@ class _TarefaPageState extends State<TarefaPage> {
     _tarefa = {
       'id': _uuid.v4(),
       'dataCriacao': DateTime.now().toString(),
-      'idUsuario': 'idUsuarioTemp',
+      'idUsuario': currentUsuario.value,
       'tarefa': _nomeController.text,
       'tipoTarefa': _tipoTarefaController.text,
       'dia': _diaController.text,

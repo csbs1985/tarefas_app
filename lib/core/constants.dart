@@ -30,8 +30,9 @@ const String DIA_SELECIONE = "Selecione a data";
 const String ENDERECO = "Endereço";
 const String ENDERECO_DIGITE = "Adicionar endereço";
 const String ENDERECO_VAZIO = "Preencha o endereço primeiro";
-
 const String ENDERECO_COPIAR = "Copiar endereço";
+
+const String ENTRAR_ERRO = "Não foi possível concluir o login";
 
 const String ESTADO = "Estado";
 
