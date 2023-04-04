@@ -17,7 +17,7 @@ class TarefaFirebase {
   }
 
   pathTarefaAberto(Map<String, dynamic> tarefa) {
-    return tarefas.doc(tarefa['id']).update({'aberto': tarefa['aberto']});
+    return tarefas.doc(tarefa['id']).update({'concluida': tarefa['concluida']});
   }
 
   postTarefa(Map<String, dynamic> tarefa) {

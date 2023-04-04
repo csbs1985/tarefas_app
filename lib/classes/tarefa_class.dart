@@ -31,7 +31,7 @@ class TarefaModel {
   late String? horario;
   late String? link;
   late List<String?> anexo;
-  late bool aberto;
+  late bool concluida;
   late String dataNotificacao;
 
   TarefaModel(
@@ -52,7 +52,7 @@ class TarefaModel {
     this.horario,
     this.link,
     this.anexo,
-    this.aberto,
+    this.concluida,
     this.dataNotificacao,
   );
 }

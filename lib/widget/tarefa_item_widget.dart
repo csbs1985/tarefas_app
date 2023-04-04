@@ -32,7 +32,7 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
 
   void _onPressed() {
     try {
-      widget._item['aberto'] = !widget._item['aberto'];
+      widget._item['concluida'] = !widget._item['concluida'];
       _tarefaFirebase.pathTarefaAberto(widget._item);
       _checkAberto();
     } catch (e) {
@@ -41,9 +41,7 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
   }
 
   SvgPicture _checkAberto() {
-    var aberto = widget._item['aberto'] ? true : false;
-
-    return aberto
+    return widget._item['concluida']
         ? SvgPicture.asset(UiSvg.aberto)
         : SvgPicture.asset(UiSvg.fechado);
   }

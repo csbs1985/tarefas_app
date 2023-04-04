@@ -177,7 +177,7 @@ class _TarefaPageState extends State<TarefaPage> {
       'horario': _horarioController.text,
       'link': _linkController.text,
       'anexo': _anexoController.text,
-      'aberto': true,
+      'concluida': true,
     };
 
     _tarefaClass.postTarefa(_tarefa);
@@ -204,7 +204,7 @@ class _TarefaPageState extends State<TarefaPage> {
       'horario': _horarioController.text,
       'link': _linkController.text,
       'anexo': _anexoController.text,
-      'aberto': currentTarefa.value!['aberto'],
+      'concluida': currentTarefa.value!['concluida'],
     };
 
     _tarefaClass.pathTarefa(_tarefa);
