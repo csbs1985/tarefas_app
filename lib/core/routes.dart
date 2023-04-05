@@ -5,10 +5,9 @@ import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/pages/calendario_page.dart';
 import 'package:tarefas_app/pages/concluidas_page.dart';
 import 'package:tarefas_app/pages/entrar_page.dart';
-import 'package:tarefas_app/pages/inicio_page.dart';
 import 'package:tarefas_app/pages/perfil_page.dart';
 import 'package:tarefas_app/pages/planejamento_page.dart';
-import 'package:tarefas_app/pages/tarefa_page.dart';
+import 'package:tarefas_app/modals/tarefa_modal.dart';
 import 'package:tarefas_app/pages/todas_page.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
@@ -16,17 +15,25 @@ final AuthService _authService = AuthService();
 
 final GoRouter routes = GoRouter(
   debugLogDiagnostics: true,
-  initialLocation: RouteEnum.INICIO.value,
+  initialLocation: RouteEnum.PLANEJADOS.value,
   refreshListenable: _authService,
   redirect: (context, state) {
     final isAuthenticated = _authService.isAuthenticated;
     final isLoginRoute = state.subloc == RouteEnum.ENTRAR.value;
 
     if (!isAuthenticated) return isLoginRoute ? null : RouteEnum.ENTRAR.value;
-    if (isLoginRoute) return RouteEnum.INICIO.value;
+    if (isLoginRoute) return RouteEnum.PLANEJADOS.value;
     return null;
   },
   routes: [
+    GoRoute(
+      path: '/',
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const PlanejamentoPage(),
+      ),
+    ),
     GoRoute(
       path: RouteEnum.CALENDARIO.value,
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
@@ -72,7 +79,7 @@ final GoRouter routes = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const TarefaPage(),
+        child: const TarefaModal(),
       ),
     ),
     GoRoute(
@@ -81,14 +88,6 @@ final GoRouter routes = GoRouter(
         context: context,
         state: state,
         child: const TodasPage(),
-      ),
-    ),
-    GoRoute(
-      path: RouteEnum.INICIO.value,
-      pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context,
-        state: state,
-        child: const InicioPage(),
       ),
     ),
   ],
@@ -155,11 +154,9 @@ final List<RouteModel> ListaMenu = [
 ];
 
 enum RouteEnum {
-  /// TODO: deletar pagina INICIO
   CALENDARIO('/calendario'),
   CONCLUIDAS('/concluidas'),
   ENTRAR('/entrar'),
-  INICIO('/inicio'),
   PERFIL('/perfil'),
   PLANEJADOS('/planejados'),
   TODAS('/todas'),

@@ -34,28 +34,12 @@ class PageClass {
     },
   };
 
-  String getIcon(PageEnum page) {
-    return pageMap[page]!['icon'];
-  }
-
   String getText(PageEnum page) {
     return pageMap[page]!['text'];
   }
 
   TextStyle getStyle(PageEnum page) {
     return pageMap[page]!['style'];
-  }
-
-  Color getColor(PageEnum page) {
-    return pageMap[page]!['color'];
-  }
-
-  Color getColorInt(int page) {
-    if (page == 0) return UiColor.planejados;
-    if (page == 1) return UiColor.calendario;
-    if (page == 2) return UiColor.todas;
-    if (page == 3) return UiColor.concluidas;
-    return UiColor.tarefa;
   }
 }
 

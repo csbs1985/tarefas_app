@@ -19,13 +19,16 @@ class SelectInput extends StatefulWidget {
     required Function callback,
     required TipoSelectEnum tipo,
     required TextEditingController controller,
+    bool? border = true,
   })  : _callback = callback,
         _tipo = tipo,
-        _controller = controller;
+        _controller = controller,
+        _border = border;
 
   final Function _callback;
   final TipoSelectEnum _tipo;
   final TextEditingController _controller;
+  final bool? _border;
 
   @override
   State<SelectInput> createState() => _SelectInput2State();
@@ -99,7 +102,7 @@ class _SelectInput2State extends State<SelectInput> {
     return SingleChildScrollView(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: UiBorder.borda,
+        decoration: widget._border! ? UiBorder.borda : null,
         child: TextButton(
           style: ButtonStyle(
             padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),

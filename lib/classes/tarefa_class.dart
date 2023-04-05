@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
@@ -8,6 +9,8 @@ import 'package:tarefas_app/classes/notificacao_class.dart';
 import 'package:tarefas_app/classes/tipo-movimentacao_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
+import 'package:tarefas_app/modals/tarefa_modal.dart';
+import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 
 ValueNotifier<Map<String, dynamic>?> currentTarefa =
@@ -104,5 +107,15 @@ class TarefaClass {
           ? "evento \u2022 url:${tarefa['link']}"
           : "evento \u2022 ${_enderecoClass.montarEnderecoString(tarefa['endereco'])}";
     }
+  }
+
+  void openModal(BuildContext context) {
+    showCupertinoModalBottomSheet(
+      expand: false,
+      context: context,
+      barrierColor: UiColor.overlay,
+      duration: const Duration(milliseconds: 300),
+      builder: (context) => const TarefaModal(),
+    );
   }
 }

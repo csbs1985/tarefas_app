@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/appbars/titulo_appbar.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
+import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
@@ -22,18 +24,17 @@ import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
-import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 import 'package:uuid/uuid.dart';
 
-class TarefaPage extends StatefulWidget {
-  const TarefaPage({super.key});
+class TarefaModal extends StatefulWidget {
+  const TarefaModal({super.key});
 
   @override
-  State<TarefaPage> createState() => _TarefaPageState();
+  State<TarefaModal> createState() => _TarefaPageState();
 }
 
-class _TarefaPageState extends State<TarefaPage> {
+class _TarefaPageState extends State<TarefaModal> {
   late FirebaseFirestore db;
   late FirebaseAuth auth;
 
@@ -68,7 +69,7 @@ class _TarefaPageState extends State<TarefaPage> {
   @override
   void initState() {
     super.initState();
-    currentCor.value = UiColor.calendario;
+    currentCor.value = UiColor.tarefa;
     currentTarefa.value != null
         ? popularController()
         : _tipoTarefaController.text = TipoTarefaEnum.aniversario.value;
@@ -241,27 +242,17 @@ class _TarefaPageState extends State<TarefaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 64,
-        leading: IconButton(
-          icon: SvgPicture.asset(UiSvg.voltar),
-          onPressed: () => bakcPage(),
-        ),
-        titleSpacing: 0,
-        title: const Text(
-          TAREFA,
-          style: UiText.tarefa,
-        ),
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              const TituloAppbar(page: PageEnum.tarefa),
               SelectInput(
                 controller: _tipoTarefaController,
                 tipo: TipoSelectEnum.tipoTarefa,
+                border: false,
                 callback: (value) => callbackTipoTarefa(value),
               ),
               TextoInput(

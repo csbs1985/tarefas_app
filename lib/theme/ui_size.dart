@@ -1,3 +1,3 @@
 class UiSize {
-  static const double avatarPerfil = 32;
+  static const double avatarPerfil = 16;
 }

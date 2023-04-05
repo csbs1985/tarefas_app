@@ -5,7 +5,7 @@ import 'package:tarefas_app/theme/ui_image.dart';
 class AvatarWidget extends StatefulWidget {
   const AvatarWidget({
     super.key,
-    double? size = 32,
+    double? size = 24,
   }) : _size = size;
 
   final double? _size;

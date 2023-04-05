@@ -40,10 +40,11 @@ class _HeaderWidgetState extends State<TituloAppbar> {
             _pageClass.getText(widget._page),
             style: _pageClass.getStyle(widget._page),
           ),
-          IconButton(
-            onPressed: () => context.go(RouteEnum.PERFIL.value),
-            icon: const AvatarWidget(size: UiSize.avatarPerfil),
-          )
+          if (widget._page == PageEnum.planejados)
+            IconButton(
+              onPressed: () => context.go(RouteEnum.PERFIL.value),
+              icon: const AvatarWidget(size: UiSize.avatarPerfil),
+            )
         ],
       ),
     );
