@@ -11,12 +11,18 @@ class CalendarioWidget extends StatefulWidget {
     Key? key,
     required controller,
     required Function callback,
+    bool? titulo = true,
+    double? altura = 360,
   })  : _controller = controller,
         _callback = callback,
+        _titulo = titulo,
+        _altura = altura,
         super(key: key);
 
   final TextEditingController _controller;
   final Function _callback;
+  final bool? _titulo;
+  final double? _altura;
 
   @override
   State<CalendarioWidget> createState() => _CalendarWidgetState();
@@ -40,12 +46,14 @@ class _CalendarWidgetState extends State<CalendarioWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
-          child: Text(DIA_SELECIONE, style: UiText.headline2),
-        ),
+        if (widget._titulo == true)
+          const Padding(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
+            child: Text(DIA_SELECIONE, style: UiText.headline2),
+          ),
+        if (widget._titulo == true) const SizedBox(height: 16),
         CalendarCarousel(
-          height: 360,
+          height: widget._altura!,
           locale: 'pt_BR',
           minSelectedDate: _minSelectedDate,
           maxSelectedDate: _maxSelectedDate,
@@ -56,13 +64,14 @@ class _CalendarWidgetState extends State<CalendarioWidget> {
           daysTextStyle: UiText.headline1,
           weekdayTextStyle: UiText.headline3,
           selectedDayTextStyle: UiText.headline4,
-          iconColor: UiColor.tarefa,
+          iconColor: currentCor.value,
           todayTextStyle: UiText.headline4,
           todayBorderColor: Colors.transparent,
           todayButtonColor: UiColor.element,
           selectedDayBorderColor: Colors.transparent,
-          selectedDayButtonColor: UiColor.tarefa,
+          selectedDayButtonColor: currentCor.value,
           daysHaveCircularBorder: false,
+          headerMargin: EdgeInsets.zero,
           onDayPressed: (DateTime date, List<Event> events) =>
               _selectDay(date, events),
         ),

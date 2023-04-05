@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/core/routes.dart';
@@ -27,7 +26,6 @@ class TarefaItemWidget extends StatefulWidget {
 class _TarefaItemWidgetState extends State<TarefaItemWidget> {
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
-  final PageClass _pageClass = PageClass();
   final ToastWidget _toastWidget = ToastWidget();
 
   void _onPressed() {
@@ -53,8 +51,6 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var color = _pageClass.getColorInt(currentPageInt.value);
-
     return GestureDetector(
       onTap: () => selectTarefa(),
       child: Container(
@@ -91,7 +87,7 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
             IconButton(
               splashColor: Colors.transparent,
               icon: _checkAberto(),
-              color: color,
+              color: currentCor.value,
               onPressed: () => _onPressed(),
             )
           ],

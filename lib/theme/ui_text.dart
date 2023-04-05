@@ -4,30 +4,35 @@ import 'package:tarefas_app/theme/ui_color.dart';
 class UiText {
   static const TextStyle planejados = TextStyle(
     fontSize: 24,
+    fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.bold,
     color: UiColor.planejados,
   );
 
   static const TextStyle calendario = TextStyle(
     fontSize: 24,
+    fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.bold,
     color: UiColor.calendario,
   );
 
   static const TextStyle todas = TextStyle(
     fontSize: 24,
+    fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.bold,
     color: UiColor.todas,
   );
 
   static const TextStyle concluidas = TextStyle(
     fontSize: 24,
+    fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.bold,
     color: UiColor.concluidas,
   );
 
   static const TextStyle tarefa = TextStyle(
     fontSize: 24,
+    fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.bold,
     color: UiColor.tarefa,
   );
@@ -83,6 +88,13 @@ class UiText {
     fontFamily: 'ElementalSansPro',
     fontWeight: FontWeight.normal,
     color: UiColor.text_1,
+  );
+
+  static const TextStyle headline9 = TextStyle(
+    fontSize: 16,
+    fontFamily: 'ElementalSansPro',
+    fontWeight: FontWeight.bold,
+    color: UiColor.concluidas,
   );
 
   static const TextStyle button = TextStyle(

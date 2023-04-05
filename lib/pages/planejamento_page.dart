@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
+import 'package:tarefas_app/appbars/titulo_appbar.dart';
 import 'package:tarefas_app/classes/page_class.dart';
-import 'package:tarefas_app/core/auth_service.dart';
+import 'package:tarefas_app/classes/usuario_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
-import 'package:tarefas_app/widget/appbar_titulo_widget.dart';
+import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
 import 'package:tarefas_app/widget/tarefa_item_widget.dart';
 
@@ -20,6 +21,12 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
 
   @override
+  void initState() {
+    super.initState();
+    currentCor.value = UiColor.planejados;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -29,10 +36,10 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
           builder: (BuildContext context, value, __) {
             return Column(
               children: [
-                const AppBarTituloWidget(page: PageEnum.planejados),
-                if (currentUsuario.value.isNotEmpty)
+                const TituloAppbar(page: PageEnum.planejados),
+                if (currentUsuario.value!['email'] != null)
                   FirestoreListView<Map<String, dynamic>>(
-                    query: _tarefaFirebase.getAllTarefas(currentUsuario.value),
+                    query: _tarefaFirebase.getAllTarefas(),
                     pageSize: 25,
                     shrinkWrap: true,
                     reverse: true,

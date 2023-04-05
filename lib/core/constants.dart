@@ -73,11 +73,14 @@ const String PLANEJADOS = "Planejados";
 
 const String PREENCHER = "Favor preencher os campos";
 
+const String SAIR = "Sair";
+
 const String SELECIONE = "Selecione";
 
 const String TODAS = "Todas";
 
 const String TAREFA = "Tarefa";
+const String TAREFA_CRIA = "Criar tarefa";
 
 const String TAREFA_ALTERADA = "Tarefa alterada com sucesso";
 const String TAREFA_CRIADA = "Tarefa criada com sucesso";

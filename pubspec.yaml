@@ -38,6 +38,7 @@ dependencies:
   provider: ^6.0.5
   flutter_native_splash: ^2.2.19
   flutter_launcher_icons: ^0.12.0
+  grouped_list: ^5.1.2
 
 flutter_native_splash: # flutter pub run flutter_native_splash:create
   color: "#121212"
@@ -70,6 +71,7 @@ flutter:
   assets:
     - assets/app/
     - assets/icons/
+    - assets/images/
 
   fonts:
     - family: ElementalSansPro

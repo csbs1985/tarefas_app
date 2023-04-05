@@ -4,8 +4,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
-ValueNotifier<String> currentUsuario = ValueNotifier<String>('');
-
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();

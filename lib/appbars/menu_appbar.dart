@@ -2,8 +2,8 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
-class AppBarWidget extends StatefulWidget with PreferredSizeWidget {
-  const AppBarWidget({
+class MenuAppbar extends StatefulWidget with PreferredSizeWidget {
+  const MenuAppbar({
     super.key,
     required Function? callback,
     required int menuItem,
@@ -17,13 +17,13 @@ class AppBarWidget extends StatefulWidget with PreferredSizeWidget {
   final PageController _pageController;
 
   @override
-  State<AppBarWidget> createState() => _AppBarWidgetState();
+  State<MenuAppbar> createState() => _AppBarWidgetState();
 
   @override
   Size get preferredSize => const Size.fromHeight(32);
 }
 
-class _AppBarWidgetState extends State<AppBarWidget> {
+class _AppBarWidgetState extends State<MenuAppbar> {
   static const _sizedGap = SizedBox(width: 4);
   static const _sizedMargin = SizedBox(width: 16);
 

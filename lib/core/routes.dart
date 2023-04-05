@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/core/auth_service.dart';
+import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/pages/calendario_page.dart';
+import 'package:tarefas_app/pages/concluidas_page.dart';
 import 'package:tarefas_app/pages/entrar_page.dart';
 import 'package:tarefas_app/pages/inicio_page.dart';
+import 'package:tarefas_app/pages/perfil_page.dart';
+import 'package:tarefas_app/pages/planejamento_page.dart';
 import 'package:tarefas_app/pages/tarefa_page.dart';
+import 'package:tarefas_app/pages/todas_page.dart';
+import 'package:tarefas_app/theme/ui_text.dart';
 
 final AuthService _authService = AuthService();
 
@@ -21,6 +28,22 @@ final GoRouter routes = GoRouter(
   },
   routes: [
     GoRoute(
+      path: RouteEnum.CALENDARIO.value,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const CalendarioPage(),
+      ),
+    ),
+    GoRoute(
+      path: RouteEnum.CONCLUIDAS.value,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const ConcluidasPage(),
+      ),
+    ),
+    GoRoute(
       path: RouteEnum.ENTRAR.value,
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
@@ -29,11 +52,19 @@ final GoRouter routes = GoRouter(
       ),
     ),
     GoRoute(
-      path: RouteEnum.INICIO.value,
+      path: RouteEnum.PERFIL.value,
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const InicioPage(),
+        child: const PerfilPage(),
+      ),
+    ),
+    GoRoute(
+      path: RouteEnum.PLANEJADOS.value,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const PlanejamentoPage(),
       ),
     ),
     GoRoute(
@@ -42,6 +73,22 @@ final GoRouter routes = GoRouter(
         context: context,
         state: state,
         child: const TarefaPage(),
+      ),
+    ),
+    GoRoute(
+      path: RouteEnum.TODAS.value,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const TodasPage(),
+      ),
+    ),
+    GoRoute(
+      path: RouteEnum.INICIO.value,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: const InicioPage(),
       ),
     ),
   ],
@@ -67,9 +114,55 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
   );
 }
 
+class RouteModel {
+  final String text;
+  final String value;
+  final TextStyle style;
+
+  RouteModel({
+    required this.text,
+    required this.value,
+    required this.style,
+  });
+}
+
+final List<RouteModel> ListaMenu = [
+  RouteModel(
+    text: TAREFA_CRIA,
+    value: RouteEnum.TAREFA.value,
+    style: UiText.tarefa,
+  ),
+  RouteModel(
+    text: PLANEJADOS,
+    value: RouteEnum.PLANEJADOS.value,
+    style: UiText.planejados,
+  ),
+  RouteModel(
+    text: CALENDARIO,
+    value: RouteEnum.CALENDARIO.value,
+    style: UiText.calendario,
+  ),
+  RouteModel(
+    text: TODAS,
+    value: RouteEnum.TODAS.value,
+    style: UiText.todas,
+  ),
+  RouteModel(
+    text: CONCLUIDAS,
+    value: RouteEnum.CONCLUIDAS.value,
+    style: UiText.concluidas,
+  ),
+];
+
 enum RouteEnum {
+  /// TODO: deletar pagina INICIO
+  CALENDARIO('/calendario'),
+  CONCLUIDAS('/concluidas'),
   ENTRAR('/entrar'),
   INICIO('/inicio'),
+  PERFIL('/perfil'),
+  PLANEJADOS('/planejados'),
+  TODAS('/todas'),
   TAREFA('/tarefa');
 
   final String value;

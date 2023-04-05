@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/classes/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -14,11 +15,12 @@ class EntrarPage extends StatefulWidget {
 
 class _EntrarPageState extends State<EntrarPage> {
   final AuthService _authService = AuthService();
+  final UsuarioClass _usuarioClass = UsuarioClass();
 
-  signInWithGoogle(BuildContext context) {
-    _authService.signInWithGoogle(context).then((user) => {
-          setState(() => currentUsuario.value = user!.email!),
-        });
+  signInWithGoogle(BuildContext context) async {
+    await _authService
+        .signInWithGoogle(context)
+        .then((user) => setState(() => _usuarioClass.setUsuario(user!)));
   }
 
   @override

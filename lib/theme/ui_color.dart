@@ -1,4 +1,7 @@
 import 'package:flutter/animation.dart';
+import 'package:flutter/foundation.dart';
+
+ValueNotifier<Color> currentCor = ValueNotifier<Color>(UiColor.tarefa);
 
 class UiColor {
   static const Color calendario = Color(0xFFfcd447);
