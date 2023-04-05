@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
+import 'package:tarefas_app/theme/ui_image.dart';
 
 class AvatarWidget extends StatefulWidget {
   const AvatarWidget({
@@ -22,6 +23,6 @@ class _AvatarWidgetState extends State<AvatarWidget> {
             backgroundImage: NetworkImage(currentUsuario.value!['avatar']))
         : CircleAvatar(
             radius: widget._size,
-            backgroundImage: const AssetImage('assets/images/avatar.gif'));
+            backgroundImage: const AssetImage(UiImage.avatar));
   }
 }
