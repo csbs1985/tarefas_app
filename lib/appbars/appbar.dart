@@ -3,8 +3,8 @@ import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/theme/ui_size.dart';
 import 'package:tarefas_app/widget/avatar_widget.dart';
 
-class TituloAppbar extends StatefulWidget {
-  const TituloAppbar({
+class Appbar extends StatefulWidget with PreferredSizeWidget {
+  const Appbar({
     super.key,
     required PageEnum page,
     required Function callback,
@@ -18,10 +18,13 @@ class TituloAppbar extends StatefulWidget {
   final Function _callback;
 
   @override
-  State<TituloAppbar> createState() => _HeaderWidgetState();
+  State<Appbar> createState() => _HeaderWidgetState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(72);
 }
 
-class _HeaderWidgetState extends State<TituloAppbar> {
+class _HeaderWidgetState extends State<Appbar> {
   final PageClass _pageClass = PageClass();
 
   void backPage(PageEnum page) {
@@ -30,23 +33,24 @@ class _HeaderWidgetState extends State<TituloAppbar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(0, 16, 0, 24),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            _pageClass.getText(widget._page),
-            style: _pageClass.getStyle(widget._page),
-          ),
-          if (widget._page == PageEnum.planejados)
+    return AppBar(
+      toolbarHeight: 72,
+      automaticallyImplyLeading: false,
+      title: Container(
+        padding: EdgeInsets.zero,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              _pageClass.getText(widget._page),
+              style: _pageClass.getStyle(widget._page),
+            ),
             IconButton(
               onPressed: () => widget._callback(),
               icon: const AvatarWidget(size: UiSize.avatarPerfil),
             )
-        ],
+          ],
+        ),
       ),
     );
   }

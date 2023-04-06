@@ -246,7 +246,7 @@ class _TarefaPageState extends State<TarefaModal> {
           key: _formKey,
           child: Column(
             children: [
-              // const TituloAppbar(page: PageEnum.tarefa),
+              // const Appbar(page: PageEnum.tarefa),
               SelectInput(
                 controller: _tipoTarefaController,
                 tipo: TipoSelectEnum.tipoTarefa,

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/appbars/titulo_appbar.dart';
+import 'package:tarefas_app/appbars/appbar.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
@@ -69,9 +69,9 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 8,
+      appBar: Appbar(
+        page: PageEnum.planejados,
+        callback: () => scaffoldKey.currentState!.openDrawer(),
       ),
       drawer: const PerfilDrawer(),
       body: Container(
@@ -84,10 +84,6 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
                 builder: (BuildContext context, value, __) {
                   return Column(
                     children: [
-                      TituloAppbar(
-                        page: PageEnum.planejados,
-                        callback: () => scaffoldKey.currentState!.openDrawer(),
-                      ),
                       if (currentUsuario.value!['email'] != null)
                         FirestoreListView<Map<String, dynamic>>(
                           query: _tarefaFirebase.getTarefasPlanejados(),

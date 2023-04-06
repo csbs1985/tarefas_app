@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/appbars/titulo_appbar.dart';
-import 'package:tarefas_app/appbars/voltar_appbar.dart';
+import 'package:tarefas_app/appbars/appbar.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
@@ -53,17 +52,16 @@ class _CalendarPageState extends State<CalendarioPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: const VoltarAppbar(),
+      appBar: Appbar(
+        page: PageEnum.calendario,
+        callback: () => scaffoldKey.currentState!.openDrawer(),
+      ),
       drawer: const PerfilDrawer(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TituloAppbar(
-                page: PageEnum.calendario,
-                callback: () => scaffoldKey.currentState!.openDrawer(),
-              ),
               CalendarioWidget(
                 altura: 420,
                 controller: _controller,

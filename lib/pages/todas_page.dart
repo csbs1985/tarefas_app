@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/appbars/voltar_appbar.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/appbars/titulo_appbar.dart';
+import 'package:tarefas_app/appbars/appbar.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 
@@ -30,18 +29,17 @@ class _AllPageState extends State<TodasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: const VoltarAppbar(),
+      appBar: Appbar(
+        page: PageEnum.todas,
+        callback: () => scaffoldKey.currentState!.openDrawer(),
+      ),
       drawer: const PerfilDrawer(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              TituloAppbar(
-                page: PageEnum.todas,
-                callback: () => scaffoldKey.currentState!.openDrawer(),
-              ),
-              const Text(TODAS),
+            children: const [
+              Text(TODAS),
             ],
           ),
         ),

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/appbars/voltar_appbar.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
@@ -10,7 +9,7 @@ import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/appbars/titulo_appbar.dart';
+import 'package:tarefas_app/appbars/appbar.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
@@ -40,7 +39,10 @@ class _ConcludedPageState extends State<ConcluidasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: const VoltarAppbar(),
+      appBar: Appbar(
+        page: PageEnum.concluidas,
+        callback: () => scaffoldKey.currentState!.openDrawer(),
+      ),
       drawer: const PerfilDrawer(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -49,10 +51,6 @@ class _ConcludedPageState extends State<ConcluidasPage> {
             children: [
               Column(
                 children: [
-                  TituloAppbar(
-                    page: PageEnum.concluidas,
-                    callback: () => scaffoldKey.currentState!.openDrawer(),
-                  ),
                   if (currentUsuario.value!['email'] != null)
                     FirestoreListView<Map<String, dynamic>>(
                       query: _tarefaFirebase.getTarefasConcluidas(),
