@@ -7,6 +7,7 @@ import 'package:tarefas_app/appbars/voltar_appbar.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -78,7 +79,10 @@ class _CalendarPageState extends State<CalendarioPage> {
                     Map<String, dynamic> tarefa = snapshot.data();
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8),
-                      child: TarefaItemWidget(tarefa: tarefa),
+                      child: TarefaItemWidget(
+                        pagina: RouteEnum.CALENDARIO.value,
+                        tarefa: tarefa,
+                      ),
                     );
                   },
                 ),

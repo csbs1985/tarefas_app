@@ -72,7 +72,7 @@ class _PerfilPageState extends State<PerfilPage> {
                             onPressed: () => checkPagina(item.value),
                             style: ButtonStyle(
                                 padding: MaterialStateProperty.all<EdgeInsets>(
-                                    EdgeInsets.zero)),
+                                    const EdgeInsets.fromLTRB(0, 8, 16, 8))),
                             child: Text(item.text, style: item.style),
                           ),
                           _marginPequena,

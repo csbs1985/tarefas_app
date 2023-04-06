@@ -6,7 +6,7 @@ import 'package:tarefas_app/pages/calendario_page.dart';
 import 'package:tarefas_app/pages/concluidas_page.dart';
 import 'package:tarefas_app/pages/entrar_page.dart';
 import 'package:tarefas_app/pages/perfil_page.dart';
-import 'package:tarefas_app/pages/planejamento_page.dart';
+import 'package:tarefas_app/pages/planejados_page.dart';
 import 'package:tarefas_app/modals/tarefa_modal.dart';
 import 'package:tarefas_app/pages/todas_page.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -31,7 +31,7 @@ final GoRouter routes = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const PlanejamentoPage(),
+        child: const PlanejadosPage(),
       ),
     ),
     GoRoute(
@@ -71,7 +71,7 @@ final GoRouter routes = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const PlanejamentoPage(),
+        child: const PlanejadosPage(),
       ),
     ),
     GoRoute(

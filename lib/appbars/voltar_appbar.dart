@@ -21,7 +21,10 @@ class _VoltarAppbarState extends State<VoltarAppbar> {
       leading: Container(
         padding: const EdgeInsets.only(left: 8),
         child: IconButton(
-          icon: SvgPicture.asset(UiSvg.voltar, color: currentCor.value),
+          icon: SvgPicture.asset(
+            UiSvg.voltar,
+            color: currentCor.value,
+          ),
           onPressed: () => context.pop(),
         ),
       ),

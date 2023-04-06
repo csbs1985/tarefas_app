@@ -7,6 +7,7 @@ import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
@@ -15,14 +16,14 @@ import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
 import 'package:tarefas_app/widget/tarefa_item_widget.dart';
 
-class PlanejamentoPage extends StatefulWidget {
-  const PlanejamentoPage({Key? key}) : super(key: key);
+class PlanejadosPage extends StatefulWidget {
+  const PlanejadosPage({Key? key}) : super(key: key);
 
   @override
-  State<PlanejamentoPage> createState() => _PlanejamentoPageState();
+  State<PlanejadosPage> createState() => _PlanejamentoPageState();
 }
 
-class _PlanejamentoPageState extends State<PlanejamentoPage> {
+class _PlanejamentoPageState extends State<PlanejadosPage> {
   final AuthService _authService = AuthService();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
@@ -98,7 +99,7 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: TarefaItemWidget(
-                                iconeConcluido: true,
+                                pagina: RouteEnum.PLANEJADOS.value,
                                 tarefa: _tarefa!,
                               ),
                             );

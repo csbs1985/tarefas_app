@@ -6,6 +6,7 @@ import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/modals/tarefa_modal.dart';
+import 'package:tarefas_app/text/item_planejados_text.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -16,12 +17,12 @@ class TarefaItemWidget extends StatefulWidget {
   const TarefaItemWidget({
     super.key,
     required Map<String, dynamic> tarefa,
-    bool? iconeConcluido,
+    required String pagina,
   })  : _tarefa = tarefa,
-        _iconeConcluido = iconeConcluido;
+        _pagina = pagina;
 
   final Map<String, dynamic> _tarefa;
-  final bool? _iconeConcluido;
+  final String _pagina;
 
   @override
   State<TarefaItemWidget> createState() => _TarefaItemWidgetState();
@@ -89,18 +90,17 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    _dataClass.formatDiaSemana(widget._tarefa),
+                    ItemPlanejamentoText(tarefa: widget._tarefa),
                   ],
                 ),
               ),
             ),
-            if (widget._iconeConcluido != false)
-              IconButton(
-                splashColor: Colors.transparent,
-                icon: _boolSvgPicture(),
-                color: currentCor.value,
-                onPressed: () => _onPressed(),
-              )
+            IconButton(
+              splashColor: Colors.transparent,
+              icon: _boolSvgPicture(),
+              color: currentCor.value,
+              onPressed: () => _onPressed(),
+            )
           ],
         ),
       ),

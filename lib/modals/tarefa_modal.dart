@@ -179,7 +179,7 @@ class _TarefaPageState extends State<TarefaModal> {
       'horario': _horarioController.text,
       'link': _linkController.text,
       'anexo': _anexoController.text,
-      'concluida': true,
+      'concluida': false,
     };
 
     _tarefaClass.postTarefa(_tarefa);
@@ -190,7 +190,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _tarefa = {
       'id': currentTarefa.value!['id'],
       'dataCriacao': currentTarefa.value!['dataCriacao'],
-      'idUsuario': currentTarefa.value!['email'],
+      'idUsuario': currentTarefa.value!['idUsuario'],
       'tarefa': _nomeController.text,
       'tipoTarefa': _tipoTarefaController.text,
       'dia': _diaController.text,

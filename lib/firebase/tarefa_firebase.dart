@@ -5,6 +5,13 @@ class TarefaFirebase {
   CollectionReference tarefas =
       FirebaseFirestore.instance.collection('tarefas');
 
+  getTarefasConcluidas() {
+    return tarefas
+        .where('idUsuario', isEqualTo: currentUsuario.value!['email'])
+        .where('concluida', isEqualTo: true)
+        .orderBy('notificacao', descending: true);
+  }
+
   getTarefasPlanejados() {
     return tarefas
         .where('idUsuario', isEqualTo: currentUsuario.value!['email'])
@@ -23,7 +30,7 @@ class TarefaFirebase {
   }
 
   pathTarefa(Map<String, dynamic> tarefa) {
-    return tarefas.doc(tarefa['idUsuario']).update(tarefa);
+    return tarefas.doc(tarefa['id']).update(tarefa);
   }
 
   pathTarefaConcluida(Map<String, dynamic> tarefa) {
@@ -31,6 +38,6 @@ class TarefaFirebase {
   }
 
   postTarefa(Map<String, dynamic> tarefa) {
-    return tarefas.doc(tarefa['idUsuario']).set(tarefa);
+    return tarefas.doc(tarefa['id']).set(tarefa);
   }
 }

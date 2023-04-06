@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
-import 'package:tarefas_app/theme/ui_text.dart';
 
 class DataClass {
   final EnderecoClass _enderecoClass = EnderecoClass();
@@ -46,7 +45,7 @@ class DataClass {
     return '$dataFormat $hora';
   }
 
-  formatDiaSemana(Map<String, dynamic> tarefa) {
+  String itemPlanejadosString(Map<String, dynamic> tarefa) {
     final now = DateTime.now();
     final date =
         DateFormat('yyyy-MM-dd HH:mm:ss.SSS').parse(tarefa['notificacao']);
@@ -65,28 +64,22 @@ class DataClass {
       dataFormatada = DateFormat('EEE', 'pt_BR').format(date);
     else
       dataFormatada = DateFormat('dd/MM').format(date);
-
-    return Text(
-      formatLegenda(tarefa, dataFormatada),
-      style: diff <= -1 ? UiText.headline9 : UiText.headline1,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-    );
+    return dataFormatada;
   }
 
-  String formatLegenda(Map<String, dynamic> tarefa, String dataFormatada) {
+  String itemPlanejadosLegenda(Map<String, dynamic> tarefa) {
     if (tarefa['tipoTarefa'] == TipoTarefaEnum.aniversario.value)
-      return "$dataFormatada \u2022 ${formatDataCalendario(tarefa['dia'])}";
+      return "\u2022 dê os parabêns";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.financeiro.value)
-      return "$dataFormatada \u2022 R\$ ${tarefa['valor']}";
+      return "\u2022 R\$ ${tarefa['valor']}";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.lembrete.value)
-      return "$dataFormatada \u2022${formatDataCalendario(tarefa['dia'])}";
+      return "\u2022 ${tarefa['tarefa']}";
     else if (tarefa['tipoTarefa'] == TipoTarefaEnum.ligar.value)
-      return "$dataFormatada \u2022 ${tarefa['telefone']}";
+      return "\u2022 ${tarefa['telefone']}";
     else {
       return tarefa['endereco'] == ""
-          ? "$dataFormatada \u2022 url:${tarefa['link']}"
-          : "$dataFormatada \u2022 ${_enderecoClass.montarEnderecoString(tarefa['endereco'])}";
+          ? "\u2022 url:${tarefa['link']}"
+          : "\u2022 ${_enderecoClass.montarEnderecoString(tarefa['endereco'])}";
     }
   }
 }
