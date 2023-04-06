@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tarefas_app/appbars/voltar_appbar.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
@@ -38,61 +37,55 @@ class _PerfilPageState extends State<PerfilDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const VoltarAppbar(),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AvatarWidget(),
-                    _marginPequena,
-                    Text(
-                      currentUsuario.value!['nome'],
-                      style: UiText.headline1,
-                    ),
-                    Text(
-                      currentUsuario.value!['email'],
-                      style: UiText.headline1,
-                    ),
-                    _marginGrande,
-                    for (var item in ListaMenu)
-                      Column(
-                        children: [
-                          TextButton(
-                            onPressed: () => checkPagina(item.value),
-                            style: ButtonStyle(
-                                padding: MaterialStateProperty.all<EdgeInsets>(
-                                    const EdgeInsets.fromLTRB(0, 8, 16, 8))),
-                            child: Text(item.text, style: item.style),
-                          ),
-                          _marginPequena,
-                        ],
+    return Container(
+      width: double.infinity,
+      color: UiColor.background,
+      padding: const EdgeInsets.fromLTRB(16, 64, 16, 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const AvatarWidget(),
+                _marginPequena,
+                Text(
+                  currentUsuario.value!['nome'],
+                  style: UiText.headline1,
+                ),
+                Text(
+                  currentUsuario.value!['email'],
+                  style: UiText.headline1,
+                ),
+                _marginGrande,
+                for (var item in ListaMenu)
+                  Column(
+                    children: [
+                      TextButton(
+                        onPressed: () => checkPagina(item.value),
+                        style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsets>(
+                                const EdgeInsets.fromLTRB(0, 8, 16, 8))),
+                        child: Text(item.text, style: item.style),
                       ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () => authService.signOut(),
-                child: const Text(
-                  SAIR,
-                  style: UiText.headline9,
-                  textAlign: TextAlign.left,
-                ),
-              ),
-              _marginPequena,
-            ],
+                      _marginPequena,
+                    ],
+                  ),
+              ],
+            ),
           ),
-        ),
+          GestureDetector(
+            onTap: () => authService.signOut(),
+            child: const Text(
+              SAIR,
+              style: UiText.headline9,
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ],
       ),
     );
   }
