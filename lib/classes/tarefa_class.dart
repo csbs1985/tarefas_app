@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/classes/endereco_class.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
 import 'package:tarefas_app/classes/notificacao_class.dart';
@@ -61,8 +60,6 @@ class TarefaModel {
 }
 
 class TarefaClass {
-  final DataClass _dataClass = DataClass();
-  final EnderecoClass _enderecoClass = EnderecoClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
 
   postTarefa(Map<String, dynamic> tarefa) async {
@@ -91,22 +88,6 @@ class TarefaClass {
     if (tarefa == TipoTarefaEnum.lembrete.value)
       return SvgPicture.asset(UiSvg.lembrete);
     return SvgPicture.asset(UiSvg.ligar);
-  }
-
-  String formatLegenda(Map<String, dynamic> tarefa) {
-    if (tarefa['tipoTarefa'] == TipoTarefaEnum.aniversario.value)
-      return "aniversário \u2022 ${_dataClass.formatDataCalendario(tarefa['dia'])}";
-    else if (tarefa['tipoTarefa'] == TipoTarefaEnum.financeiro.value)
-      return "financeiro \u2022 R\$ ${tarefa['valor']}";
-    else if (tarefa['tipoTarefa'] == TipoTarefaEnum.lembrete.value)
-      return "lembrete \u2022${_dataClass.formatDataCalendario(tarefa['dia'])}";
-    else if (tarefa['tipoTarefa'] == TipoTarefaEnum.ligar.value)
-      return "ligar \u2022 ${tarefa['telefone']}";
-    else {
-      return tarefa['endereco'] == ""
-          ? "evento \u2022 url:${tarefa['link']}"
-          : "evento \u2022 ${_enderecoClass.montarEnderecoString(tarefa['endereco'])}";
-    }
   }
 
   void openModal(BuildContext context) {

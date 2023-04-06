@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
@@ -24,6 +25,7 @@ class TarefaItemWidget extends StatefulWidget {
 }
 
 class _TarefaItemWidgetState extends State<TarefaItemWidget> {
+  final DataClass _dataClass = DataClass();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final ToastWidget _toastWidget = ToastWidget();
@@ -80,13 +82,10 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
                     Text(
                       widget._item['tarefa'],
                       style: UiText.headline1,
-                    ),
-                    Text(
-                      _tarefaClass.formatLegenda(widget._item),
-                      style: UiText.headline3,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
+                    _dataClass.formatDiaSemana(widget._item),
                   ],
                 ),
               ),
