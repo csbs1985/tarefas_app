@@ -5,8 +5,11 @@ class TarefaFirebase {
   CollectionReference tarefas =
       FirebaseFirestore.instance.collection('tarefas');
 
-  getAllTarefas() {
-    return tarefas.where('id', isEqualTo: currentUsuario.value!['email']);
+  getTarefasPlanejados() {
+    return tarefas
+        .where('id', isEqualTo: currentUsuario.value!['email'])
+        .where('concluida', isEqualTo: false)
+        .orderBy('notificacao', descending: true);
   }
 
   getAllTarefasDia(String data) {

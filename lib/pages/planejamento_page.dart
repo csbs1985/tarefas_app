@@ -74,7 +74,7 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
                       const TituloAppbar(page: PageEnum.planejados),
                       if (currentUsuario.value!['email'] != null)
                         FirestoreListView<Map<String, dynamic>>(
-                          query: _tarefaFirebase.getAllTarefas(),
+                          query: _tarefaFirebase.getTarefasPlanejados(),
                           pageSize: 25,
                           shrinkWrap: true,
                           reverse: true,
