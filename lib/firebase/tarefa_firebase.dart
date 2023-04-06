@@ -7,30 +7,30 @@ class TarefaFirebase {
 
   getTarefasPlanejados() {
     return tarefas
-        .where('id', isEqualTo: currentUsuario.value!['email'])
+        .where('idUsuario', isEqualTo: currentUsuario.value!['email'])
         .where('concluida', isEqualTo: false)
         .orderBy('notificacao', descending: true);
   }
 
   getAllTarefasDia(String data) {
     return tarefas
-        .where('id', isEqualTo: currentUsuario.value)
+        .where('idUsuario', isEqualTo: currentUsuario.value)
         .where('dia', isEqualTo: data);
   }
 
   getTarefa(String IdTarefa) {
-    return tarefas.where('id', isEqualTo: IdTarefa).get();
+    return tarefas.where('idUsuario', isEqualTo: IdTarefa).get();
   }
 
   pathTarefa(Map<String, dynamic> tarefa) {
-    return tarefas.doc(tarefa['id']).update(tarefa);
+    return tarefas.doc(tarefa['idUsuario']).update(tarefa);
   }
 
-  pathTarefaAberto(Map<String, dynamic> tarefa) {
+  pathTarefaConcluida(Map<String, dynamic> tarefa) {
     return tarefas.doc(tarefa['id']).update({'concluida': tarefa['concluida']});
   }
 
   postTarefa(Map<String, dynamic> tarefa) {
-    return tarefas.doc(tarefa['id']).set(tarefa);
+    return tarefas.doc(tarefa['idUsuario']).set(tarefa);
   }
 }

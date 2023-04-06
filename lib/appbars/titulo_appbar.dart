@@ -42,7 +42,7 @@ class _HeaderWidgetState extends State<TituloAppbar> {
           ),
           if (widget._page == PageEnum.planejados)
             IconButton(
-              onPressed: () => context.go(RouteEnum.PERFIL.value),
+              onPressed: () => context.push(RouteEnum.PERFIL.value),
               icon: const AvatarWidget(size: UiSize.avatarPerfil),
             )
         ],

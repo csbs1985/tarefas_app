@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 
@@ -21,7 +22,7 @@ class _VoltarAppbarState extends State<VoltarAppbar> {
         padding: const EdgeInsets.only(left: 8),
         child: IconButton(
           icon: SvgPicture.asset(UiSvg.voltar, color: currentCor.value),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.pop(),
         ),
       ),
     );

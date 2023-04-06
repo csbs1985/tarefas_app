@@ -78,7 +78,7 @@ class _CalendarPageState extends State<CalendarioPage> {
                     Map<String, dynamic> tarefa = snapshot.data();
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8),
-                      child: TarefaItemWidget(item: tarefa),
+                      child: TarefaItemWidget(tarefa: tarefa),
                     );
                   },
                 ),

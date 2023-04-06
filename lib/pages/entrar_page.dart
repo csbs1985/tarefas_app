@@ -18,9 +18,10 @@ class _EntrarPageState extends State<EntrarPage> {
   final UsuarioClass _usuarioClass = UsuarioClass();
 
   signInWithGoogle(BuildContext context) async {
-    await _authService
-        .signInWithGoogle(context)
-        .then((user) => setState(() => _usuarioClass.setUsuario(user!)));
+    await _authService.signInWithGoogle(context).then((user) {
+      Map<String, dynamic> userMap = _usuarioClass.userToMap(user!);
+      setState(() => _usuarioClass.setUsuario(userMap));
+    });
   }
 
   @override

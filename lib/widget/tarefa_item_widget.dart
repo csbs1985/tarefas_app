@@ -15,10 +15,13 @@ import 'package:tarefas_app/widget/toast_widget.dart';
 class TarefaItemWidget extends StatefulWidget {
   const TarefaItemWidget({
     super.key,
-    required Map<String, dynamic> item,
-  }) : _item = item;
+    required Map<String, dynamic> tarefa,
+    bool? iconeConcluido,
+  })  : _tarefa = tarefa,
+        _iconeConcluido = iconeConcluido;
 
-  final Map<String, dynamic> _item;
+  final Map<String, dynamic> _tarefa;
+  final bool? _iconeConcluido;
 
   @override
   State<TarefaItemWidget> createState() => _TarefaItemWidgetState();
@@ -30,24 +33,25 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final ToastWidget _toastWidget = ToastWidget();
 
-  void _onPressed() {
+  Future<void> _onPressed() async {
     try {
-      widget._item['concluida'] = !widget._item['concluida'];
-      _tarefaFirebase.pathTarefaAberto(widget._item);
-      _checkAberto();
+      setState(
+          () => widget._tarefa['concluida'] = !widget._tarefa['concluida']);
+      await Future.delayed(const Duration(seconds: 2),
+          () => _tarefaFirebase.pathTarefaConcluida(widget._tarefa));
     } catch (e) {
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_ERRO_UP);
     }
   }
 
-  SvgPicture _checkAberto() {
-    return widget._item['concluida']
-        ? SvgPicture.asset(UiSvg.aberto)
-        : SvgPicture.asset(UiSvg.fechado);
+  SvgPicture _boolSvgPicture() {
+    return widget._tarefa['concluida'] == true
+        ? SvgPicture.asset(UiSvg.fechado)
+        : SvgPicture.asset(UiSvg.aberto);
   }
 
   void _openModal() {
-    currentTarefa.value = widget._item;
+    currentTarefa.value = widget._tarefa;
 
     showCupertinoModalBottomSheet(
       expand: false,
@@ -71,7 +75,7 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _tarefaClass.svgPicture(widget._item['tipoTarefa']),
+            _tarefaClass.svgPicture(widget._tarefa['tipoTarefa']),
             Expanded(
               child: Padding(
                 padding:
@@ -80,22 +84,23 @@ class _TarefaItemWidgetState extends State<TarefaItemWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget._item['tarefa'],
+                      widget._tarefa['tarefa'],
                       style: UiText.headline1,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    _dataClass.formatDiaSemana(widget._item),
+                    _dataClass.formatDiaSemana(widget._tarefa),
                   ],
                 ),
               ),
             ),
-            IconButton(
-              splashColor: Colors.transparent,
-              icon: _checkAberto(),
-              color: currentCor.value,
-              onPressed: () => _onPressed(),
-            )
+            if (widget._iconeConcluido != false)
+              IconButton(
+                splashColor: Colors.transparent,
+                icon: _boolSvgPicture(),
+                color: currentCor.value,
+                onPressed: () => _onPressed(),
+              )
           ],
         ),
       ),

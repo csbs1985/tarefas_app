@@ -64,7 +64,7 @@ class DataClass {
     else if (diff > 1 && diff <= 7)
       dataFormatada = DateFormat('EEE', 'pt_BR').format(date);
     else
-      dataFormatada = DateFormat('dd/MM/yyyy').format(date);
+      dataFormatada = DateFormat('dd/MM').format(date);
 
     return Text(
       formatLegenda(tarefa, dataFormatada),

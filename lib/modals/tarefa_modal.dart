@@ -163,7 +163,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _tarefa = {
       'id': _uuid.v4(),
       'dataCriacao': DateTime.now().toString(),
-      'idUsuario': currentUsuario.value,
+      'idUsuario': currentUsuario.value!['email'],
       'tarefa': _nomeController.text,
       'tipoTarefa': _tipoTarefaController.text,
       'dia': _diaController.text,
@@ -190,7 +190,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _tarefa = {
       'id': currentTarefa.value!['id'],
       'dataCriacao': currentTarefa.value!['dataCriacao'],
-      'idUsuario': currentTarefa.value!['idUsuario'],
+      'idUsuario': currentTarefa.value!['email'],
       'tarefa': _nomeController.text,
       'tipoTarefa': _tipoTarefaController.text,
       'dia': _diaController.text,

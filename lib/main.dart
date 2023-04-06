@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:tarefas_app/core/auth_service.dart';
+import 'package:tarefas_app/core/hive_config.dart';
 import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_theme.dart';
@@ -13,6 +14,8 @@ void main() async {
   await initializeDateFormatting('pt_BR', null);
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  await HiveConfig.start();
 
   await Firebase.initializeApp();
 

@@ -8,6 +8,7 @@ import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
+import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -26,6 +27,7 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final UsuarioClass _usuarioClass = UsuarioClass();
+  final UsuarioHive _usuarioHive = UsuarioHive();
 
   PageController pageController = PageController();
 
@@ -40,9 +42,16 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
   }
 
   void signInWithGoogle(BuildContext context) async {
-    await _authService
-        .signInWithGoogle(context)
-        .then((user) => setState(() => _usuarioClass.setUsuario(user!)));
+    if (_usuarioHive.checkUsuario()) {
+      Map<String, dynamic> usuarioHive =
+          _usuarioClass.mapDynamicToMapString(_usuarioHive.readUsuario());
+      _usuarioClass.setUsuario(usuarioHive);
+    } else {
+      await _authService.signInWithGoogle(context).then((user) {
+        Map<String, dynamic> userMap = _usuarioClass.userToMap(user!);
+        setState(() => _usuarioClass.setUsuario(userMap));
+      });
+    }
   }
 
   void setCurrentPage(int page) {
@@ -50,7 +59,6 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
   }
 
   void _openModal(BuildContext context) {
-    setState(() => currentTarefa.value = _tarefa);
     _tarefaClass.openModal(context);
   }
 
@@ -89,7 +97,10 @@ class _PlanejamentoPageState extends State<PlanejamentoPage> {
                             _tarefa = snapshot.data();
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8),
-                              child: TarefaItemWidget(item: _tarefa!),
+                              child: TarefaItemWidget(
+                                iconeConcluido: true,
+                                tarefa: _tarefa!,
+                              ),
                             );
                           },
                         ),
