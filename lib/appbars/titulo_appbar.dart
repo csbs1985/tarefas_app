@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/classes/page_class.dart';
-import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/theme/ui_size.dart';
 import 'package:tarefas_app/widget/avatar_widget.dart';
 
@@ -9,12 +7,15 @@ class TituloAppbar extends StatefulWidget {
   const TituloAppbar({
     super.key,
     required PageEnum page,
+    required Function callback,
     bool back = false,
   })  : _page = page,
-        _back = back;
+        _back = back,
+        _callback = callback;
 
   final PageEnum _page;
   final bool _back;
+  final Function _callback;
 
   @override
   State<TituloAppbar> createState() => _HeaderWidgetState();
@@ -42,7 +43,7 @@ class _HeaderWidgetState extends State<TituloAppbar> {
           ),
           if (widget._page == PageEnum.planejados)
             IconButton(
-              onPressed: () => context.push(RouteEnum.PERFIL.value),
+              onPressed: () => widget._callback(),
               icon: const AvatarWidget(size: UiSize.avatarPerfil),
             )
         ],

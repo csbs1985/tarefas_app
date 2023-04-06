@@ -10,14 +10,14 @@ import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/avatar_widget.dart';
 
-class PerfilPage extends StatefulWidget {
-  const PerfilPage({super.key});
+class PerfilDrawer extends StatefulWidget {
+  const PerfilDrawer({super.key});
 
   @override
-  State<PerfilPage> createState() => _PerfilPageState();
+  State<PerfilDrawer> createState() => _PerfilPageState();
 }
 
-class _PerfilPageState extends State<PerfilPage> {
+class _PerfilPageState extends State<PerfilDrawer> {
   final AuthService authService = AuthService();
   final TarefaClass _tarefaClass = TarefaClass();
 

@@ -3,9 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/appbars/titulo_appbar.dart';
 import 'package:tarefas_app/classes/frequencia_class.dart';
-import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
 import 'package:tarefas_app/classes/tipo_select_class.dart';
@@ -248,7 +246,7 @@ class _TarefaPageState extends State<TarefaModal> {
           key: _formKey,
           child: Column(
             children: [
-              const TituloAppbar(page: PageEnum.tarefa),
+              // const TituloAppbar(page: PageEnum.tarefa),
               SelectInput(
                 controller: _tipoTarefaController,
                 tipo: TipoSelectEnum.tipoTarefa,

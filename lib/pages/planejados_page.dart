@@ -13,6 +13,7 @@ import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
+import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
 import 'package:tarefas_app/widget/tarefa_item_widget.dart';
 
@@ -24,6 +25,7 @@ class PlanejadosPage extends StatefulWidget {
 }
 
 class _PlanejamentoPageState extends State<PlanejadosPage> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final AuthService _authService = AuthService();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
@@ -66,10 +68,12 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         toolbarHeight: 8,
       ),
+      drawer: const PerfilDrawer(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SingleChildScrollView(
@@ -80,7 +84,10 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
                 builder: (BuildContext context, value, __) {
                   return Column(
                     children: [
-                      const TituloAppbar(page: PageEnum.planejados),
+                      TituloAppbar(
+                        page: PageEnum.planejados,
+                        callback: () => scaffoldKey.currentState!.openDrawer(),
+                      ),
                       if (currentUsuario.value!['email'] != null)
                         FirestoreListView<Map<String, dynamic>>(
                           query: _tarefaFirebase.getTarefasPlanejados(),

@@ -13,6 +13,7 @@ import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/calendario_widget.dart';
+import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
 import 'package:tarefas_app/widget/tarefa_item_widget.dart';
 
@@ -24,6 +25,7 @@ class CalendarioPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarioPage> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final TextEditingController _controller = TextEditingController();
@@ -50,13 +52,18 @@ class _CalendarPageState extends State<CalendarioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: const VoltarAppbar(),
+      drawer: const PerfilDrawer(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const TituloAppbar(page: PageEnum.calendario),
+              TituloAppbar(
+                page: PageEnum.calendario,
+                callback: () => scaffoldKey.currentState!.openDrawer(),
+              ),
               CalendarioWidget(
                 altura: 420,
                 controller: _controller,

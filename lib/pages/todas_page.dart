@@ -7,6 +7,7 @@ import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/appbars/titulo_appbar.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
+import 'package:tarefas_app/widget/perfil_drawer.dart';
 
 class TodasPage extends StatefulWidget {
   const TodasPage({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class TodasPage extends StatefulWidget {
 }
 
 class _AllPageState extends State<TodasPage> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TarefaClass _tarefaClass = TarefaClass();
 
   @override
@@ -27,14 +29,19 @@ class _AllPageState extends State<TodasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: const VoltarAppbar(),
+      drawer: const PerfilDrawer(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SingleChildScrollView(
           child: Column(
-            children: const [
-              TituloAppbar(page: PageEnum.todas),
-              Text(TODAS),
+            children: [
+              TituloAppbar(
+                page: PageEnum.todas,
+                callback: () => scaffoldKey.currentState!.openDrawer(),
+              ),
+              const Text(TODAS),
             ],
           ),
         ),

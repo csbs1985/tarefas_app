@@ -12,6 +12,7 @@ import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/appbars/titulo_appbar.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
+import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
 import 'package:tarefas_app/widget/tarefa_item_widget.dart';
 
@@ -23,6 +24,7 @@ class ConcluidasPage extends StatefulWidget {
 }
 
 class _ConcludedPageState extends State<ConcluidasPage> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
 
@@ -37,7 +39,9 @@ class _ConcludedPageState extends State<ConcluidasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: const VoltarAppbar(),
+      drawer: const PerfilDrawer(),
       body: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SingleChildScrollView(
@@ -45,7 +49,10 @@ class _ConcludedPageState extends State<ConcluidasPage> {
             children: [
               Column(
                 children: [
-                  const TituloAppbar(page: PageEnum.concluidas),
+                  TituloAppbar(
+                    page: PageEnum.concluidas,
+                    callback: () => scaffoldKey.currentState!.openDrawer(),
+                  ),
                   if (currentUsuario.value!['email'] != null)
                     FirestoreListView<Map<String, dynamic>>(
                       query: _tarefaFirebase.getTarefasConcluidas(),
