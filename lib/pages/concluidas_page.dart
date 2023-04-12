@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
-import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -67,10 +66,7 @@ class _ConcludedPageState extends State<ConcluidasPage> {
                         _tarefa = snapshot.data();
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8),
-                          child: ItemTarefaWidget(
-                            pagina: RouteEnum.CONCLUIDAS.value,
-                            tarefa: _tarefa!,
-                          ),
+                          child: ItemTarefaWidget(tarefa: _tarefa!),
                         );
                       },
                     ),

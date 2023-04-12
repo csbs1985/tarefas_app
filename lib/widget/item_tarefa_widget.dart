@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:tarefas_app/classes/data_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
@@ -17,19 +16,15 @@ class ItemTarefaWidget extends StatefulWidget {
   const ItemTarefaWidget({
     super.key,
     required Map<String, dynamic> tarefa,
-    required String pagina,
-  })  : _tarefa = tarefa,
-        _pagina = pagina;
+  }) : _tarefa = tarefa;
 
   final Map<String, dynamic> _tarefa;
-  final String _pagina;
 
   @override
   State<ItemTarefaWidget> createState() => _TarefaItemWidgetState();
 }
 
 class _TarefaItemWidgetState extends State<ItemTarefaWidget> {
-  final DataClass _dataClass = DataClass();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final ToastWidget _toastWidget = ToastWidget();

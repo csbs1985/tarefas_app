@@ -7,7 +7,6 @@ import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
-import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
@@ -101,10 +100,7 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
                             _tarefa = snapshot.data();
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8),
-                              child: ItemTarefaWidget(
-                                pagina: RouteEnum.PLANEJADOS.value,
-                                tarefa: _tarefa!,
-                              ),
+                              child: ItemTarefaWidget(tarefa: _tarefa!),
                             );
                           },
                         ),
