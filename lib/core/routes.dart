@@ -84,6 +84,10 @@ final GoRouter routes = GoRouter(
   ],
 );
 
+class RoutesClass {
+  static GlobalKey<NavigatorState>? navigatorKey = GlobalKey<NavigatorState>();
+}
+
 CustomTransitionPage buildPageWithDefaultTransition<T>({
   required BuildContext context,
   required GoRouterState state,

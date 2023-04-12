@@ -3,8 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/modals/tarefa_modal.dart';
+import 'package:tarefas_app/text/item_concluidas_text.dart';
 import 'package:tarefas_app/text/item_planejados_text.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -16,9 +18,12 @@ class ItemTarefaWidget extends StatefulWidget {
   const ItemTarefaWidget({
     super.key,
     required Map<String, dynamic> tarefa,
-  }) : _tarefa = tarefa;
+    required String pagina,
+  })  : _tarefa = tarefa,
+        _pagina = pagina;
 
   final Map<String, dynamic> _tarefa;
+  final String _pagina;
 
   @override
   State<ItemTarefaWidget> createState() => _TarefaItemWidgetState();
@@ -85,7 +90,10 @@ class _TarefaItemWidgetState extends State<ItemTarefaWidget> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    ItemPlanejamentoText(tarefa: widget._tarefa),
+                    if (widget._pagina == RouteEnum.PLANEJADOS.value)
+                      ItemPlanejamentoText(tarefa: widget._tarefa),
+                    if (widget._pagina == RouteEnum.CONCLUIDAS.value)
+                      ItemConcluidasText(tarefa: widget._tarefa),
                   ],
                 ),
               ),

@@ -2,11 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:tarefas_app/appbars/appbar.dart';
+import 'package:tarefas_app/classes/local_notification_classs.dart';
 import 'package:tarefas_app/classes/page_class.dart';
 import 'package:tarefas_app/classes/tarefa_class.dart';
 import 'package:tarefas_app/classes/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
@@ -38,9 +41,15 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   @override
   void initState() {
     super.initState();
+    checkForNotifications();
     currentCor.value = UiColor.planejados;
     signInWithGoogle(context);
     pageController = PageController(initialPage: currentPageInt.value);
+  }
+
+  checkForNotifications() async {
+    await Provider.of<NotificationService>(context, listen: false)
+        .checkForNotifications();
   }
 
   void signInWithGoogle(BuildContext context) async {
@@ -61,7 +70,18 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   }
 
   void _openModal(BuildContext context) {
-    _tarefaClass.openModal(context);
+    // _tarefaClass.openModal(context);
+    LocalNotificationsTests();
+  }
+
+  void LocalNotificationsTests() {
+    Provider.of<NotificationService>(context, listen: false)
+        .showLocalNotification(LocalNotificationModel(
+      id: 0,
+      title: "titulo da notificação",
+      body: 'corpo da notificação',
+      payload: RouteEnum.PLANEJADOS.value,
+    ));
   }
 
   @override
@@ -100,7 +120,10 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
                             _tarefa = snapshot.data();
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8),
-                              child: ItemTarefaWidget(tarefa: _tarefa!),
+                              child: ItemTarefaWidget(
+                                pagina: RouteEnum.PLANEJADOS.value,
+                                tarefa: _tarefa!,
+                              ),
                             );
                           },
                         ),

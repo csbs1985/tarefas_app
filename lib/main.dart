@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:tarefas_app/classes/local_notification_classs.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/hive_config.dart';
 import 'package:tarefas_app/core/routes.dart';
@@ -26,6 +27,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
+        Provider<NotificationService>(
+            create: (context) => NotificationService())
       ],
       child: const MyApp(),
     ),
