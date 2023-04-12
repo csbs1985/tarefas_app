@@ -42,7 +42,7 @@ class DataClass {
 
   String unirDataHora(String data, String hora) {
     String dataFormat = data.substring(0, 10);
-    return '$dataFormat $hora';
+    return '$dataFormat $hora:00.000';
   }
 
   String itemPlanejadosString(Map<String, dynamic> tarefa) {
