@@ -13,8 +13,8 @@ import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
-class TarefaItemWidget extends StatefulWidget {
-  const TarefaItemWidget({
+class ItemTarefaWidget extends StatefulWidget {
+  const ItemTarefaWidget({
     super.key,
     required Map<String, dynamic> tarefa,
     required String pagina,
@@ -25,10 +25,10 @@ class TarefaItemWidget extends StatefulWidget {
   final String _pagina;
 
   @override
-  State<TarefaItemWidget> createState() => _TarefaItemWidgetState();
+  State<ItemTarefaWidget> createState() => _TarefaItemWidgetState();
 }
 
-class _TarefaItemWidgetState extends State<TarefaItemWidget> {
+class _TarefaItemWidgetState extends State<ItemTarefaWidget> {
   final DataClass _dataClass = DataClass();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();

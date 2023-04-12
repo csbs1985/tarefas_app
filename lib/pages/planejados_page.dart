@@ -15,7 +15,7 @@ import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
-import 'package:tarefas_app/widget/tarefa_item_widget.dart';
+import 'package:tarefas_app/widget/item_tarefa_widget.dart';
 
 class PlanejadosPage extends StatefulWidget {
   const PlanejadosPage({Key? key}) : super(key: key);
@@ -101,7 +101,7 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
                             _tarefa = snapshot.data();
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8),
-                              child: TarefaItemWidget(
+                              child: ItemTarefaWidget(
                                 pagina: RouteEnum.PLANEJADOS.value,
                                 tarefa: _tarefa!,
                               ),

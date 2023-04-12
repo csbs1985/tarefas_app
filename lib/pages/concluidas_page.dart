@@ -13,7 +13,7 @@ import 'package:tarefas_app/appbars/appbar.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
-import 'package:tarefas_app/widget/tarefa_item_widget.dart';
+import 'package:tarefas_app/widget/item_tarefa_widget.dart';
 
 class ConcluidasPage extends StatefulWidget {
   const ConcluidasPage({Key? key}) : super(key: key);
@@ -67,7 +67,7 @@ class _ConcludedPageState extends State<ConcluidasPage> {
                         _tarefa = snapshot.data();
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8),
-                          child: TarefaItemWidget(
+                          child: ItemTarefaWidget(
                             pagina: RouteEnum.CONCLUIDAS.value,
                             tarefa: _tarefa!,
                           ),
