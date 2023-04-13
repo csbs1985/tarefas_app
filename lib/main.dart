@@ -20,6 +20,8 @@ void main() async {
 
   await Firebase.initializeApp();
 
+  await LocalNotificationClass.createNotificationChannel();
+
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -27,8 +29,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
-        Provider<NotificationService>(
-            create: (context) => NotificationService())
+        Provider<LocalNotificationClass>(
+            create: (context) => LocalNotificationClass())
       ],
       child: const MyApp(),
     ),

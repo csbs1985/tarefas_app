@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
@@ -9,7 +10,6 @@ import 'package:tarefas_app/class/page_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
-import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
@@ -41,15 +41,17 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   @override
   void initState() {
     super.initState();
-    checkForNotifications();
+    localNotifications();
     currentCor.value = UiColor.planejados;
     signInWithGoogle(context);
     pageController = PageController(initialPage: currentPageInt.value);
   }
 
-  checkForNotifications() async {
-    await Provider.of<NotificationService>(context, listen: false)
-        .checkForNotifications();
+  localNotifications() async {
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed)
+        AwesomeNotifications().requestPermissionToSendNotifications();
+    });
   }
 
   void signInWithGoogle(BuildContext context) async {
@@ -69,19 +71,10 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
     setState(() => currentPageInt.value = page);
   }
 
-  void _openModal(BuildContext context) {
+  Future<void> _openModal(BuildContext context) async {
     // _tarefaClass.openModal(context);
-    LocalNotificationsTests();
-  }
-
-  void LocalNotificationsTests() {
-    Provider.of<NotificationService>(context, listen: false)
-        .showLocalNotification(LocalNotificationModel(
-      id: 0,
-      title: "titulo da notificação",
-      body: 'corpo da notificação',
-      payload: RouteEnum.PLANEJADOS.value,
-    ));
+    await Provider.of<LocalNotificationClass>(context, listen: false)
+        .createNewNotification();
   }
 
   @override

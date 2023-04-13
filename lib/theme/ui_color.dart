@@ -21,7 +21,7 @@ class UiColor {
   static const Color buttonSecondary = Color(0xFF3F3F3F);
   static const Color buttonSelected = Color(0xFFc89550);
   static const Color element = Color(0xFF3F3F3F);
-  static const Color icon = Color(0x90e4e8ec);
+  static const Color icon = Color(0xFFe4e8ec);
   static const Color input = Color(0xFF121212);
   static const Color link = Color(0xFF8ab4f8);
   static const Color modal = Color(0xFF121212);
