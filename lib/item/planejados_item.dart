@@ -1,37 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:tarefas_app/classes/tarefa_class.dart';
+import 'package:tarefas_app/class/color_class.dart';
+import 'package:tarefas_app/class/tarefa_class.dart';
+import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
-import 'package:tarefas_app/modals/tarefa_modal.dart';
-import 'package:tarefas_app/text/item_concluidas_text.dart';
-import 'package:tarefas_app/text/item_planejados_text.dart';
+import 'package:tarefas_app/modal/tarefa_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
-class ItemTarefaWidget extends StatefulWidget {
-  const ItemTarefaWidget({
+class PlanejadosItem extends StatefulWidget {
+  const PlanejadosItem({
     super.key,
     required Map<String, dynamic> tarefa,
-    required String pagina,
-  })  : _tarefa = tarefa,
-        _pagina = pagina;
+  }) : _tarefa = tarefa;
 
   final Map<String, dynamic> _tarefa;
-  final String _pagina;
 
   @override
-  State<ItemTarefaWidget> createState() => _TarefaItemWidgetState();
+  State<PlanejadosItem> createState() => _TarefaItemWidgetState();
 }
 
-class _TarefaItemWidgetState extends State<ItemTarefaWidget> {
+class _TarefaItemWidgetState extends State<PlanejadosItem> {
+  final ColorClass _colorClass = ColorClass();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
+  final TextClass _textClass = TextClass();
   final ToastWidget _toastWidget = ToastWidget();
 
   Future<void> _onPressed() async {
@@ -70,7 +68,7 @@ class _TarefaItemWidgetState extends State<ItemTarefaWidget> {
       child: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
         decoration: BoxDecoration(
-          color: UiColor.item_tarefa,
+          color: _colorClass.colorAtrasada(widget._tarefa),
           borderRadius: BorderRadius.circular(UiBorder.rounded),
         ),
         child: Row(
@@ -90,10 +88,12 @@ class _TarefaItemWidgetState extends State<ItemTarefaWidget> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    if (widget._pagina == RouteEnum.PLANEJADOS.value)
-                      ItemPlanejamentoText(tarefa: widget._tarefa),
-                    if (widget._pagina == RouteEnum.CONCLUIDAS.value)
-                      ItemConcluidasText(tarefa: widget._tarefa),
+                    Text(
+                      _textClass.stringLegenda(widget._tarefa),
+                      style: UiText.headline1,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
               ),

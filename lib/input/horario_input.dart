@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:tarefas_app/buttons/limpar_button.dart';
+import 'package:tarefas_app/button/limpar_button.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/modals/horario_modal.dart';
+import 'package:tarefas_app/modal/horario_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';

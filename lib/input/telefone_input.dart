@@ -1,7 +1,7 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter/services.dart';
-import 'package:tarefas_app/buttons/limpar_button.dart';
+import 'package:tarefas_app/button/limpar_button.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_text.dart';

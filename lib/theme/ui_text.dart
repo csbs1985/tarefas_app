@@ -97,6 +97,14 @@ class UiText {
     color: UiColor.concluidas,
   );
 
+  static const TextStyle headline10 = TextStyle(
+    fontSize: 16,
+    fontFamily: 'ElementalSansPro',
+    fontWeight: FontWeight.normal,
+    color: UiColor.text_1,
+    decoration: TextDecoration.lineThrough,
+  );
+
   static const TextStyle button = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,

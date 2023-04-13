@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
-import 'package:tarefas_app/buttons/limpar_button.dart';
-import 'package:tarefas_app/classes/valor_class.dart';
+import 'package:tarefas_app/button/limpar_button.dart';
+import 'package:tarefas_app/class/valor_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_text.dart';

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tarefas_app/classes/usuario_class.dart';
+import 'package:tarefas_app/class/usuario_class.dart';
 
 class TarefaFirebase {
   CollectionReference tarefas =

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/classes/frequencia_class.dart';
-import 'package:tarefas_app/classes/tipo_frequencia_class.dart';
+import 'package:tarefas_app/class/frequencia_class.dart';
+import 'package:tarefas_app/class/tipo_frequencia_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/texto_input.dart';
 import 'package:tarefas_app/theme/ui_border.dart';

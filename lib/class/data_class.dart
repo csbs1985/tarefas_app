@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tarefas_app/classes/endereco_class.dart';
-import 'package:tarefas_app/classes/tipo-tarefa_class.dart';
+import 'package:tarefas_app/class/endereco_class.dart';
+import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 
 class DataClass {
   final EnderecoClass _enderecoClass = EnderecoClass();

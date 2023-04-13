@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/classes/usuario_class.dart';
+import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';

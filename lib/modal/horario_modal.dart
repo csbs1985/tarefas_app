@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:tarefas_app/buttons/floating_button.dart';
+import 'package:tarefas_app/button/floating_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/widget/horario_widget.dart';
 

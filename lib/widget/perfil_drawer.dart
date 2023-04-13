@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tarefas_app/classes/tarefa_class.dart';
-import 'package:tarefas_app/classes/usuario_class.dart';
+import 'package:tarefas_app/class/tarefa_class.dart';
+import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/core/routes.dart';

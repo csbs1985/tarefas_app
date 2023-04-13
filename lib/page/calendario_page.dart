@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/appbars/appbar.dart';
-import 'package:tarefas_app/classes/page_class.dart';
-import 'package:tarefas_app/classes/tarefa_class.dart';
-import 'package:tarefas_app/classes/usuario_class.dart';
-import 'package:tarefas_app/core/routes.dart';
+import 'package:tarefas_app/appbar/appbar.dart';
+import 'package:tarefas_app/class/page_class.dart';
+import 'package:tarefas_app/class/tarefa_class.dart';
+import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -14,7 +13,7 @@ import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/calendario_widget.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
-import 'package:tarefas_app/widget/item_tarefa_widget.dart';
+import 'package:tarefas_app/item/planejados_item.dart';
 
 class CalendarioPage extends StatefulWidget {
   const CalendarioPage({Key? key}) : super(key: key);
@@ -84,10 +83,7 @@ class _CalendarPageState extends State<CalendarioPage> {
                     Map<String, dynamic> tarefa = snapshot.data();
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8),
-                      child: ItemTarefaWidget(
-                        pagina: RouteEnum.CALENDARIO.value,
-                        tarefa: tarefa,
-                      ),
+                      child: PlanejadosItem(tarefa: tarefa),
                     );
                   },
                 ),

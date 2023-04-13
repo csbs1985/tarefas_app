@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:camera_camera/camera_camera.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:image_picker/image_picker.dart';
-import 'package:tarefas_app/classes/carregamento_class.dart';
+import 'package:tarefas_app/class/carregamento_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_button.dart';
 import 'package:tarefas_app/theme/ui_color.dart';

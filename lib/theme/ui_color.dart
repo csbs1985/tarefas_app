@@ -14,6 +14,7 @@ class UiColor {
   static const Color erro = Color(0xFFd75a31);
   static const Color sucesso = Color(0xFF54c893);
 
+  static const Color atrasada = Color(0xFFd75a31);
   static const Color background = Color(0xFF121212);
   static const Color border = Color(0xFF3F3F3F);
   static const Color button = Color(0xFF3F3F3F);

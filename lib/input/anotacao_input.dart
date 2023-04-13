@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:tarefas_app/buttons/limpar_button.dart';
+import 'package:tarefas_app/button/limpar_button.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/modals/anotacao_modal.dart';
+import 'package:tarefas_app/modal/anotacao_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';

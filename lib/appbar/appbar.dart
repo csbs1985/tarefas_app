@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:tarefas_app/classes/page_class.dart';
+import 'package:tarefas_app/class/page_class.dart';
 import 'package:tarefas_app/theme/ui_size.dart';
 import 'package:tarefas_app/widget/avatar_widget.dart';
 

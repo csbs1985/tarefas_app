@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/pages/calendario_page.dart';
-import 'package:tarefas_app/pages/concluidas_page.dart';
-import 'package:tarefas_app/pages/entrar_page.dart';
-import 'package:tarefas_app/pages/planejados_page.dart';
-import 'package:tarefas_app/modals/tarefa_modal.dart';
-import 'package:tarefas_app/pages/todas_page.dart';
+import 'package:tarefas_app/page/calendario_page.dart';
+import 'package:tarefas_app/page/concluidas_page.dart';
+import 'package:tarefas_app/page/entrar_page.dart';
+import 'package:tarefas_app/page/planejados_page.dart';
+import 'package:tarefas_app/modal/tarefa_modal.dart';
+import 'package:tarefas_app/page/todas_page.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
 final AuthService _authService = AuthService();

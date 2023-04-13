@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/classes/endereco_class.dart';
+import 'package:tarefas_app/class/endereco_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/cep_input.dart';
 import 'package:tarefas_app/input/texto_input.dart';

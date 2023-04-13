@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
-import 'package:tarefas_app/classes/horario_class.dart';
+import 'package:tarefas_app/class/horario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 

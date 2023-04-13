@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/classes/page_class.dart';
-import 'package:tarefas_app/classes/tarefa_class.dart';
+import 'package:tarefas_app/class/page_class.dart';
+import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/appbars/appbar.dart';
+import 'package:tarefas_app/appbar/appbar.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 
