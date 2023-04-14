@@ -1,5 +1,4 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/material.dart';
 
 class LocalNotificationModel {
   final int id;
@@ -18,8 +17,7 @@ class LocalNotificationModel {
 class LocalNotificationClass {
   static Future<void> createNotificationChannel() async {
     await AwesomeNotifications().initialize(
-      null,
-      // 'resource://drawable/splash.png',
+      'resource://drawable/ic_launcher_foreground',
       [
         NotificationChannel(
           channelKey: 'basic_channel',
@@ -30,8 +28,6 @@ class LocalNotificationClass {
           groupAlertBehavior: GroupAlertBehavior.Children,
           importance: NotificationImportance.High,
           defaultPrivacy: NotificationPrivacy.Private,
-          defaultColor: Colors.deepPurple,
-          ledColor: Colors.deepPurple,
         )
       ],
       debug: true,
@@ -46,7 +42,7 @@ class LocalNotificationClass {
       content: NotificationContent(
         id: 1,
         channelKey: 'basic_channel',
-        title: 'Minha notificação',
+        title: 'Tarefas',
         body: 'Esta é uma notificação de exemplo do Charles',
         payload: {'data': 'qualquer dado'},
       ),

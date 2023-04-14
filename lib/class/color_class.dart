@@ -9,6 +9,6 @@ class ColorClass {
     String dataTarefa = dataClass.itemPlanejadosString(tarefa);
     return dataTarefa.contains("atrasada")
         ? UiColor.atrasada
-        : UiColor.background;
+        : UiColor.item_tarefa;
   }
 }

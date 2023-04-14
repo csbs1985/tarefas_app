@@ -35,10 +35,10 @@ class UsuarioClass {
 
   setUsuario(Map<String, dynamic> usuario) {
     currentUsuario.value = {
-      'id': usuario['id'],
-      'nome': usuario['nome'],
+      'id': usuario['uid'],
+      'nome': usuario['displayName'],
       'email': usuario['email'],
-      'avatar': usuario['avatar'],
+      'avatar': usuario['photoUrl'],
     };
   }
 

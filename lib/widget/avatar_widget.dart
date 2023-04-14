@@ -17,12 +17,17 @@ class AvatarWidget extends StatefulWidget {
 class _AvatarWidgetState extends State<AvatarWidget> {
   @override
   Widget build(BuildContext context) {
-    return currentUsuario.value!['avatar'] != null
-        ? CircleAvatar(
-            radius: widget._size,
-            backgroundImage: NetworkImage(currentUsuario.value!['avatar']))
-        : CircleAvatar(
-            radius: widget._size,
-            backgroundImage: const AssetImage(UiImage.avatar));
+    return ValueListenableBuilder(
+      valueListenable: currentUsuario,
+      builder: (BuildContext context, Map<String, dynamic>? usuario, _) {
+        return usuario!['avatar'] != null
+            ? CircleAvatar(
+                radius: widget._size,
+                backgroundImage: NetworkImage(usuario['avatar']))
+            : CircleAvatar(
+                radius: widget._size,
+                backgroundImage: const AssetImage(UiImage.avatar));
+      },
+    );
   }
 }
