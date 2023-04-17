@@ -137,15 +137,27 @@ class TarefaClass {
     );
   }
 
-  listToMap() {
+  formatPlanejados() {
     _tarefaHive.clearTarefas();
-    Map<String, dynamic>? tarefaItem;
-    List<Map<String, dynamic>> listaTarefas = [];
     List<dynamic> listHive = _tarefaHive.getAllTarefas();
     List tarefas =
         listHive.where((tarefa) => tarefa['concluida'] != true).toList();
-
     tarefas.sort((a, b) => a!['notificacao'].compareTo(b!['notificacao']));
+    return listToMap(tarefas);
+  }
+
+  formatConcluidas() {
+    _tarefaHive.clearTarefas();
+    List<dynamic> listHive = _tarefaHive.getAllTarefas();
+    List tarefas =
+        listHive.where((tarefa) => tarefa['concluida'] == true).toList();
+    tarefas.sort((a, b) => a!['notificacao'].compareTo(b!['notificacao']));
+    return listToMap(tarefas);
+  }
+
+  listToMap(List<dynamic> tarefas) {
+    Map<String, dynamic>? tarefaItem;
+    List<Map<String, dynamic>> listaTarefas = [];
 
     for (var item in tarefas) {
       tarefaItem = {

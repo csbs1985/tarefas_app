@@ -88,7 +88,7 @@ class _TarefaItemWidgetState extends State<ConcluidasItem> {
                     ),
                     Text(
                       _textClass.stringLegenda(widget._tarefa),
-                      style: UiText.headline10,
+                      style: UiText.headline1,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

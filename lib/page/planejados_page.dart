@@ -41,7 +41,7 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   }
 
   initListView() {
-    _tarefa = _tarefaClass.listToMap();
+    _tarefa = _tarefaClass.formatPlanejados();
     setState(() => isLoading = false);
   }
 
