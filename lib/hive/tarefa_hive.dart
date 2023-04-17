@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:tarefas_app/class/usuario_class.dart';
 
 class TarefaHive {
   final _tarefaBox = Hive.box('tarefa');
@@ -9,19 +8,7 @@ class TarefaHive {
   }
 
   getAllTarefas() {
-    var tarefas = _tarefaBox.values
-        .where((element) => element['idUsuario'] == currentUsuario.value![''])
-        .toList();
-
-    return tarefas;
-  }
-
-  getAllPlanejados() {
-    var tarefas = _tarefaBox.values
-        .where((element) => element['concluida'] == false)
-        .toList();
-
-    return tarefas;
+    return _tarefaBox.values.toList();
   }
 
   deleteTarefa() {
@@ -34,5 +21,9 @@ class TarefaHive {
 
   checkTarefa() {
     return _tarefaBox.isNotEmpty;
+  }
+
+  Future<void> clearTarefas() async {
+    await _tarefaBox.clear();
   }
 }

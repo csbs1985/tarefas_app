@@ -183,7 +183,7 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaHive.addTarefa(_tarefa);
-    // _tarefaClass.postTarefa(_tarefa);
+    _tarefaClass.postTarefa(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
   }
 
@@ -210,7 +210,7 @@ class _TarefaPageState extends State<TarefaModal> {
       'concluida': currentTarefa.value!['concluida'],
     };
 
-    // _tarefaClass.pathTarefa(_tarefa);
+    _tarefaClass.pathTarefa(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
   }
 
@@ -244,12 +244,11 @@ class _TarefaPageState extends State<TarefaModal> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              // const Appbar(page: PageEnum.tarefa),
               SelectInput(
                 controller: _tipoTarefaController,
                 tipo: TipoSelectEnum.tipoTarefa,

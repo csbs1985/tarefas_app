@@ -66,7 +66,7 @@ class _TarefaItemWidgetState extends State<PlanejadosItem> {
     return GestureDetector(
       onTap: () => _openModal(),
       child: Container(
-        padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
+        padding: const EdgeInsets.fromLTRB(8, 0, 16, 0),
         decoration: BoxDecoration(
           color: _colorClass.colorAtrasada(widget._tarefa),
           borderRadius: BorderRadius.circular(UiBorder.rounded),
@@ -74,7 +74,12 @@ class _TarefaItemWidgetState extends State<PlanejadosItem> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _tarefaClass.svgPicture(widget._tarefa['tipoTarefa']),
+            IconButton(
+              splashColor: Colors.transparent,
+              icon: _boolSvgPicture(),
+              color: currentCor.value,
+              onPressed: () => _onPressed(),
+            ),
             Expanded(
               child: Padding(
                 padding:
@@ -98,12 +103,7 @@ class _TarefaItemWidgetState extends State<PlanejadosItem> {
                 ),
               ),
             ),
-            IconButton(
-              splashColor: Colors.transparent,
-              icon: _boolSvgPicture(),
-              color: currentCor.value,
-              onPressed: () => _onPressed(),
-            )
+            _tarefaClass.svgPicture(widget._tarefa['tipoTarefa']),
           ],
         ),
       ),

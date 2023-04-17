@@ -95,7 +95,6 @@ class TarefaClass {
       for (var item in result.docs) {
         Map<String, dynamic> tarefas = tarefaToMap(item);
         _tarefaHive.addTarefa(tarefas);
-        print("object");
       }
     });
   }
@@ -136,5 +135,43 @@ class TarefaClass {
       duration: const Duration(milliseconds: 300),
       builder: (context) => const TarefaModal(),
     );
+  }
+
+  listToMap() {
+    _tarefaHive.clearTarefas();
+    Map<String, dynamic>? tarefaItem;
+    List<Map<String, dynamic>> listaTarefas = [];
+    List<dynamic> listHive = _tarefaHive.getAllTarefas();
+    List tarefas =
+        listHive.where((tarefa) => tarefa['concluida'] != true).toList();
+
+    tarefas.sort((a, b) => a!['notificacao'].compareTo(b!['notificacao']));
+
+    for (var item in tarefas) {
+      tarefaItem = {
+        'id': item['id'],
+        'dataCriacao': item['dataCriacao'],
+        'idUsuario': item['idUsuario'],
+        'tarefa': item['tarefa'],
+        'tipoTarefa': item['tipoTarefa'],
+        'dia': item['dia'],
+        'notificacao': item['notificacao'],
+        'frequencia': item['frequencia'],
+        'valor': item['valor'],
+        'tipoMovimentacao': item['tipoMovimentacao'],
+        'formaPagamento': item['formaPagamento'],
+        'anotacao': item['anotacao'],
+        'telefone': item['telefone'],
+        'endereco': item['endereco'],
+        'horario': item['horario'],
+        'link': item['link'],
+        'anexo': item['anexo'],
+        'concluida': item['concluida'],
+      };
+
+      listaTarefas.add(tarefaItem);
+    }
+
+    return listaTarefas;
   }
 }

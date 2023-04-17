@@ -10,10 +10,10 @@ import 'package:tarefas_app/widget/toast_widget.dart';
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final TarefaClass _tarefaClass = TarefaClass();
   final ToastWidget _toastWidget = ToastWidget();
   final UsuarioClass _usuarioClass = UsuarioClass();
   final UsuarioHive _usuarioHive = UsuarioHive();
-  final TarefaClass _tarefaClass = TarefaClass();
 
   User? usuario;
 
