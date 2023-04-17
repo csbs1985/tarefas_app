@@ -25,8 +25,10 @@ class TarefaFirebase {
         .where('dia', isEqualTo: data);
   }
 
-  getTarefa(String IdTarefa) {
-    return tarefas.where('idUsuario', isEqualTo: IdTarefa).get();
+  getAllTarefa() {
+    return tarefas
+        .where('idUsuario', isEqualTo: currentUsuario.value!['email'])
+        .get();
   }
 
   pathTarefa(Map<String, dynamic> tarefa) {

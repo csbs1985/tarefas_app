@@ -3,9 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'package:tarefas_app/appbar/appbar.dart';
-import 'package:tarefas_app/class/local_notification_classs.dart';
 import 'package:tarefas_app/class/page_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
@@ -34,17 +32,14 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   final UsuarioClass _usuarioClass = UsuarioClass();
   final UsuarioHive _usuarioHive = UsuarioHive();
 
-  PageController pageController = PageController();
-
   Map<String, dynamic>? _tarefa;
 
   @override
   void initState() {
     super.initState();
     localNotifications();
-    currentCor.value = UiColor.planejados;
     signInWithGoogle(context);
-    pageController = PageController(initialPage: currentPageInt.value);
+    currentCor.value = UiColor.planejados;
   }
 
   localNotifications() async {
@@ -54,16 +49,13 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
     });
   }
 
-  void signInWithGoogle(BuildContext context) async {
+  signInWithGoogle(BuildContext context) async {
     if (_usuarioHive.checkUsuario()) {
       Map<String, dynamic> usuarioHive =
           _usuarioClass.mapDynamicToMapString(_usuarioHive.readUsuario());
       _usuarioClass.setUsuario(usuarioHive);
     } else {
-      await _authService.signInWithGoogle(context).then((user) {
-        Map<String, dynamic> userMap = _usuarioClass.userToMap(user!);
-        setState(() => _usuarioClass.setUsuario(userMap));
-      });
+      await _authService.signIn(context);
     }
   }
 
@@ -72,9 +64,9 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   }
 
   Future<void> _openModal(BuildContext context) async {
-    // _tarefaClass.openModal(context);
-    await Provider.of<LocalNotificationClass>(context, listen: false)
-        .createNewNotification();
+    _tarefaClass.openModal(context);
+    // await Provider.of<LocalNotificationClass>(context, listen: false)
+    //     .createNewNotification();
   }
 
   @override

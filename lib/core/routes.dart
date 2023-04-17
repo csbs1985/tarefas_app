@@ -13,7 +13,7 @@ import 'package:tarefas_app/theme/ui_text.dart';
 final AuthService _authService = AuthService();
 
 final GoRouter routes = GoRouter(
-  debugLogDiagnostics: true,
+  debugLogDiagnostics: false,
   initialLocation: RouteEnum.PLANEJADOS.value,
   refreshListenable: _authService,
   redirect: (context, state) {

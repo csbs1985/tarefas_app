@@ -1,21 +1,38 @@
 import 'package:hive/hive.dart';
+import 'package:tarefas_app/class/usuario_class.dart';
 
 class TarefaHive {
   final _tarefaBox = Hive.box('tarefa');
 
-  addUsuario(Map<String, dynamic> usuario) {
-    _tarefaBox.add(usuario);
+  addTarefa(Map<String, dynamic> tarefa) {
+    _tarefaBox.add(tarefa);
   }
 
-  deleteUsuario() {
+  getAllTarefas() {
+    var tarefas = _tarefaBox.values
+        .where((element) => element['idUsuario'] == currentUsuario.value![''])
+        .toList();
+
+    return tarefas;
+  }
+
+  getAllPlanejados() {
+    var tarefas = _tarefaBox.values
+        .where((element) => element['concluida'] == false)
+        .toList();
+
+    return tarefas;
+  }
+
+  deleteTarefa() {
     _tarefaBox.delete(0);
   }
 
-  readUsuario() {
+  readTarefa() {
     return _tarefaBox.get(1);
   }
 
-  checkUsuario() {
+  checkTarefa() {
     return _tarefaBox.isNotEmpty;
   }
 }

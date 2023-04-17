@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,6 +9,7 @@ import 'package:tarefas_app/class/notificacao_class.dart';
 import 'package:tarefas_app/class/tipo-movimentacao_class.dart';
 import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
+import 'package:tarefas_app/hive/tarefa_hive.dart';
 import 'package:tarefas_app/modal/tarefa_modal.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -61,6 +63,42 @@ class TarefaModel {
 
 class TarefaClass {
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
+  final TarefaHive _tarefaHive = TarefaHive();
+
+  tarefaToMap(QueryDocumentSnapshot tarefa) {
+    Map<String, dynamic> tarefaMap = {
+      'id': tarefa['id'],
+      'dataCriacao': tarefa['dataCriacao'],
+      'idUsuario': tarefa['idUsuario'],
+      'tarefa': tarefa['tarefa'],
+      'tipoTarefa': tarefa['tipoTarefa'],
+      'dia': tarefa['dia'],
+      'notificacao': tarefa['notificacao'],
+      'frequencia': tarefa['frequencia'],
+      'valor': tarefa['valor'],
+      'tipoMovimentacao': tarefa['tipoMovimentacao'],
+      'formaPagamento': tarefa['formaPagamento'],
+      'anotacao': tarefa['anotacao'],
+      'telefone': tarefa['telefone'],
+      'endereco': tarefa['endereco'],
+      'horario': tarefa['horario'],
+      'link': tarefa['link'],
+      'anexo': tarefa['anexo'],
+      'concluida': tarefa['concluida'],
+    };
+
+    return tarefaMap;
+  }
+
+  addTarefasHive() async {
+    await _tarefaFirebase.getAllTarefa().then((result) {
+      for (var item in result.docs) {
+        Map<String, dynamic> tarefas = tarefaToMap(item);
+        _tarefaHive.addTarefa(tarefas);
+        print("object");
+      }
+    });
+  }
 
   postTarefa(Map<String, dynamic> tarefa) async {
     try {
