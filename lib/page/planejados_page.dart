@@ -50,17 +50,9 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   }
 
   signInWithGoogle(BuildContext context) async {
-    if (_usuarioHive.checkUsuario()) {
-      Map<String, dynamic> usuarioHive =
-          _usuarioClass.mapDynamicToMapString(_usuarioHive.readUsuario());
-      _usuarioClass.setUsuario(usuarioHive);
-    } else {
-      await _authService.signIn(context);
-    }
-  }
-
-  void setCurrentPage(int page) {
-    setState(() => currentPageInt.value = page);
+    _usuarioHive.checkUsuario()
+        ? await _usuarioClass.setUsuarioHiveToCurrent()
+        : await _authService.signIn(context);
   }
 
   Future<void> _openModal(BuildContext context) async {

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
 class AuthService extends ChangeNotifier {
@@ -11,7 +10,6 @@ class AuthService extends ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final ToastWidget _toastWidget = ToastWidget();
   final UsuarioClass _usuarioClass = UsuarioClass();
-  final UsuarioHive _usuarioHive = UsuarioHive();
 
   User? usuario;
 
@@ -63,7 +61,7 @@ class AuthService extends ChangeNotifier {
   Future<void> signOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
-    await _usuarioHive.deleteUsuario();
+    await _usuarioClass.deleteUsuario();
     isAuthenticated = false;
     notifyListeners();
   }

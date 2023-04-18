@@ -4,16 +4,16 @@ import 'package:hive_flutter/hive_flutter.dart';
 class UsuarioHive {
   final _usuarioBox = Hive.box('usuario');
 
-  addUsuario(Map<String, dynamic> usuario) {
-    _usuarioBox.add(usuario);
+  addUsuario(Map<String, dynamic> usuario) async {
+    await _usuarioBox.add(usuario);
   }
 
-  deleteUsuario() {
-    _usuarioBox.delete(0);
+  deleteUsuario() async {
+    await _usuarioBox.clear();
   }
 
   readUsuario() {
-    return _usuarioBox.get(1);
+    return _usuarioBox.values.first;
   }
 
   checkUsuario() {

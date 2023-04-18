@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:tarefas_app/class/color_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/core/constants.dart';
@@ -26,7 +25,7 @@ class PlanejadosItem extends StatefulWidget {
 }
 
 class _TarefaItemWidgetState extends State<PlanejadosItem> {
-  final ColorClass _colorClass = ColorClass();
+  final BorderClass _borderClass = BorderClass();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final TextClass _textClass = TextClass();
@@ -66,20 +65,16 @@ class _TarefaItemWidgetState extends State<PlanejadosItem> {
     return GestureDetector(
       onTap: () => _openModal(),
       child: Container(
-        padding: const EdgeInsets.fromLTRB(8, 0, 16, 0),
+        padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
         decoration: BoxDecoration(
-          color: _colorClass.colorAtrasada(widget._tarefa),
           borderRadius: BorderRadius.circular(UiBorder.rounded),
+          border: _borderClass.borderAtrasada(widget._tarefa),
+          color: UiColor.item_tarefa,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              splashColor: Colors.transparent,
-              icon: _boolSvgPicture(),
-              color: currentCor.value,
-              onPressed: () => _onPressed(),
-            ),
+            _tarefaClass.svgPicture(widget._tarefa['tipoTarefa']),
             Expanded(
               child: Padding(
                 padding:
@@ -103,7 +98,12 @@ class _TarefaItemWidgetState extends State<PlanejadosItem> {
                 ),
               ),
             ),
-            _tarefaClass.svgPicture(widget._tarefa['tipoTarefa']),
+            IconButton(
+              splashColor: Colors.transparent,
+              icon: _boolSvgPicture(),
+              color: currentCor.value,
+              onPressed: () => _onPressed(),
+            ),
           ],
         ),
       ),

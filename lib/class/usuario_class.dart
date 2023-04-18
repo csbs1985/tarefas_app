@@ -22,6 +22,12 @@ class UsuarioModel {
 class UsuarioClass {
   final UsuarioHive _usuarioHive = UsuarioHive();
 
+  setUsuarioHiveToCurrent() {
+    Map<dynamic, dynamic> usuarioHive = _usuarioHive.readUsuario();
+    Map<String, dynamic> usuarioMap = mapDynamicToMapString(usuarioHive);
+    setUsuario(usuarioMap);
+  }
+
   userToMap(User usuario) {
     Map<String, dynamic> userMap = {
       'uid': usuario.uid,
@@ -34,6 +40,17 @@ class UsuarioClass {
   }
 
   setUsuario(Map<String, dynamic> usuario) {
+    deleteUsuario();
+    setUsuarioCurrent(usuario);
+    setUsuarioHive(usuario);
+  }
+
+  deleteUsuario() {
+    currentUsuario.value!.clear();
+    _usuarioHive.deleteUsuario();
+  }
+
+  setUsuarioCurrent(Map<String, dynamic> usuario) {
     currentUsuario.value = {
       'id': usuario['uid'],
       'nome': usuario['displayName'],
@@ -42,15 +59,11 @@ class UsuarioClass {
     };
   }
 
-  setUsuarioHive() {
-    _usuarioHive.addUsuario(currentUsuario.value!);
+  setUsuarioHive(Map<String, dynamic> usuario) {
+    _usuarioHive.addUsuario(usuario);
   }
 
   mapDynamicToMapString(Map<dynamic, dynamic> usuario) {
-    Map<String, dynamic> novoMapa = usuario.map((chave, valor) {
-      return MapEntry(chave.toString(), valor);
-    });
-
-    return novoMapa;
+    return usuario.map((chave, valor) => MapEntry(chave.toString(), valor));
   }
 }
