@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tarefas_app/class/data_class.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
 class UiBorder {
@@ -15,16 +14,4 @@ class UiBorder {
       ),
     ),
   );
-}
-
-class BorderClass {
-  final DataClass _dataClass = DataClass();
-
-  Border borderAtrasada(Map<String, dynamic> tarefa) {
-    String dataTarefa = _dataClass.itemPlanejadosString(tarefa);
-
-    return dataTarefa.contains("atrasada")
-        ? Border.all(color: UiColor.atrasada)
-        : Border.all(color: UiColor.item_tarefa);
-  }
 }

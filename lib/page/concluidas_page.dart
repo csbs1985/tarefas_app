@@ -43,30 +43,34 @@ class _ConcludedPageState extends State<ConcluidasPage> {
         callback: () => scaffoldKey.currentState!.openDrawer(),
       ),
       drawer: const PerfilDrawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            if (currentUsuario.value!['email'] != null)
-              FirestoreListView<Map<String, dynamic>>(
-                query: _tarefaFirebase.getAllTarefasConcluidas(),
-                pageSize: 25,
-                shrinkWrap: true,
-                reverse: true,
-                physics: const NeverScrollableScrollPhysics(),
-                loadingBuilder: (context) => const ItemTarefaSkeleton(),
-                errorBuilder: (context, error, _) => const SemResultadoWidget(),
-                emptyBuilder: (context) => const SemResultadoWidget(),
-                itemBuilder: (BuildContext context,
-                    QueryDocumentSnapshot<dynamic> snapshot) {
-                  _tarefa = snapshot.data();
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ConcluidasItem(tarefa: _tarefa!),
-                  );
-                },
-              ),
-            const SizedBox(height: 90)
-          ],
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              if (currentUsuario.value!['email'] != null)
+                FirestoreListView<Map<String, dynamic>>(
+                  query: _tarefaFirebase.getAllTarefasConcluidas(),
+                  pageSize: 25,
+                  shrinkWrap: true,
+                  reverse: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  loadingBuilder: (context) => const ItemTarefaSkeleton(),
+                  errorBuilder: (context, error, _) =>
+                      const SemResultadoWidget(),
+                  emptyBuilder: (context) => const SemResultadoWidget(),
+                  itemBuilder: (BuildContext context,
+                      QueryDocumentSnapshot<dynamic> snapshot) {
+                    _tarefa = snapshot.data();
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: ConcluidasItem(tarefa: _tarefa!),
+                    );
+                  },
+                ),
+              const SizedBox(height: 90)
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

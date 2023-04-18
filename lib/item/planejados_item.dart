@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
+import 'package:tarefas_app/class/tarefa_item_class.dart';
 import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
@@ -25,9 +26,9 @@ class PlanejadosItem extends StatefulWidget {
 }
 
 class _TarefaItemWidgetState extends State<PlanejadosItem> {
-  final BorderClass _borderClass = BorderClass();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
+  final TarefaItemClass _tarefaItemClass = TarefaItemClass();
   final TextClass _textClass = TextClass();
   final ToastWidget _toastWidget = ToastWidget();
 
@@ -68,8 +69,11 @@ class _TarefaItemWidgetState extends State<PlanejadosItem> {
         padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(UiBorder.rounded),
-          border: _borderClass.borderAtrasada(widget._tarefa),
           color: UiColor.item_tarefa,
+          border: _tarefaItemClass.tipoItem(widget._tarefa) ==
+                  TipoItemTarefaEnum.atrasada.value
+              ? Border.all(color: UiColor.atrasada)
+              : Border.all(color: UiColor.item_tarefa),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

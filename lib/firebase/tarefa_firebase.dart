@@ -22,7 +22,6 @@ class TarefaFirebase {
   getAllTarefasTodas() {
     return tarefas
         .where('idUsuario', isEqualTo: currentUsuario.value!['email'])
-        .where('concluida', isEqualTo: false)
         .orderBy('notificacao', descending: true);
   }
 

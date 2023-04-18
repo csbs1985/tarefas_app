@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
+import 'package:tarefas_app/class/tarefa_item_class.dart';
 import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
@@ -25,11 +26,23 @@ class TodasItem extends StatefulWidget {
 }
 
 class _TarefaItemWidgetState extends State<TodasItem> {
-  final BorderClass _borderClass = BorderClass();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
+  final TarefaItemClass _tarefaItemClass = TarefaItemClass();
   final TextClass _textClass = TextClass();
   final ToastWidget _toastWidget = ToastWidget();
+
+  String _tipoItem = TipoItemTarefaEnum.normal.value;
+
+  @override
+  void initState() {
+    super.initState();
+    _getTipoIte();
+  }
+
+  void _getTipoIte() {
+    _tipoItem = _tarefaItemClass.tipoItem(widget._tarefa);
+  }
 
   Future<void> _onPressed() async {
     try {
@@ -68,8 +81,10 @@ class _TarefaItemWidgetState extends State<TodasItem> {
         padding: const EdgeInsets.fromLTRB(8, 0, 16, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(UiBorder.rounded),
-          border: _borderClass.borderAtrasada(widget._tarefa),
           color: UiColor.item_tarefa,
+          border: _tipoItem == TipoItemTarefaEnum.atrasada.value
+              ? Border.all(color: UiColor.atrasada)
+              : Border.all(color: UiColor.item_tarefa),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,34 +102,20 @@ class _TarefaItemWidgetState extends State<TodasItem> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (widget._tarefa['concluida'] == false)
-                      Text(
-                        widget._tarefa['tarefa'],
-                        style: UiText.headline1,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    if (widget._tarefa['concluida'] == false)
-                      Text(
-                        _textClass.stringLegenda(widget._tarefa),
-                        style: UiText.headline1,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    if (widget._tarefa['concluida'] == true)
-                      Text(
-                        widget._tarefa['tarefa'],
-                        style: UiText.headline10,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    if (widget._tarefa['concluida'] == true)
-                      Text(
-                        _textClass.stringLegenda(widget._tarefa),
-                        style: UiText.headline10,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Text(
+                      widget._tarefa['tarefa'],
+                      style: _tipoItem != TipoItemTarefaEnum.fechada.value
+                          ? UiText.headline1
+                          : UiText.headline10,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      _textClass.stringLegenda(widget._tarefa),
+                      style: UiText.headline1,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
               ),

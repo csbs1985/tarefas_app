@@ -50,7 +50,7 @@ class _AllPageState extends State<TodasPage> {
             children: [
               if (currentUsuario.value!['email'] != null)
                 FirestoreListView<Map<String, dynamic>>(
-                  query: _tarefaFirebase.getAllTarefasPlanejados(),
+                  query: _tarefaFirebase.getAllTarefasTodas(),
                   pageSize: 25,
                   shrinkWrap: true,
                   reverse: true,
