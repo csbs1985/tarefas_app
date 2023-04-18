@@ -3,6 +3,7 @@ import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/appbar/appbar.dart';
+import 'package:tarefas_app/class/data_class.dart';
 import 'package:tarefas_app/class/page_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
@@ -23,6 +24,7 @@ class CalendarioPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarioPage> {
+  final DataClass _dataClass = DataClass();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
@@ -32,7 +34,7 @@ class _CalendarPageState extends State<CalendarioPage> {
   void initState() {
     super.initState();
     currentCor.value = UiColor.calendario;
-    _controller.text = DateTime.now().toString();
+    _controller.text = _dataClass.dataAtualHoraZero();
   }
 
   void selectDia(String value) {
@@ -69,7 +71,8 @@ class _CalendarPageState extends State<CalendarioPage> {
               ),
               if (currentUsuario.value != null)
                 FirestoreListView<Map<String, dynamic>>(
-                  query: _tarefaFirebase.getAllTarefasDia(_controller.text),
+                  query:
+                      _tarefaFirebase.getAllTarefasCalendario(_controller.text),
                   pageSize: 25,
                   shrinkWrap: true,
                   reverse: true,

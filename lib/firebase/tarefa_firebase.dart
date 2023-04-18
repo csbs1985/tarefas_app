@@ -25,10 +25,11 @@ class TarefaFirebase {
         .orderBy('notificacao', descending: true);
   }
 
-  getAllTarefasDia(String data) {
+  getAllTarefasCalendario(String data) {
     return tarefas
-        .where('idUsuario', isEqualTo: currentUsuario.value)
-        .where('dia', isEqualTo: data);
+        .where('idUsuario', isEqualTo: currentUsuario.value!['email'])
+        .where('dia', isEqualTo: data)
+        .orderBy('notificacao', descending: true);
   }
 
   getAllTarefa() {

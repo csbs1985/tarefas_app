@@ -45,6 +45,12 @@ class DataClass {
     return '$dataFormat $hora:00.000';
   }
 
+  String dataAtualHoraZero() {
+    String dataHora = DateTime.now().toString();
+    String dataFormat = dataHora.substring(0, 10);
+    return '$dataFormat 00:00:00.000';
+  }
+
   String itemPlanejadosString(Map<String, dynamic> tarefa) {
     final now = DateTime.now();
     final date =
