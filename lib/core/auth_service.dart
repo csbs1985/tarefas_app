@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/hive/usuario_hive.dart';
@@ -10,7 +9,6 @@ import 'package:tarefas_app/widget/toast_widget.dart';
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final TarefaClass _tarefaClass = TarefaClass();
   final ToastWidget _toastWidget = ToastWidget();
   final UsuarioClass _usuarioClass = UsuarioClass();
   final UsuarioHive _usuarioHive = UsuarioHive();
@@ -35,7 +33,6 @@ class AuthService extends ChangeNotifier {
     await signInWithGoogle(context).then((user) {
       Map<String, dynamic> userMap = _usuarioClass.userToMap(user!);
       _usuarioClass.setUsuario(userMap);
-      _tarefaClass.addTarefasHive();
     });
   }
 

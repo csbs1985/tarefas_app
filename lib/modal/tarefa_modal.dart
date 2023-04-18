@@ -9,7 +9,6 @@ import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/class/tipo_select_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
-import 'package:tarefas_app/hive/tarefa_hive.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/calendario_input.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
@@ -43,7 +42,6 @@ class _TarefaPageState extends State<TarefaModal> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Uuid _uuid = const Uuid();
   final TarefaClass _tarefaClass = TarefaClass();
-  final TarefaHive _tarefaHive = TarefaHive();
   final ToastWidget _toastWidget = ToastWidget();
 
   final TextEditingController _nomeController = TextEditingController();
@@ -182,7 +180,6 @@ class _TarefaPageState extends State<TarefaModal> {
       'concluida': false,
     };
 
-    _tarefaHive.addTarefa(_tarefa);
     _tarefaClass.postTarefa(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
   }

@@ -9,7 +9,6 @@ import 'package:tarefas_app/class/notificacao_class.dart';
 import 'package:tarefas_app/class/tipo-movimentacao_class.dart';
 import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
-import 'package:tarefas_app/hive/tarefa_hive.dart';
 import 'package:tarefas_app/modal/tarefa_modal.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -63,7 +62,6 @@ class TarefaModel {
 
 class TarefaClass {
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
-  final TarefaHive _tarefaHive = TarefaHive();
 
   tarefaToMap(QueryDocumentSnapshot tarefa) {
     Map<String, dynamic> tarefaMap = {
@@ -88,15 +86,6 @@ class TarefaClass {
     };
 
     return tarefaMap;
-  }
-
-  addTarefasHive() async {
-    await _tarefaFirebase.getAllTarefa().then((result) {
-      for (var item in result.docs) {
-        Map<String, dynamic> tarefas = tarefaToMap(item);
-        _tarefaHive.addTarefa(tarefas);
-      }
-    });
   }
 
   postTarefa(Map<String, dynamic> tarefa) async {
@@ -135,33 +124,6 @@ class TarefaClass {
       duration: const Duration(milliseconds: 300),
       builder: (context) => const TarefaModal(),
     );
-  }
-
-  formatPlanejados() {
-    _tarefaHive.clearTarefas();
-    List<dynamic> listHive = _tarefaHive.getAllTarefas();
-    List tarefas =
-        listHive.where((tarefa) => tarefa['concluida'] != true).toList();
-    tarefas.sort((a, b) => a!['notificacao'].compareTo(b!['notificacao']));
-    return listToMap(tarefas);
-  }
-
-  formatConcluidas() {
-    _tarefaHive.clearTarefas();
-    List<dynamic> listHive = _tarefaHive.getAllTarefas();
-    List tarefas =
-        listHive.where((tarefa) => tarefa['concluida'] == true).toList();
-    tarefas.sort((a, b) => a!['notificacao'].compareTo(b!['notificacao']));
-    return listToMap(tarefas);
-  }
-
-  formatTodas() {
-    _tarefaHive.clearTarefas();
-    List<dynamic> listHive = _tarefaHive.getAllTarefas();
-    List tarefas =
-        listHive.where((tarefa) => tarefa['concluida'] == true).toList();
-    tarefas.sort((a, b) => a!['notificacao'].compareTo(b!['notificacao']));
-    return listToMap(tarefas);
   }
 
   listToMap(List<dynamic> tarefas) {
