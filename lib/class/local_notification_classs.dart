@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:tarefas_app/theme/ui_color.dart';
 
 class LocalNotificationModel {
   final int id;
@@ -17,7 +18,7 @@ class LocalNotificationModel {
 class LocalNotificationClass {
   static Future<void> createNotificationChannel() async {
     await AwesomeNotifications().initialize(
-      'resource://drawable/ic_launcher_foreground',
+      'resource://drawable/splash',
       [
         NotificationChannel(
           channelKey: 'basic_channel',
@@ -28,6 +29,7 @@ class LocalNotificationClass {
           groupAlertBehavior: GroupAlertBehavior.Children,
           importance: NotificationImportance.High,
           defaultPrivacy: NotificationPrivacy.Private,
+          defaultColor: UiColor.background,
         )
       ],
       debug: true,

@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:tarefas_app/appbar/appbar.dart';
+import 'package:tarefas_app/class/local_notification_classs.dart';
 import 'package:tarefas_app/class/page_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
@@ -56,9 +58,9 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
   }
 
   Future<void> _openModal(BuildContext context) async {
-    _tarefaClass.openModal(context);
-    // await Provider.of<LocalNotificationClass>(context, listen: false)
-    //     .createNewNotification();
+    // _tarefaClass.openModal(context);
+    await Provider.of<LocalNotificationClass>(context, listen: false)
+        .createNewNotification();
   }
 
   @override
