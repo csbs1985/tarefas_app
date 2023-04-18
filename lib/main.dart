@@ -12,15 +12,15 @@ import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_theme.dart';
 
 void main() async {
-  await initializeDateFormatting('pt_BR', null);
-
   WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDateFormatting('pt_BR', null);
 
   await HiveConfig.start();
 
   await Firebase.initializeApp();
 
-  await LocalNotificationClass.createNotificationChannel();
+  await LocalNotificationClass.initialize();
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

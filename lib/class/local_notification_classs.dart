@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
 class LocalNotificationModel {
@@ -16,9 +17,11 @@ class LocalNotificationModel {
 }
 
 class LocalNotificationClass {
-  static Future<void> createNotificationChannel() async {
+  final TextClass _textClass = TextClass();
+
+  static Future<void> initialize() async {
     await AwesomeNotifications().initialize(
-      'resource://drawable/splash',
+      'resource://drawable/ic_notification',
       [
         NotificationChannel(
           channelKey: 'basic_channel',
@@ -36,7 +39,7 @@ class LocalNotificationClass {
     );
   }
 
-  Future<void> createNewNotification() async {
+  Future<void> createNewNotification(Map<String, dynamic> tarefa) async {
     String localTimeZone =
         await AwesomeNotifications().getLocalTimeZoneIdentifier();
 
@@ -44,9 +47,8 @@ class LocalNotificationClass {
       content: NotificationContent(
         id: 1,
         channelKey: 'basic_channel',
-        title: 'Tarefas',
-        body: 'Esta é uma notificação de exemplo do Charles',
-        payload: {'data': 'qualquer dado'},
+        title: tarefa['title'],
+        body: _textClass.stringLegenda(tarefa),
       ),
       schedule: NotificationInterval(
         interval: 5,
