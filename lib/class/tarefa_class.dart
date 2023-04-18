@@ -1,17 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/class/endereco_class.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
 import 'package:tarefas_app/class/notificacao_class.dart';
 import 'package:tarefas_app/class/tipo-movimentacao_class.dart';
-import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/modal/tarefa_modal.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 
 ValueNotifier<Map<String, dynamic>?> currentTarefa =
     ValueNotifier<Map<String, dynamic>?>(null);
@@ -102,18 +99,6 @@ class TarefaClass {
     } on FirebaseAuthException catch (error) {
       debugPrint('ERRO-TAREFA-POST: $error');
     }
-  }
-
-  SvgPicture svgPicture(String tarefa) {
-    if (tarefa == TipoTarefaEnum.aniversario.value)
-      return SvgPicture.asset(UiSvg.aniversario);
-    if (tarefa == TipoTarefaEnum.evento.value)
-      return SvgPicture.asset(UiSvg.evento);
-    if (tarefa == TipoTarefaEnum.financeiro.value)
-      return SvgPicture.asset(UiSvg.financeiro);
-    if (tarefa == TipoTarefaEnum.lembrete.value)
-      return SvgPicture.asset(UiSvg.lembrete);
-    return SvgPicture.asset(UiSvg.ligar);
   }
 
   void openModal(BuildContext context) {

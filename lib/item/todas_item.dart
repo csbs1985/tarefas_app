@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:tarefas_app/button/toggle_button.dart';
+import 'package:tarefas_app/class/svg_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/tarefa_item_class.dart';
 import 'package:tarefas_app/class/text_class.dart';
@@ -9,7 +10,6 @@ import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/modal/tarefa_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
-import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 
@@ -26,7 +26,7 @@ class TodasItem extends StatefulWidget {
 }
 
 class _TarefaItemWidgetState extends State<TodasItem> {
-  final TarefaClass _tarefaClass = TarefaClass();
+  final SvgClass _svgClass = SvgClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final TarefaItemClass _tarefaItemClass = TarefaItemClass();
   final TextClass _textClass = TextClass();
@@ -37,10 +37,10 @@ class _TarefaItemWidgetState extends State<TodasItem> {
   @override
   void initState() {
     super.initState();
-    _getTipoIte();
+    _getTipoItem();
   }
 
-  void _getTipoIte() {
+  void _getTipoItem() {
     _tipoItem = _tarefaItemClass.tipoItem(widget._tarefa);
   }
 
@@ -53,12 +53,6 @@ class _TarefaItemWidgetState extends State<TodasItem> {
     } catch (e) {
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_ERRO_UP);
     }
-  }
-
-  SvgPicture _boolSvgPicture() {
-    return widget._tarefa['concluida'] == true
-        ? SvgPicture.asset(UiSvg.fechado)
-        : SvgPicture.asset(UiSvg.aberto);
   }
 
   void _openModal() {
@@ -89,12 +83,7 @@ class _TarefaItemWidgetState extends State<TodasItem> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              splashColor: Colors.transparent,
-              icon: _boolSvgPicture(),
-              color: currentCor.value,
-              onPressed: () => _onPressed(),
-            ),
+            _svgClass.svgPicture(widget._tarefa['tipoTarefa']),
             Expanded(
               child: Padding(
                 padding:
@@ -120,7 +109,10 @@ class _TarefaItemWidgetState extends State<TodasItem> {
                 ),
               ),
             ),
-            _tarefaClass.svgPicture(widget._tarefa['tipoTarefa']),
+            ToggleButton(
+              tarefa: widget._tarefa,
+              callback: () => _onPressed(),
+            ),
           ],
         ),
       ),
