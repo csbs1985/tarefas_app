@@ -8,13 +8,13 @@ import 'package:tarefas_app/class/page_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
+import 'package:tarefas_app/item/todas_item.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
 import 'package:tarefas_app/widget/calendario_widget.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
-import 'package:tarefas_app/item/planejados_item.dart';
 
 class CalendarioPage extends StatefulWidget {
   const CalendarioPage({Key? key}) : super(key: key);
@@ -86,7 +86,7 @@ class _CalendarPageState extends State<CalendarioPage> {
                     Map<String, dynamic> tarefa = snapshot.data();
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8),
-                      child: PlanejadosItem(tarefa: tarefa),
+                      child: TodasItem(tarefa: tarefa),
                     );
                   },
                 ),

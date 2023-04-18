@@ -72,7 +72,7 @@ class _TarefaItemWidgetState extends State<TodasItem> {
     return GestureDetector(
       onTap: () => _openModal(),
       child: Container(
-        padding: const EdgeInsets.fromLTRB(8, 0, 16, 0),
+        padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(UiBorder.rounded),
           color: UiColor.item_tarefa,
