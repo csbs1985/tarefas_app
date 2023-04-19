@@ -42,7 +42,13 @@ class DataClass {
 
   String unirDataHora(String data, String hora) {
     String dataFormat = data.substring(0, 10);
-    return '$dataFormat $hora:00.000';
+    return '$dataFormat $hora';
+  }
+
+  String unirHoraMinuto(int hora, int minuto) {
+    String formatHora = hora < 10 ? '0$hora' : '$hora';
+    String formatMinuto = minuto < 10 ? '0$minuto' : '$minuto';
+    return '$formatHora:$formatMinuto:00.000';
   }
 
   String dataAtualHoraZero() {

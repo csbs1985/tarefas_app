@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
+import 'package:tarefas_app/class/data_class.dart';
 import 'package:tarefas_app/class/horario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -20,6 +21,7 @@ class HorarioWidget extends StatefulWidget {
 }
 
 class _HorarioWidgetState extends State<HorarioWidget> {
+  final DataClass _dataClass = DataClass();
   final HorarioClass _horarioClass = HorarioClass();
 
   FixedExtentScrollController horaController = FixedExtentScrollController();
@@ -75,14 +77,9 @@ class _HorarioWidgetState extends State<HorarioWidget> {
   }
 
   void formatHorario() {
-    String hora =
-        _horaSelecionada < 10 ? '0$_horaSelecionada' : '$_horaSelecionada';
+    String horario =
+        _dataClass.unirHoraMinuto(_horaSelecionada, _minutoSelecionado);
 
-    String minuto = _minutoSelecionado < 10
-        ? '0$_minutoSelecionado'
-        : '$_minutoSelecionado';
-
-    String horario = '$hora:$minuto';
     widget._callback(horario);
   }
 
