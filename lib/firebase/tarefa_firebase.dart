@@ -1,24 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tarefas_app/class/local_notification_classs.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 
 class TarefaFirebase {
-  final LocalNotificationClass _localNotificationClass =
-      LocalNotificationClass();
-
   CollectionReference tarefas =
       FirebaseFirestore.instance.collection('tarefas');
-
-  listenTarefas() {
-    tarefas.snapshots().listen((snapshot) {
-      for (var docChange in snapshot.docChanges) {
-        if (docChange.type == DocumentChangeType.added) {
-          // Map<String, dynamic> data = docChange.doc.data();
-          // _localNotificationClass.createNewNotification(data);
-        }
-      }
-    });
-  }
 
   getAllTarefasConcluidas() {
     return tarefas

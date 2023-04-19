@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:tarefas_app/class/id_class.dart';
 import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
@@ -17,6 +18,7 @@ class LocalNotificationModel {
 }
 
 class LocalNotificationClass {
+  final IdClass _idClass = IdClass();
   final TextClass _textClass = TextClass();
 
   static Future<void> initialize() async {
@@ -24,7 +26,7 @@ class LocalNotificationClass {
       'resource://drawable/ic_notification',
       [
         NotificationChannel(
-          channelKey: 'basic_channel',
+          channelKey: 'notification_channel',
           channelName: 'Alerts',
           channelDescription: 'Notification tests as alerts',
           playSound: true,
@@ -40,21 +42,28 @@ class LocalNotificationClass {
   }
 
   Future<void> createNewNotification(Map<String, dynamic> tarefa) async {
-    String localTimeZone =
-        await AwesomeNotifications().getLocalTimeZoneIdentifier();
-
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: 1,
-        channelKey: 'basic_channel',
-        title: tarefa['title'],
-        body: _textClass.stringLegenda(tarefa),
+        id: _idClass.generateUniqueId(),
+        channelKey: 'notification_channel',
+        title: tarefa['tarefa'],
+        body: _textClass.stringBodyNotification(tarefa),
+        summary: '',
+        actionType: ActionType.Default,
+        wakeUpScreen: true,
+        notificationLayout: NotificationLayout.Messaging,
+        autoDismissible: false,
       ),
-      schedule: NotificationInterval(
-        interval: 5,
-        timeZone: localTimeZone,
-        repeats: false,
+      schedule: NotificationCalendar.fromDate(
+        date: DateTime.parse(tarefa['notificacao']),
+        preciseAlarm: true,
       ),
     );
+  }
+
+  int dateNowToInt() {
+    var currentTimeMillis = DateTime.now().millisecondsSinceEpoch;
+    var currentTimeInt32 = currentTimeMillis & 0xFFFFFFFF;
+    return currentTimeInt32;
   }
 }

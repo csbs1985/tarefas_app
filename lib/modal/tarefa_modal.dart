@@ -4,6 +4,7 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
+import 'package:tarefas_app/class/local_notification_classs.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/class/tipo_select_class.dart';
@@ -40,6 +41,8 @@ class _TarefaPageState extends State<TarefaModal> {
 
   final FrequenciaClass _frequenciaClass = FrequenciaClass();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final LocalNotificationClass _localNotificationClass =
+      LocalNotificationClass();
   final Uuid _uuid = const Uuid();
   final TarefaClass _tarefaClass = TarefaClass();
   final ToastWidget _toastWidget = ToastWidget();
@@ -181,6 +184,7 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaClass.postTarefa(_tarefa);
+    _localNotificationClass.createNewNotification(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
   }
 
@@ -208,6 +212,7 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaClass.pathTarefa(_tarefa);
+    _localNotificationClass.createNewNotification(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
   }
 
