@@ -184,7 +184,7 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaClass.postTarefa(_tarefa);
-    _localNotificationClass.createNewNotification(_tarefa);
+    _createLocalNotificacao(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
   }
 
@@ -212,13 +212,17 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaClass.pathTarefa(_tarefa);
-    _localNotificationClass.createNewNotification(_tarefa);
+    _createLocalNotificacao(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
   }
 
-  void bakcPage() {
-    currentTarefa.value = null;
-    Navigator.of(context).pop();
+  _createLocalNotificacao(Map<String, dynamic> tarefa) {
+    DateTime dataAtual = DateTime.now();
+    DateTime dataNotificacao = DateTime.parse(tarefa['notificacao']);
+
+    if (dataNotificacao.compareTo(dataAtual) > 0) {
+      _localNotificationClass.createNewNotification(_tarefa);
+    }
   }
 
   @override
