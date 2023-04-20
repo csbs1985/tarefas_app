@@ -59,7 +59,7 @@ class _TarefaItemWidgetState extends State<TodasItem> {
     currentTarefa.value = widget._tarefa;
 
     showCupertinoModalBottomSheet(
-      expand: false,
+      expand: true,
       context: context,
       barrierColor: UiColor.overlay,
       duration: const Duration(milliseconds: 300),

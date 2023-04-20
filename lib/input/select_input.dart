@@ -77,7 +77,7 @@ class _SelectInput2State extends State<SelectInput> {
 
   _openModal(TipoSelectEnum select) {
     showCupertinoModalBottomSheet(
-      expand: false,
+      expand: true,
       context: context,
       barrierColor: UiColor.overlay,
       duration: const Duration(milliseconds: 300),

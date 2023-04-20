@@ -26,7 +26,7 @@ class AnotacaoInput extends StatefulWidget {
 class _AnotacaoInputState extends State<AnotacaoInput> {
   void _openModal() {
     showCupertinoModalBottomSheet(
-      expand: false,
+      expand: true,
       context: context,
       barrierColor: UiColor.overlay,
       duration: const Duration(milliseconds: 300),
