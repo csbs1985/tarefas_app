@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/page/calendario_page.dart';
 import 'package:tarefas_app/page/concluidas_page.dart';
 import 'package:tarefas_app/page/entrar_page.dart';
@@ -20,6 +21,9 @@ final GoRouter routes = GoRouter(
     final isAuthenticated = _authService.isAuthenticated;
     final isLoginRoute = state.subloc == RouteEnum.ENTRAR.value;
 
+    UsuarioHive usuarioHive = UsuarioHive();
+
+    if (usuarioHive.checkUsuario()) return RouteEnum.PLANEJADOS.value;
     if (!isAuthenticated) return isLoginRoute ? null : RouteEnum.ENTRAR.value;
     if (isLoginRoute) return RouteEnum.PLANEJADOS.value;
     return null;
