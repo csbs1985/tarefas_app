@@ -3,11 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/appbar/appbar.dart';
 import 'package:tarefas_app/class/page_class.dart';
-import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/hive/usuario_hive.dart';
 import 'package:tarefas_app/item/planejados_item.dart';
@@ -27,7 +28,6 @@ class PlanejadosPage extends StatefulWidget {
 class _PlanejamentoPageState extends State<PlanejadosPage> {
   final AuthService _authService = AuthService();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  final TarefaClass _tarefaClass = TarefaClass();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final UsuarioClass _usuarioClass = UsuarioClass();
   final UsuarioHive _usuarioHive = UsuarioHive();
@@ -53,10 +53,6 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
     _usuarioHive.checkUsuario()
         ? await _usuarioClass.setUsuarioHiveToCurrent()
         : await _authService.signIn(context);
-  }
-
-  Future<void> _openModal(BuildContext context) async {
-    _tarefaClass.openModal(context);
   }
 
   @override
@@ -101,7 +97,7 @@ class _PlanejamentoPageState extends State<PlanejadosPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: currentCor.value,
         elevation: 0,
-        onPressed: () => _openModal(context),
+        onPressed: () => context.go(RouteEnum.TAREFA.value),
         child: SvgPicture.asset(UiSvg.criar),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/auth_service.dart';
 import 'package:tarefas_app/core/constants.dart';
@@ -18,7 +17,6 @@ class PerfilDrawer extends StatefulWidget {
 
 class _PerfilPageState extends State<PerfilDrawer> {
   final AuthService authService = AuthService();
-  final TarefaClass _tarefaClass = TarefaClass();
 
   static const _marginPequena = SizedBox(height: 16);
   static const _marginGrande = SizedBox(height: 56);
@@ -27,12 +25,6 @@ class _PerfilPageState extends State<PerfilDrawer> {
   void initState() {
     super.initState();
     currentCor.value = Colors.white;
-  }
-
-  checkPagina(String pagina) {
-    pagina == RouteEnum.TAREFA.value
-        ? _tarefaClass.openModal(context)
-        : context.go(pagina);
   }
 
   @override
@@ -65,7 +57,7 @@ class _PerfilPageState extends State<PerfilDrawer> {
                   Column(
                     children: [
                       TextButton(
-                        onPressed: () => checkPagina(item.value),
+                        onPressed: () => context.go(item.value),
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(
                                 const EdgeInsets.fromLTRB(0, 8, 16, 8))),

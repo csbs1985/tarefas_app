@@ -7,7 +7,7 @@ import 'package:tarefas_app/page/calendario_page.dart';
 import 'package:tarefas_app/page/concluidas_page.dart';
 import 'package:tarefas_app/page/entrar_page.dart';
 import 'package:tarefas_app/page/planejados_page.dart';
-import 'package:tarefas_app/modal/tarefa_modal.dart';
+import 'package:tarefas_app/page/tarefa_page.dart';
 import 'package:tarefas_app/page/todas_page.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
 
@@ -74,7 +74,7 @@ final GoRouter routes = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: const TarefaModal(),
+        child: const TarefaPage(),
       ),
     ),
     GoRoute(

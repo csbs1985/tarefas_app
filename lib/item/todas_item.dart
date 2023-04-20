@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/button/toggle_button.dart';
 import 'package:tarefas_app/class/svg_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/tarefa_item_class.dart';
 import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
-import 'package:tarefas_app/modal/tarefa_modal.dart';
 import 'package:tarefas_app/theme/ui_border.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_text.dart';
@@ -55,22 +55,15 @@ class _TarefaItemWidgetState extends State<TodasItem> {
     }
   }
 
-  void _openModal() {
+  void _callTarefaPage() {
     currentTarefa.value = widget._tarefa;
-
-    showCupertinoModalBottomSheet(
-      expand: false,
-      context: context,
-      barrierColor: UiColor.overlay,
-      duration: const Duration(milliseconds: 300),
-      builder: (context) => const TarefaModal(),
-    );
+    context.go(RouteEnum.TAREFA.value);
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _openModal(),
+      onTap: () => _callTarefaPage(),
       child: Container(
         padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
         decoration: BoxDecoration(

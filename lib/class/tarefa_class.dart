@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/class/endereco_class.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
 import 'package:tarefas_app/class/notificacao_class.dart';
 import 'package:tarefas_app/class/tipo-movimentacao_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
-import 'package:tarefas_app/modal/tarefa_modal.dart';
-import 'package:tarefas_app/theme/ui_color.dart';
 
 ValueNotifier<Map<String, dynamic>?> currentTarefa =
     ValueNotifier<Map<String, dynamic>?>(null);
@@ -99,16 +96,6 @@ class TarefaClass {
     } on FirebaseAuthException catch (error) {
       debugPrint('ERRO-TAREFA-POST: $error');
     }
-  }
-
-  void openModal(BuildContext context) {
-    showCupertinoModalBottomSheet(
-      expand: false,
-      context: context,
-      barrierColor: UiColor.overlay,
-      duration: const Duration(milliseconds: 300),
-      builder: (context) => const TarefaModal(),
-    );
   }
 
   listToMap(List<dynamic> tarefas) {

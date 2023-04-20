@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tarefas_app/class/page_class.dart';
-import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/item/concluidas_item.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
@@ -24,7 +25,6 @@ class ConcluidasPage extends StatefulWidget {
 class _ConcludedPageState extends State<ConcluidasPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
-  final TarefaClass _tarefaClass = TarefaClass();
 
   Map<String, dynamic>? _tarefa;
 
@@ -76,7 +76,7 @@ class _ConcludedPageState extends State<ConcluidasPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: currentCor.value,
         elevation: 0,
-        onPressed: () => _tarefaClass.openModal(context),
+        onPressed: () => context.go(RouteEnum.TAREFA.value),
         child: SvgPicture.asset(UiSvg.criar),
       ),
     );

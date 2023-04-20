@@ -3,13 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tarefas_app/appbar/appbar.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
 import 'package:tarefas_app/class/local_notification_classs.dart';
+import 'package:tarefas_app/class/page_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/class/tipo_select_class.dart';
 import 'package:tarefas_app/class/usuario_class.dart';
 import 'package:tarefas_app/core/constants.dart';
+import 'package:tarefas_app/core/routes.dart';
 import 'package:tarefas_app/input/anotacao_input.dart';
 import 'package:tarefas_app/input/calendario_input.dart';
 import 'package:tarefas_app/input/endereco_input.dart';
@@ -23,17 +27,18 @@ import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
+import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/toast_widget.dart';
 import 'package:uuid/uuid.dart';
 
-class TarefaModal extends StatefulWidget {
-  const TarefaModal({super.key});
+class TarefaPage extends StatefulWidget {
+  const TarefaPage({super.key});
 
   @override
-  State<TarefaModal> createState() => _TarefaPageState();
+  State<TarefaPage> createState() => _TarefaPageState();
 }
 
-class _TarefaPageState extends State<TarefaModal> {
+class _TarefaPageState extends State<TarefaPage> {
   late FirebaseFirestore db;
   late FirebaseAuth auth;
 
@@ -186,6 +191,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _tarefaClass.postTarefa(_tarefa);
     _createLocalNotificacao(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
+    context.go(RouteEnum.PLANEJADOS.value);
   }
 
   void pathTarefa() {
@@ -214,6 +220,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _tarefaClass.pathTarefa(_tarefa);
     _createLocalNotificacao(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
+    context.go(RouteEnum.PLANEJADOS.value);
   }
 
   _createLocalNotificacao(Map<String, dynamic> tarefa) {
@@ -249,8 +256,14 @@ class _TarefaPageState extends State<TarefaModal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      drawer: const PerfilDrawer(),
+      appBar: Appbar(
+        page: PageEnum.tarefa,
+        callback: () => scaffoldKey.currentState!.openDrawer(),
+      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: Form(
           key: _formKey,
           child: Column(
