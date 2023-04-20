@@ -12,9 +12,9 @@ import 'package:tarefas_app/item/todas_item.dart';
 import 'package:tarefas_app/skeleton/item_tarefa_sekeleton.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
-import 'package:tarefas_app/widget/calendario_widget.dart';
 import 'package:tarefas_app/widget/perfil_drawer.dart';
 import 'package:tarefas_app/widget/sem_resultado_widget.dart';
+import 'package:tarefas_app/widget/timeline_widget.dart';
 
 class CalendarioPage extends StatefulWidget {
   const CalendarioPage({Key? key}) : super(key: key);
@@ -63,12 +63,11 @@ class _CalendarPageState extends State<CalendarioPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CalendarioWidget(
-                altura: 420,
+              TimelineWidget(
                 controller: _controller,
-                titulo: false,
                 callback: (value) => selectDia(value),
               ),
+              const SizedBox(height: 32),
               if (currentUsuario.value != null)
                 FirestoreListView<Map<String, dynamic>>(
                   query:
