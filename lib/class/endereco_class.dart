@@ -9,9 +9,6 @@ class EnderecoModel {
   String bairro;
   String localidade;
   String uf;
-  String unidade;
-  String ibge;
-  String gia;
 
   EnderecoModel({
     required this.cep,
@@ -21,9 +18,6 @@ class EnderecoModel {
     required this.bairro,
     required this.localidade,
     required this.uf,
-    required this.unidade,
-    required this.ibge,
-    required this.gia,
   });
 
   factory EnderecoModel.fromJson(String str) =>
@@ -39,9 +33,6 @@ class EnderecoModel {
         bairro: json["bairro"],
         localidade: json["localidade"],
         uf: json["uf"],
-        unidade: json["unidade"],
-        ibge: json["ibge"],
-        gia: json["gia"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -51,9 +42,6 @@ class EnderecoModel {
         "bairro": bairro,
         "localidade": localidade,
         "uf": uf,
-        "unidade": unidade,
-        "ibge": ibge,
-        "gia": gia,
       };
 }
 

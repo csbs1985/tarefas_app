@@ -1,6 +1,6 @@
 class AnexoModel {
-  final String text;
-  final int value;
+  late String text;
+  late int value;
 
   AnexoModel({
     required this.text,

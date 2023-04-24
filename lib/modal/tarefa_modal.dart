@@ -123,7 +123,7 @@ class _TarefaPageState extends State<TarefaModal> {
 
     setState(() {
       if (callback == "") {
-        _tipoTarefaController.text = ListaTipoTarefa.first.text;
+        _tipoTarefaController.text = ListaTipoTarefa.first.tipo.value;
         return;
       }
       _tipoTarefaController.text = callback;

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
+import 'package:tarefas_app/class/recorrencia_class.dart';
 import 'package:tarefas_app/class/tipo_frequencia_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/input/texto_input.dart';
@@ -61,20 +62,20 @@ class _SelectInputState extends State<FrequenciaModal> {
   }
 
   bool onlyACada() {
-    return _frequenciaController.text == FrequenciaEnum.aCada.value
+    return _frequenciaController.text == RecorrenciaEnum.aCada.value
         ? true
         : false;
   }
 
   bool onlyParcelas() {
-    return _frequenciaController.text == FrequenciaEnum.parcelas.value
+    return _frequenciaController.text == RecorrenciaEnum.parcelas.value
         ? true
         : false;
   }
 
   bool candFloating() {
-    return (_frequenciaController.text == FrequenciaEnum.aCada.value ||
-            _frequenciaController.text == FrequenciaEnum.parcelas.value)
+    return (_frequenciaController.text == RecorrenciaEnum.aCada.value ||
+            _frequenciaController.text == RecorrenciaEnum.parcelas.value)
         ? true
         : false;
   }
@@ -92,20 +93,20 @@ class _SelectInputState extends State<FrequenciaModal> {
 
     formatFrequencia();
 
-    if (_frequenciaController.text != FrequenciaEnum.parcelas.value &&
-        _frequenciaController.text != FrequenciaEnum.aCada.value) {
+    if (_frequenciaController.text != RecorrenciaEnum.parcelas.value &&
+        _frequenciaController.text != RecorrenciaEnum.aCada.value) {
       Navigator.of(context).pop();
     }
   }
 
   void onfloatingActionButton() {
-    if (_frequenciaController.text == FrequenciaEnum.aCada.value &&
+    if (_frequenciaController.text == RecorrenciaEnum.aCada.value &&
         (_aCadaController.text.isEmpty || _periodoController.text.isEmpty)) {
       _toastWidget.toast(context, ToastEnum.ERRO.value, PREENCHER);
       return;
     }
 
-    if (_frequenciaController.text == FrequenciaEnum.parcelas.value &&
+    if (_frequenciaController.text == RecorrenciaEnum.parcelas.value &&
         (_parcelaController.text.isEmpty || _inicioController.text.isEmpty)) {
       _toastWidget.toast(context, ToastEnum.ERRO.value, PREENCHER);
       return;
@@ -164,13 +165,13 @@ class _SelectInputState extends State<FrequenciaModal> {
                 children: [
                   for (var item in ListaFrequencia)
                     TextButton(
-                      onPressed: () => onPressed(item.text),
-                      style: _checkSelected(item.text)
+                      onPressed: () => onPressed(item.periodo.value),
+                      style: _checkSelected(item.periodo.value)
                           ? UiButton.buttonSelected
                           : UiButton.button,
                       child: Text(
-                        item.text,
-                        style: _checkSelected(item.text)
+                        item.periodo.value,
+                        style: _checkSelected(item.periodo.value)
                             ? UiText.buttonSelected
                             : UiText.button,
                       ),

@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:tarefas_app/class/endereco_class.dart';
+import 'package:tarefas_app/class/evento_class.dart';
+import 'package:tarefas_app/class/financeiro_class.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
+import 'package:tarefas_app/class/ligar_class.dart';
 import 'package:tarefas_app/class/notificacao_class.dart';
-import 'package:tarefas_app/class/tipo-movimentacao_class.dart';
+import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/firebase/tarefa_firebase.dart';
 import 'package:tarefas_app/modal/tarefa_modal.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
@@ -14,47 +16,31 @@ ValueNotifier<Map<String, dynamic>?> currentTarefa =
     ValueNotifier<Map<String, dynamic>?>(null);
 
 class TarefaModel {
-  late String id;
-  late String dataCriacao;
+  late String idTarefa;
   late String idUsuario;
   late String tarefa;
-  late TarefaModel tipoTarefa;
-  late String dia;
+  late TipoTarefaModel tipoTarefa;
   late NotificacaoModel notificacao;
-  late FrequenciaModel? frequencia;
-  late String? valor;
-  late TipoMovimentacaoModel? tipoMovimentacao;
-  late String? formaPagamento;
+  late FrequenciaModel frequencia;
+  late EventoModel? evento;
+  late LigarModel? ligar;
+  late FinanceiroModel? financeiro;
   late String? anotacao;
-  late List<String>? telefone;
-  late EnderecoModel? endereco;
-  late String? horario;
-  late String? link;
-  late List<String?> anexo;
-  late bool concluida;
-  late String dataNotificacao;
+  late Object? anexo;
 
-  TarefaModel(
-    this.id,
-    this.dataCriacao,
-    this.idUsuario,
-    this.tarefa,
-    this.tipoTarefa,
-    this.dia,
-    this.notificacao,
-    this.frequencia,
-    this.valor,
-    this.tipoMovimentacao,
-    this.formaPagamento,
+  TarefaModel({
+    required this.idTarefa,
+    required this.idUsuario,
+    required this.tarefa,
+    required this.tipoTarefa,
+    required this.notificacao,
+    required this.frequencia,
+    this.evento,
+    this.ligar,
+    this.financeiro,
     this.anotacao,
-    this.telefone,
-    this.endereco,
-    this.horario,
-    this.link,
     this.anexo,
-    this.concluida,
-    this.dataNotificacao,
-  );
+  });
 }
 
 class TarefaClass {

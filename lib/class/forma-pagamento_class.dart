@@ -1,34 +1,14 @@
-class FormaPagamentoModel {
-  final String text;
-  final int value;
+class FormaMovimentacaoModel {
+  final String forma;
 
-  FormaPagamentoModel({
-    required this.text,
-    required this.value,
+  FormaMovimentacaoModel({
+    required this.forma,
   });
 
   Map<String, dynamic> toMap() {
-    return {
-      'text': text,
-      'value': value,
-    };
+    return {'forma': forma};
   }
 }
-
-final List<FormaPagamentoModel> ListaFormaPagamento = [
-  FormaPagamentoModel(text: FormaPagamentoEnum.boleto.value, value: 0),
-  FormaPagamentoModel(text: FormaPagamentoEnum.cartaoCredito.value, value: 1),
-  FormaPagamentoModel(text: FormaPagamentoEnum.cartaoDebito.value, value: 2),
-  FormaPagamentoModel(text: FormaPagamentoEnum.cheque.value, value: 3),
-  FormaPagamentoModel(text: FormaPagamentoEnum.criptomoeda.value, value: 4),
-  FormaPagamentoModel(text: FormaPagamentoEnum.debito.value, value: 5),
-  FormaPagamentoModel(
-      text: FormaPagamentoEnum.debitoAutomatico.value, value: 6),
-  FormaPagamentoModel(text: FormaPagamentoEnum.dinheiro.value, value: 7),
-  FormaPagamentoModel(text: FormaPagamentoEnum.doc.value, value: 8),
-  FormaPagamentoModel(text: FormaPagamentoEnum.pix.value, value: 9),
-  FormaPagamentoModel(text: FormaPagamentoEnum.ted.value, value: 9),
-];
 
 enum FormaPagamentoEnum {
   boleto('boleto'),
@@ -46,3 +26,17 @@ enum FormaPagamentoEnum {
   final String value;
   const FormaPagamentoEnum(this.value);
 }
+
+final List<FormaMovimentacaoModel> ListaFormaPagamento = [
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.boleto.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.cartaoCredito.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.cartaoDebito.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.cheque.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.criptomoeda.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.debito.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.debitoAutomatico.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.dinheiro.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.doc.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.pix.value),
+  FormaMovimentacaoModel(forma: FormaPagamentoEnum.ted.value),
+];

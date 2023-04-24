@@ -3,7 +3,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/button/limpar_button.dart';
 import 'package:tarefas_app/class/dias_class.dart';
 import 'package:tarefas_app/class/forma-pagamento_class.dart';
-import 'package:tarefas_app/class/frequencia_class.dart';
+import 'package:tarefas_app/class/recorrencia_class.dart';
 import 'package:tarefas_app/class/tipo-movimentacao_class.dart';
 import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/class/tipo_select_class.dart';

@@ -1,51 +1,18 @@
 import 'dart:convert';
+import 'package:tarefas_app/class/a_cada_class.dart';
+import 'package:tarefas_app/class/parcela_model.dart';
+import 'package:tarefas_app/class/recorrencia_class.dart';
 
 class FrequenciaModel {
-  late String text;
-  late int value;
-  late int? quantidadeParcelas;
-  late int? iniciarPacelas;
-  late String? aCada;
-  late String? periodo;
+  late ACadaModel aCada;
+  late RecorrenciaModel recorrencia;
+  late ParcelaModel parcela;
 
   FrequenciaModel({
-    required this.text,
-    required this.value,
+    required this.aCada,
+    required this.recorrencia,
+    required this.parcela,
   });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'text': text,
-      'value': value,
-    };
-  }
-}
-
-final List<FrequenciaModel> ListaFrequencia = [
-  FrequenciaModel(text: FrequenciaEnum.diariamente.value, value: 0),
-  FrequenciaModel(text: FrequenciaEnum.semanalmente.value, value: 1),
-  FrequenciaModel(text: FrequenciaEnum.mensalmente.value, value: 2),
-  FrequenciaModel(text: FrequenciaEnum.anualmente.value, value: 3),
-  FrequenciaModel(text: FrequenciaEnum.diasSemana.value, value: 4),
-  FrequenciaModel(text: FrequenciaEnum.fimSemana.value, value: 5),
-  FrequenciaModel(text: FrequenciaEnum.aCada.value, value: 6),
-  FrequenciaModel(text: FrequenciaEnum.parcelas.value, value: 7),
-  FrequenciaModel(text: FrequenciaEnum.unica.value, value: 8),
-];
-
-enum FrequenciaEnum {
-  diariamente('diariamente'),
-  semanalmente('semanalmente'),
-  mensalmente('mensalmente'),
-  anualmente('anualmente'),
-  diasSemana('dias da semana'),
-  fimSemana('fim de semana'),
-  aCada('a cada'),
-  parcelas('parcelas'),
-  unica('única');
-
-  final String value;
-  const FrequenciaEnum(this.value);
 }
 
 class FrequenciaClass {

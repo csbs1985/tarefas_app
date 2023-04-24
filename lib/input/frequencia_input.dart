@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:tarefas_app/button/limpar_button.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
+import 'package:tarefas_app/class/recorrencia_class.dart';
 import 'package:tarefas_app/class/tipo_select_class.dart';
 import 'package:tarefas_app/core/constants.dart';
 import 'package:tarefas_app/modal/frequencia_modal.dart';
@@ -52,9 +53,9 @@ class _FrequenciaInputState extends State<FrequenciaInput> {
     if (widget._controller.text != "") {
       Map<String, dynamic> jsonMap = _frequenciaClass.stringToMap(value);
 
-      if (jsonMap['frequencia'] == FrequenciaEnum.aCada.value)
+      if (jsonMap['frequencia'] == RecorrenciaEnum.aCada.value)
         _frequencia = "A cada ${jsonMap['aCada']} ${jsonMap['periodo']}";
-      else if (jsonMap['frequencia'] == FrequenciaEnum.parcelas.value)
+      else if (jsonMap['frequencia'] == RecorrenciaEnum.parcelas.value)
         _frequencia = "${jsonMap['parcelas']} parcelas";
       else
         _frequencia = jsonMap['frequencia'];

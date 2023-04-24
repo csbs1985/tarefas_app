@@ -1,9 +1,19 @@
 class NotificacaoModel {
-  late String data;
-  late String horario;
+  late int dia;
+  late int mes;
+  late NotificacaoSituacaoEnum situacao;
 
   NotificacaoModel(
-    this.data,
-    this.horario,
+    this.dia,
+    this.mes,
+    this.situacao,
   );
+}
+
+enum NotificacaoSituacaoEnum {
+  aberta('aberta'),
+  fechada('fechada');
+
+  final String value;
+  const NotificacaoSituacaoEnum(this.value);
 }
