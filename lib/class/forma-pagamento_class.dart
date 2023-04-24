@@ -1,13 +1,9 @@
 class FormaMovimentacaoModel {
-  final String forma;
+  final FormaPagamentoEnum tipo;
 
   FormaMovimentacaoModel({
-    required this.forma,
+    required this.tipo,
   });
-
-  Map<String, dynamic> toMap() {
-    return {'forma': forma};
-  }
 }
 
 enum FormaPagamentoEnum {
@@ -28,15 +24,15 @@ enum FormaPagamentoEnum {
 }
 
 final List<FormaMovimentacaoModel> ListaFormaPagamento = [
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.boleto.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.cartaoCredito.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.cartaoDebito.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.cheque.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.criptomoeda.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.debito.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.debitoAutomatico.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.dinheiro.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.doc.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.pix.value),
-  FormaMovimentacaoModel(forma: FormaPagamentoEnum.ted.value),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.boleto),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.cartaoCredito),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.cartaoDebito),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.cheque),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.criptomoeda),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.debito),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.debitoAutomatico),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.dinheiro),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.doc),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.pix),
+  FormaMovimentacaoModel(tipo: FormaPagamentoEnum.ted),
 ];

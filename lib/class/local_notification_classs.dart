@@ -1,6 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:tarefas_app/class/id_class.dart';
-import 'package:tarefas_app/class/text_class.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 
 class LocalNotificationModel {
@@ -19,7 +18,6 @@ class LocalNotificationModel {
 
 class LocalNotificationClass {
   final IdClass _idClass = IdClass();
-  final TextClass _textClass = TextClass();
 
   static Future<void> initialize() async {
     await AwesomeNotifications().initialize(

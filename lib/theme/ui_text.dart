@@ -106,7 +106,7 @@ class UiText {
   );
 
   static const TextStyle button = TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.normal,
     color: UiColor.tarefa,
   );
@@ -118,7 +118,7 @@ class UiText {
   );
 
   static const TextStyle buttonSelected = TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.bold,
     color: UiColor.background,
   );

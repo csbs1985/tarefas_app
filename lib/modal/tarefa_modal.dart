@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tarefas_app/class/data_class.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
 import 'package:tarefas_app/class/notificacao_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
@@ -40,7 +39,6 @@ class _TarefaPageState extends State<TarefaModal> {
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final DataClass _dataClass = DataClass();
   final FrequenciaClass _frequenciaClass = FrequenciaClass();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -162,6 +160,9 @@ class _TarefaPageState extends State<TarefaModal> {
   }
 
   void postTarefa() {
+    Map<String, dynamic> frequenciaMap =
+        _frequenciaClass.stringToMap(_frequenciaController.text);
+
     _tarefa = {
       'idTarefa': _uuid.v4(),
       'anexo': _anexoController.text,
@@ -181,12 +182,17 @@ class _TarefaPageState extends State<TarefaModal> {
         },
       },
       'frequencia': {
-        'aCada': '',
-        'recorrencia': '',
+        'aCada': {
+          'periodo': frequenciaMap['aCada']['periodo'],
+          'quantidade': frequenciaMap['aCada']['quantidade'],
+        },
+        'recorrencia': {
+          'tipo': frequenciaMap['recorrencia']['tipo'],
+        },
         'parcela': {
-          'parcelaAtual': 1,
-          'parcelaTotal': 1,
-          'parcelaInicial': 1,
+          'parcelaAtual': frequenciaMap['parcela']['parcelaAtual'],
+          'parcelaInicial': frequenciaMap['parcela']['parcelaInicial'],
+          'parcelaTotal': frequenciaMap['parcela']['parcelaTotal'],
         },
       },
       'idUsuario': currentUsuario.value!['email'],
@@ -204,7 +210,7 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaClass.postTarefa(_tarefa);
-    // _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
+    _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
   }
 
   void pathTarefa() {
@@ -231,7 +237,6 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaClass.pathTarefa(_tarefa);
-    // _createLocalNotificacao(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
   }
 

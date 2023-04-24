@@ -1,16 +1,16 @@
 class RecorrenciaModel {
-  late RecorrenciaEnum periodo;
+  late RecorrenciaEnum tipo;
 
   RecorrenciaModel({
-    required this.periodo,
+    required this.tipo,
   });
 }
 
 enum RecorrenciaEnum {
-  diariamente('diariamente'),
-  semanalmente('semanalmente'),
-  mensalmente('mensalmente'),
-  anualmente('anualmente'),
+  diario('diario'),
+  semanal('semanal'),
+  mensal('mensal'),
+  anual('anual'),
   diasSemana('dias da semana'),
   fimSemana('fim de semana'),
   aCada('a cada'),
@@ -22,13 +22,13 @@ enum RecorrenciaEnum {
 }
 
 final List<RecorrenciaModel> ListaFrequencia = [
-  RecorrenciaModel(periodo: RecorrenciaEnum.diariamente),
-  RecorrenciaModel(periodo: RecorrenciaEnum.semanalmente),
-  RecorrenciaModel(periodo: RecorrenciaEnum.mensalmente),
-  RecorrenciaModel(periodo: RecorrenciaEnum.anualmente),
-  RecorrenciaModel(periodo: RecorrenciaEnum.diasSemana),
-  RecorrenciaModel(periodo: RecorrenciaEnum.fimSemana),
-  RecorrenciaModel(periodo: RecorrenciaEnum.aCada),
-  RecorrenciaModel(periodo: RecorrenciaEnum.parcelas),
-  RecorrenciaModel(periodo: RecorrenciaEnum.unica),
+  RecorrenciaModel(tipo: RecorrenciaEnum.diario),
+  RecorrenciaModel(tipo: RecorrenciaEnum.semanal),
+  RecorrenciaModel(tipo: RecorrenciaEnum.mensal),
+  RecorrenciaModel(tipo: RecorrenciaEnum.anual),
+  RecorrenciaModel(tipo: RecorrenciaEnum.diasSemana),
+  RecorrenciaModel(tipo: RecorrenciaEnum.fimSemana),
+  RecorrenciaModel(tipo: RecorrenciaEnum.aCada),
+  RecorrenciaModel(tipo: RecorrenciaEnum.parcelas),
+  RecorrenciaModel(tipo: RecorrenciaEnum.unica),
 ];

@@ -47,6 +47,6 @@ class TarefaFirebase {
   }
 
   postTarefa(Map<String, dynamic> tarefa) {
-    return tarefas.doc(tarefa['idUsuario']).set(tarefa);
+    return tarefas.doc(tarefa['idTarefa']).set(tarefa);
   }
 }

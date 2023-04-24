@@ -52,13 +52,15 @@ class _FrequenciaInputState extends State<FrequenciaInput> {
   void _setControllerModal(String value) {
     if (widget._controller.text != "") {
       Map<String, dynamic> jsonMap = _frequenciaClass.stringToMap(value);
+      String tipo = jsonMap['recorrencia']['tipo'];
 
-      if (jsonMap['frequencia'] == RecorrenciaEnum.aCada.value)
-        _frequencia = "A cada ${jsonMap['aCada']} ${jsonMap['periodo']}";
-      else if (jsonMap['frequencia'] == RecorrenciaEnum.parcelas.value)
-        _frequencia = "${jsonMap['parcelas']} parcelas";
+      if (tipo == RecorrenciaEnum.aCada.value)
+        _frequencia =
+            "A cada ${jsonMap['aCada']['quantidade']} ${jsonMap['aCada']['periodo']}";
+      else if (tipo == RecorrenciaEnum.parcelas.value)
+        _frequencia = "${jsonMap['parcela']['parcelaTotal']} parcelas";
       else
-        _frequencia = jsonMap['frequencia'];
+        _frequencia = tipo;
 
       setState(() {
         widget._controller.text = value;

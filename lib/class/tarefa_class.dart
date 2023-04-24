@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -51,32 +50,7 @@ class TarefaClass {
   final TarefaFirebase _tarefaFirebase = TarefaFirebase();
   final TextClass _textClass = TextClass();
 
-  tarefaToMap(QueryDocumentSnapshot tarefa) {
-    Map<String, dynamic> tarefaMap = {
-      '_id': tarefa['_id'],
-      'dataCriacao': tarefa['dataCriacao'],
-      'idUsuario': tarefa['idUsuario'],
-      'tarefa': tarefa['tarefa'],
-      'tipoTarefa': tarefa['tipoTarefa'],
-      'dia': tarefa['dia'],
-      'notificacao': tarefa['notificacao'],
-      'frequencia': tarefa['frequencia'],
-      'valor': tarefa['valor'],
-      'tipoMovimentacao': tarefa['tipoMovimentacao'],
-      'formaPagamento': tarefa['formaPagamento'],
-      'anotacao': tarefa['anotacao'],
-      'telefone': tarefa['telefone'],
-      'endereco': tarefa['endereco'],
-      'horario': tarefa['horario'],
-      'link': tarefa['link'],
-      'anexo': tarefa['anexo'],
-      'concluida': tarefa['concluida'],
-    };
-
-    return tarefaMap;
-  }
-
-  postTarefa(Map<String, dynamic> tarefa) async {
+  void postTarefa(Map<String, dynamic> tarefa) async {
     try {
       await _tarefaFirebase.postTarefa(tarefa);
       _createLocalNotificacao(tarefa);
@@ -85,7 +59,7 @@ class TarefaClass {
     }
   }
 
-  pathTarefa(Map<String, dynamic> tarefa) async {
+  void pathTarefa(Map<String, dynamic> tarefa) async {
     try {
       await _tarefaFirebase.pathTarefa(tarefa);
       // _createLocalNotificacao(tarefa);
@@ -94,7 +68,7 @@ class TarefaClass {
     }
   }
 
-  _createLocalNotificacao(Map<String, dynamic> tarefa) {
+  void _createLocalNotificacao(Map<String, dynamic> tarefa) {
     DateTime dataAtual = DateTime.now();
     DateTime dataNotificacao =
         DateTime.parse(tarefa['notificacao'].first['dataHora']);
@@ -118,37 +92,5 @@ class TarefaClass {
       duration: const Duration(milliseconds: 300),
       builder: (context) => const TarefaModal(),
     );
-  }
-
-  listToMap(List<dynamic> tarefas) {
-    Map<String, dynamic>? tarefaItem;
-    List<Map<String, dynamic>> listaTarefas = [];
-
-    for (var item in tarefas) {
-      tarefaItem = {
-        'id': item['id'],
-        'dataCriacao': item['dataCriacao'],
-        'idUsuario': item['idUsuario'],
-        'tarefa': item['tarefa'],
-        'tipoTarefa': item['tipoTarefa'],
-        'dia': item['dia'],
-        'notificacao': item['notificacao'],
-        'frequencia': item['frequencia'],
-        'valor': item['valor'],
-        'tipoMovimentacao': item['tipoMovimentacao'],
-        'formaPagamento': item['formaPagamento'],
-        'anotacao': item['anotacao'],
-        'telefone': item['telefone'],
-        'endereco': item['endereco'],
-        'horario': item['horario'],
-        'link': item['link'],
-        'anexo': item['anexo'],
-        'concluida': item['concluida'],
-      };
-
-      listaTarefas.add(tarefaItem);
-    }
-
-    return listaTarefas;
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
+import 'package:tarefas_app/class/periodo_class.dart';
 import 'package:tarefas_app/class/recorrencia_class.dart';
 import 'package:tarefas_app/class/tipo_frequencia_class.dart';
 import 'package:tarefas_app/core/constants.dart';
@@ -33,10 +34,12 @@ class _SelectInputState extends State<FrequenciaModal> {
   final ToastWidget _toastWidget = ToastWidget();
 
   final TextEditingController _frequenciaController = TextEditingController();
-  final TextEditingController _aCadaController = TextEditingController();
-  final TextEditingController _inicioController = TextEditingController();
-  final TextEditingController _parcelaController = TextEditingController();
+  final TextEditingController _quantidadeController = TextEditingController();
+  final TextEditingController _parcelaInicialController =
+      TextEditingController();
+  final TextEditingController _parcelaTotalController = TextEditingController();
   final TextEditingController _periodoController = TextEditingController();
+  final TextEditingController _periodoAtualController = TextEditingController();
 
   Map<String, dynamic> freq = {};
 
@@ -52,11 +55,12 @@ class _SelectInputState extends State<FrequenciaModal> {
           _frequenciaClass.stringToMap(widget._controller.text);
 
       setState(() {
-        _frequenciaController.text = jsonMap['frequencia'];
-        _aCadaController.text = jsonMap['aCada'];
-        _inicioController.text = jsonMap['inicio'];
-        _parcelaController.text = jsonMap['parcelas'];
-        _periodoController.text = jsonMap['periodo'];
+        _quantidadeController.text = jsonMap['aCada']['quantidade'];
+        _periodoController.text = jsonMap['aCada']['periodo'];
+        _frequenciaController.text = jsonMap['recorrencia']['tipo'];
+        _parcelaInicialController.text = jsonMap['parcela']['parcelaInicial'];
+        _parcelaTotalController.text = jsonMap['parcela']['parcelaTotal'];
+        _periodoAtualController.text = jsonMap['parcela']['parcelaAtual'];
       });
     }
   }
@@ -101,13 +105,15 @@ class _SelectInputState extends State<FrequenciaModal> {
 
   void onfloatingActionButton() {
     if (_frequenciaController.text == RecorrenciaEnum.aCada.value &&
-        (_aCadaController.text.isEmpty || _periodoController.text.isEmpty)) {
+        (_quantidadeController.text.isEmpty ||
+            _periodoController.text.isEmpty)) {
       _toastWidget.toast(context, ToastEnum.ERRO.value, PREENCHER);
       return;
     }
 
     if (_frequenciaController.text == RecorrenciaEnum.parcelas.value &&
-        (_parcelaController.text.isEmpty || _inicioController.text.isEmpty)) {
+        (_parcelaTotalController.text.isEmpty ||
+            _parcelaInicialController.text.isEmpty)) {
       _toastWidget.toast(context, ToastEnum.ERRO.value, PREENCHER);
       return;
     }
@@ -117,14 +123,31 @@ class _SelectInputState extends State<FrequenciaModal> {
   }
 
   void formatFrequencia() {
-    freq.clear();
+    freq = {};
 
     freq = {
-      'frequencia': _frequenciaController.text,
-      'aCada': _aCadaController.text,
-      'periodo': _periodoController.text,
-      'parcelas': _parcelaController.text,
-      'inicio': _inicioController.text,
+      'aCada': {
+        'periodo': _periodoController.text.isNotEmpty
+            ? _periodoController.text
+            : PeriodoEnum.meses.value,
+        'quantidade': _quantidadeController.text.isNotEmpty
+            ? _quantidadeController.text
+            : "1",
+      },
+      'recorrencia': {
+        'tipo': _frequenciaController.text,
+      },
+      'parcela': {
+        'parcelaAtual': _periodoAtualController.text != "0"
+            ? _parcelaInicialController.text
+            : "1",
+        'parcelaTotal': _parcelaTotalController.text.isNotEmpty
+            ? _parcelaTotalController.text
+            : "1",
+        'parcelaInicial': _parcelaInicialController.text.isNotEmpty
+            ? _parcelaInicialController.text
+            : "1",
+      },
     };
 
     String jsonString = jsonEncode(freq);
@@ -138,9 +161,10 @@ class _SelectInputState extends State<FrequenciaModal> {
   @override
   void dispose() {
     _frequenciaController.dispose();
-    _aCadaController.dispose();
-    _inicioController.dispose();
-    _parcelaController.dispose();
+    _quantidadeController.dispose();
+    _periodoAtualController.dispose();
+    _parcelaInicialController.dispose();
+    _parcelaTotalController.dispose();
     _periodoController.dispose();
     super.dispose();
   }
@@ -165,13 +189,13 @@ class _SelectInputState extends State<FrequenciaModal> {
                 children: [
                   for (var item in ListaFrequencia)
                     TextButton(
-                      onPressed: () => onPressed(item.periodo.value),
-                      style: _checkSelected(item.periodo.value)
+                      onPressed: () => onPressed(item.tipo.value),
+                      style: _checkSelected(item.tipo.value)
                           ? UiButton.buttonSelected
                           : UiButton.button,
                       child: Text(
-                        item.periodo.value,
-                        style: _checkSelected(item.periodo.value)
+                        item.tipo.value,
+                        style: _checkSelected(item.tipo.value)
                             ? UiText.buttonSelected
                             : UiText.button,
                       ),
@@ -179,24 +203,25 @@ class _SelectInputState extends State<FrequenciaModal> {
                   const SizedBox(height: 60),
                   if (onlyParcelas())
                     TextoInput(
-                      controller: _parcelaController,
+                      controller: _parcelaTotalController,
                       label: FREQUENCIA_PARCELAS,
                       keyboard: TextInputType.number,
-                      callback: (value) => _parcelaController.text = value,
+                      callback: (value) => _parcelaTotalController.text = value,
                     ),
                   if (onlyParcelas())
                     TextoInput(
-                      controller: _inicioController,
+                      controller: _parcelaInicialController,
                       label: FREQUENCIA_PARCELAS_INICIAR,
                       keyboard: TextInputType.number,
-                      callback: (value) => _inicioController.text = value,
+                      callback: (value) =>
+                          _parcelaInicialController.text = value,
                     ),
                   if (onlyACada())
                     TextoInput(
-                      controller: _aCadaController,
+                      controller: _quantidadeController,
                       label: FREQUENCIA_A_CADA_NUMERO,
                       keyboard: TextInputType.number,
-                      callback: (value) => _aCadaController.text = value,
+                      callback: (value) => _quantidadeController.text = value,
                     ),
                   if (onlyACada())
                     Column(
