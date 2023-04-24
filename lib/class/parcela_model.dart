@@ -2,9 +2,11 @@
 class ParcelaModel {
   late int parcelaTotal;
   late int parcelaInicial;
+  late int parcelaAtual;
 
   ParcelaModel({
     required this.parcelaTotal,
     required this.parcelaInicial,
+    required this.parcelaAtual,
   });
 }

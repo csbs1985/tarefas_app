@@ -6,6 +6,16 @@ import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 class DataClass {
   final EnderecoClass _enderecoClass = EnderecoClass();
 
+  int pegarDiaData(String data) {
+    DateTime format = DateTime.parse(data);
+    return int.parse(format.day.toString());
+  }
+
+  int pegarMesData(String data) {
+    DateTime format = DateTime.parse(data);
+    return int.parse(format.month.toString());
+  }
+
   TextEditingController formatDataSomente(String dataHora) {
     if (dataHora != "") {
       List<String> partes = dataHora.split(" às ");

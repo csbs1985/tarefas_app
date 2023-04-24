@@ -3,8 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tarefas_app/class/data_class.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
-import 'package:tarefas_app/class/local_notification_classs.dart';
+import 'package:tarefas_app/class/notificacao_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/class/tipo_select_class.dart';
@@ -39,10 +40,10 @@ class _TarefaPageState extends State<TarefaModal> {
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final DataClass _dataClass = DataClass();
   final FrequenciaClass _frequenciaClass = FrequenciaClass();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final LocalNotificationClass _localNotificationClass =
-      LocalNotificationClass();
+
   final Uuid _uuid = const Uuid();
   final TarefaClass _tarefaClass = TarefaClass();
   final ToastWidget _toastWidget = ToastWidget();
@@ -56,7 +57,7 @@ class _TarefaPageState extends State<TarefaModal> {
       MoneyMaskedTextController(decimalSeparator: ',', thousandSeparator: '.');
   final TextEditingController _tipoMovimentacaoController =
       TextEditingController();
-  final TextEditingController _formaPagamentoController =
+  final TextEditingController _formaMovimentacaoController =
       TextEditingController();
   final TextEditingController _anotacaoController = TextEditingController();
   final TextEditingController _telefoneController = TextEditingController();
@@ -83,7 +84,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _notificacaoController.text = currentTarefa.value!['notificacao'];
     _valorController.text = currentTarefa.value!['valor!'];
     _tipoMovimentacaoController.text = currentTarefa.value!['tipoMovimentacao'];
-    _formaPagamentoController.text = currentTarefa.value!['formaPagamento!'];
+    _formaMovimentacaoController.text = currentTarefa.value!['formaPagamento!'];
     _anotacaoController.text = currentTarefa.value!['anotacao!'];
     _telefoneController.text = currentTarefa.value!['telefone'];
     _enderecoController.text = currentTarefa.value!['endereco'];
@@ -139,7 +140,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _frequenciaController.clear();
     _valorController.text = VALOR_INICIAL;
     _tipoMovimentacaoController.clear();
-    _formaPagamentoController.clear();
+    _formaMovimentacaoController.clear();
     _anotacaoController.clear();
     _telefoneController.clear();
     _enderecoController.clear();
@@ -162,30 +163,48 @@ class _TarefaPageState extends State<TarefaModal> {
 
   void postTarefa() {
     _tarefa = {
-      'id': _uuid.v4(),
-      'dataCriacao': DateTime.now().toString(),
+      'idTarefa': _uuid.v4(),
+      'anexo': _anexoController.text,
+      'anotacao': _anotacaoController.text,
+      'evento': {
+        'endereco': _enderecoController.text,
+        'link': _linkController.text,
+        'horario': _horarioController.text,
+      },
+      'financeiro': {
+        'valor': _valorController.text,
+        'formaMovimentacao': {
+          'forma': _formaMovimentacaoController.text,
+        },
+        'tipoMovimentacao': {
+          'tipo': _tipoMovimentacaoController.text,
+        },
+      },
+      'frequencia': {
+        'aCada': '',
+        'recorrencia': '',
+        'parcela': {
+          'parcelaAtual': 1,
+          'parcelaTotal': 1,
+          'parcelaInicial': 1,
+        },
+      },
       'idUsuario': currentUsuario.value!['email'],
+      'ligar': {
+        'telefone': _telefoneController.text,
+      },
+      'notificacao': [
+        {
+          'dataHora': _notificacaoController.text,
+          'situacao': NotificacaoSituacaoEnum.aberta.value,
+        },
+      ],
       'tarefa': _nomeController.text,
       'tipoTarefa': _tipoTarefaController.text,
-      'dia': _diaController.text,
-      'notificacao': _notificacaoController.text,
-      'frequencia':
-          _frequenciaClass.formatFrequencia(_frequenciaController.text),
-      'valor': _valorController.text,
-      'tipoMovimentacao': _tipoMovimentacaoController.text,
-      'formaPagamento': _formaPagamentoController.text,
-      'anotacao': _anotacaoController.text,
-      'telefone': _telefoneController.text,
-      'endereco': _enderecoController.text,
-      'horario': _horarioController.text,
-      'link': _linkController.text,
-      'anexo': _anexoController.text,
-      'concluida': false,
     };
 
     _tarefaClass.postTarefa(_tarefa);
-    _createLocalNotificacao(_tarefa);
-    _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
+    // _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
   }
 
   void pathTarefa() {
@@ -201,7 +220,7 @@ class _TarefaPageState extends State<TarefaModal> {
           _frequenciaClass.formatFrequencia(_frequenciaController.text),
       'valor': _valorController.text,
       'tipoMovimentacao': _tipoMovimentacaoController.text,
-      'formaPagamento': _formaPagamentoController.text,
+      'formaPagamento': _formaMovimentacaoController.text,
       'anotacao': _anotacaoController.text,
       'telefone': _telefoneController.text,
       'endereco': _enderecoController.text,
@@ -212,17 +231,8 @@ class _TarefaPageState extends State<TarefaModal> {
     };
 
     _tarefaClass.pathTarefa(_tarefa);
-    _createLocalNotificacao(_tarefa);
+    // _createLocalNotificacao(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
-  }
-
-  _createLocalNotificacao(Map<String, dynamic> tarefa) {
-    DateTime dataAtual = DateTime.now();
-    DateTime dataNotificacao = DateTime.parse(tarefa['notificacao']);
-
-    if (dataNotificacao.compareTo(dataAtual) > 0) {
-      _localNotificationClass.createNewNotification(_tarefa);
-    }
   }
 
   @override
@@ -234,7 +244,7 @@ class _TarefaPageState extends State<TarefaModal> {
     _frequenciaController.dispose();
     _valorController.dispose();
     _tipoMovimentacaoController.dispose();
-    _formaPagamentoController.dispose();
+    _formaMovimentacaoController.dispose();
     _anotacaoController.dispose();
     _telefoneController.dispose();
     _enderecoController.dispose();
@@ -290,9 +300,10 @@ class _TarefaPageState extends State<TarefaModal> {
                 ),
               if (onlyFinanceiro())
                 SelectInput(
-                  controller: _formaPagamentoController,
+                  controller: _formaMovimentacaoController,
                   tipo: TipoSelectEnum.formaMovimentacao,
-                  callback: (value) => _formaPagamentoController.text = value,
+                  callback: (value) =>
+                      _formaMovimentacaoController.text = value,
                 ),
               if (onlyFinanceiro())
                 ValorInput(

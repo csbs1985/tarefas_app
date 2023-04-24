@@ -1,11 +1,9 @@
 class NotificacaoModel {
-  late int dia;
-  late int mes;
+  late String dataHora;
   late NotificacaoSituacaoEnum situacao;
 
   NotificacaoModel(
-    this.dia,
-    this.mes,
+    this.dataHora,
     this.situacao,
   );
 }

@@ -27,8 +27,8 @@ class SelectModal extends StatefulWidget {
 class _SelectInputState extends State<SelectModal> {
   void selectButton(button) {
     setState(() {
-      widget._controller.text = button.text;
-      widget._callback(button.text);
+      widget._controller.text = button.tipo.value;
+      widget._callback(button.tipo.value);
 
       Navigator.of(context).pop();
     });
@@ -59,12 +59,12 @@ class _SelectInputState extends State<SelectModal> {
                   for (var item in widget._body)
                     TextButton(
                       onPressed: () => selectButton(item),
-                      style: _checkSelected(item.text)
+                      style: _checkSelected(item.tipo.value)
                           ? UiButton.buttonSelected
                           : UiButton.button,
                       child: Text(
-                        item.text,
-                        style: _checkSelected(item.text)
+                        item.tipo.value,
+                        style: _checkSelected(item.tipo.value)
                             ? UiText.buttonSelected
                             : UiText.button,
                       ),

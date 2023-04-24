@@ -41,13 +41,14 @@ class LocalNotificationClass {
     );
   }
 
-  Future<void> createNewNotification(Map<String, dynamic> tarefa) async {
+  Future<void> createNewNotification(
+      String title, String body, DateTime date) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: _idClass.generateUniqueId(),
         channelKey: 'notification_channel',
-        title: tarefa['tarefa'],
-        body: _textClass.stringBodyNotification(tarefa),
+        title: title,
+        body: body,
         summary: '',
         actionType: ActionType.Default,
         wakeUpScreen: true,
@@ -55,7 +56,7 @@ class LocalNotificationClass {
         autoDismissible: false,
       ),
       schedule: NotificationCalendar.fromDate(
-        date: DateTime.parse(tarefa['notificacao']),
+        date: date,
         preciseAlarm: true,
       ),
     );
