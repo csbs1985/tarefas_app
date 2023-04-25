@@ -5,6 +5,7 @@ import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tarefas_app/class/frequencia_class.dart';
 import 'package:tarefas_app/class/notificacao_class.dart';
+import 'package:tarefas_app/class/recorrencia_class.dart';
 import 'package:tarefas_app/class/tarefa_class.dart';
 import 'package:tarefas_app/class/tipo-tarefa_class.dart';
 import 'package:tarefas_app/class/tipo_select_class.dart';
@@ -17,9 +18,9 @@ import 'package:tarefas_app/input/frequencia_input.dart';
 import 'package:tarefas_app/input/horario_input.dart';
 import 'package:tarefas_app/input/link_input.dart';
 import 'package:tarefas_app/input/notificacao_input%20.dart';
+import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/input/telefone_input.dart';
 import 'package:tarefas_app/input/texto_input.dart';
-import 'package:tarefas_app/input/select_input.dart';
 import 'package:tarefas_app/input/valor_input.dart';
 import 'package:tarefas_app/theme/ui_color.dart';
 import 'package:tarefas_app/theme/ui_svg.dart';
@@ -80,14 +81,14 @@ class _TarefaPageState extends State<TarefaModal> {
     _tipoTarefaController.text = currentTarefa.value!['tipoTarefa'];
     _diaController.text = currentTarefa.value!['dia'];
     _notificacaoController.text = currentTarefa.value!['notificacao'];
-    _valorController.text = currentTarefa.value!['valor!'];
+    _valorController.text = currentTarefa.value!['valor'];
     _tipoMovimentacaoController.text = currentTarefa.value!['tipoMovimentacao'];
-    _formaMovimentacaoController.text = currentTarefa.value!['formaPagamento!'];
-    _anotacaoController.text = currentTarefa.value!['anotacao!'];
+    _formaMovimentacaoController.text = currentTarefa.value!['formaPagamento'];
+    _anotacaoController.text = currentTarefa.value!['anotacao'];
     _telefoneController.text = currentTarefa.value!['telefone'];
     _enderecoController.text = currentTarefa.value!['endereco'];
-    _horarioController.text = currentTarefa.value!['horario!'];
-    _linkController.text = currentTarefa.value!['link!'];
+    _horarioController.text = currentTarefa.value!['horario'];
+    _linkController.text = currentTarefa.value!['link'];
     _anexoController.text = currentTarefa.value!['anexo'];
     _frequenciaController.text =
         _frequenciaClass.mapToString(currentTarefa.value!['frequencia']);
@@ -148,20 +149,39 @@ class _TarefaPageState extends State<TarefaModal> {
   }
 
   void onFloatingActionButton(BuildContext context) {
-    if (_nomeController.text != "" && _notificacaoController.text != "") {
+    if (_nomeController.text != "" && _notificacaoController.text != "")
       try {
+        fillTarefa();
         currentTarefa.value == null ? postTarefa() : pathTarefa();
         Navigator.pop(context);
       } on Exception {
         _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_ERRO_POST);
       }
-    } else
+    else
       _toastWidget.toast(context, ToastEnum.ALERTA.value, TAREFA_VAZIA);
   }
 
-  void postTarefa() {
-    Map<String, dynamic> frequenciaMap =
-        _frequenciaClass.stringToMap(_frequenciaController.text);
+  void fillTarefa() {
+    Map<String, dynamic> frequenciaMap = {};
+
+    if (_tipoTarefaController.text == TipoTarefaEnum.aniversario.value) {
+      frequenciaMap = {
+        'aCada': {
+          'periodo': "",
+          'quantidade': "",
+        },
+        'recorrencia': {
+          'tipo': RecorrenciaEnum.anual.value,
+        },
+        'parcela': {
+          'parcelaAtual': "",
+          'parcelaTotal': "",
+          'parcelaInicial': "",
+        },
+      };
+    } else {
+      frequenciaMap = _frequenciaClass.stringToMap(_frequenciaController.text);
+    }
 
     _tarefa = {
       'idTarefa': _uuid.v4(),
@@ -208,34 +228,14 @@ class _TarefaPageState extends State<TarefaModal> {
       'tarefa': _nomeController.text,
       'tipoTarefa': _tipoTarefaController.text,
     };
+  }
 
+  void postTarefa() {
     _tarefaClass.postTarefa(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_CRIADA);
   }
 
   void pathTarefa() {
-    _tarefa = {
-      'id': currentTarefa.value!['id'],
-      'dataCriacao': currentTarefa.value!['dataCriacao'],
-      'idUsuario': currentTarefa.value!['idUsuario'],
-      'tarefa': _nomeController.text,
-      'tipoTarefa': _tipoTarefaController.text,
-      'dia': _diaController.text,
-      'notificacao': _notificacaoController.text,
-      'frequencia':
-          _frequenciaClass.formatFrequencia(_frequenciaController.text),
-      'valor': _valorController.text,
-      'tipoMovimentacao': _tipoMovimentacaoController.text,
-      'formaPagamento': _formaMovimentacaoController.text,
-      'anotacao': _anotacaoController.text,
-      'telefone': _telefoneController.text,
-      'endereco': _enderecoController.text,
-      'horario': _horarioController.text,
-      'link': _linkController.text,
-      'anexo': _anexoController.text,
-      'concluida': currentTarefa.value!['concluida'],
-    };
-
     _tarefaClass.pathTarefa(_tarefa);
     _toastWidget.toast(context, ToastEnum.SUCESSO.value, TAREFA_ALTERADA);
   }
